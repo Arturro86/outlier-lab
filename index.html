@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="WE ARE ALL TRADERS | MICRO CTA | Outlier investing and systematic trading research terminal.">
+  <meta name="description" content="WE ARE ALL TRADERS | MICRO CTA | Instytucjonalny dashboard systematic trading zasilany danymi JSON.">
   <title>WE ARE ALL TRADERS | MICRO CTA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,15 +19,15 @@
 
     <header class="topbar">
       <div class="container topbar-inner">
-        <a class="brand" href="#hero" aria-label="MICRO CTA">
+        <a class="brand" href="#hero" aria-label="Przejdź do początku strony">
           <span class="brand-mark">MICRO CTA</span>
           <span class="brand-sub">WE ARE ALL TRADERS</span>
         </a>
-        <nav class="nav" aria-label="Primary">
-          <a href="#hero">Dashboard</a>
-          <a href="#strategy">Strategy</a>
-          <a href="#statistics">Statistics</a>
-          <a href="#research">Research</a>
+        <nav class="nav" aria-label="Nawigacja główna">
+          <a href="#hero">Pulpit</a>
+          <a href="#strategy">Strategia</a>
+          <a href="#statistics">Statystyki</a>
+          <a href="#research">Badania</a>
         </nav>
       </div>
     </header>
@@ -43,24 +43,24 @@
               <span>&amp; MICRO CTA</span>
             </h1>
             <p class="hero-lead">
-              Systematic strategy focused on asymmetry, trend following and capturing rare outlier market moves.
+              Systematyczna strategia oparta o asymetrię, trend following oraz wyszukiwanie rzadkich ruchów typu outlier.
             </p>
             <p class="hero-quote">
-              We do not predict markets.<br>
-              We build asymmetric exposure.
+              Nie przewidujemy rynku.<br>
+              Budujemy asymetryczną ekspozycję.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#research">View Research</a>
-              <a class="button button-secondary" href="#statistics">Live Statistics</a>
+              <a class="button button-primary" href="#statistics">Zobacz statystyki</a>
+              <a class="button button-secondary" href="#research">Research</a>
             </div>
             <div class="hero-ribbon">
               <div class="ribbon-card">
-                <span>Mandate</span>
+                <span>Mandat</span>
                 <strong>Outlier Investing</strong>
               </div>
               <div class="ribbon-card">
-                <span>Engine</span>
-                <strong>Systematic Trend Research</strong>
+                <span>Silnik</span>
+                <strong>Systematic Trading Research</strong>
               </div>
             </div>
           </div>
@@ -73,37 +73,17 @@
                 <span class="status-dot"></span>
               </div>
               <div class="terminal-copy">
-                <span class="terminal-label">PRIVATE TERMINAL</span>
-                <strong>MICRO CTA / OUTLIER RESEARCH STACK</strong>
+                <span class="terminal-label">Prywatny terminal</span>
+                <strong>MICRO CTA / DASHBOARD SYSTEMATYCZNY</strong>
+                <p class="terminal-meta" id="terminalMeta">Ładowanie danych...</p>
               </div>
             </div>
-            <div class="hero-kpis">
-              <article class="kpi-card card-large">
-                <span class="card-index">01</span>
-                <span class="kpi-label">CAGR</span>
-                <strong class="kpi-value positive">+28.4%</strong>
-                <p>Compounded trend participation with disciplined downside containment.</p>
-              </article>
-              <article class="kpi-card card-shift-up">
-                <span class="card-index">02</span>
-                <span class="kpi-label">MAX DD</span>
-                <strong class="kpi-value negative">-11.2%</strong>
-                <p>Controlled losses preserve capital for the next regime expansion.</p>
-              </article>
-              <article class="kpi-card card-shift-down">
-                <span class="card-index">03</span>
-                <span class="kpi-label">RR</span>
-                <strong class="kpi-value">1:4.7</strong>
-                <p>Few outsized winners dominate the distribution by design.</p>
-              </article>
-              <article class="kpi-card card-accent">
-                <span class="card-index">04</span>
-                <span class="kpi-label">YTD</span>
-                <strong class="kpi-value positive">+13.8%</strong>
-                <p>Adaptive systematic execution across mixed volatility states.</p>
-              </article>
-            </div>
+            <div class="hero-kpis" id="heroMetrics"></div>
           </div>
+        </div>
+
+        <div class="container">
+          <div class="overview-strip reveal" id="dashboardStats"></div>
         </div>
       </section>
 
@@ -111,11 +91,11 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Performance Archive</span>
-              <h2>Equity curve built for convexity, not prediction.</h2>
+              <span class="eyebrow">Archiwum wyników</span>
+              <h2>Krzywa kapitału budowana przez proces, nie przez prognozę.</h2>
             </div>
             <p>
-              The strategy compounds through persistent directional participation, accepting routine noise and occasional false starts in exchange for exposure to rare market extensions.
+              Strategia akceptuje niewielkie błędy wykonania i krótkie serie strat w zamian za ekspozycję na rzadkie, trwałe ruchy trendowe o dużym znaczeniu dla wyniku portfela.
             </p>
           </div>
 
@@ -123,25 +103,12 @@
             <div class="chart-panel-header">
               <div>
                 <span class="panel-label">Equity Curve</span>
-                <h3>INSTITUTIONAL RETURN STREAM</h3>
+                <h3>INSTYTUCJONALNY STRUMIEŃ WYNIKÓW</h3>
               </div>
-              <div class="chart-stat-row">
-                <div class="mini-stat">
-                  <span>Net Return</span>
-                  <strong class="positive">+51.0%</strong>
-                </div>
-                <div class="mini-stat">
-                  <span>Profile</span>
-                  <strong>Asymmetric</strong>
-                </div>
-                <div class="mini-stat">
-                  <span>Execution</span>
-                  <strong>Rules-Based</strong>
-                </div>
-              </div>
+              <div class="chart-stat-row" id="chartSummary"></div>
             </div>
             <div class="chart-wrap">
-              <canvas id="equityChart" aria-label="Equity Curve"></canvas>
+              <canvas id="equityChart" aria-label="Wykres krzywej kapitału"></canvas>
             </div>
           </div>
         </div>
@@ -151,84 +118,123 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Advanced Statistics</span>
-              <h2>Signal quality measured through disciplined risk-adjusted performance.</h2>
+              <span class="eyebrow">Zaawansowane statystyki</span>
+              <h2>Jakość sygnału oceniana przez pryzmat ryzyka, wypłat i dyscypliny ekspozycji.</h2>
             </div>
             <p>
-              The dashboard emphasizes portfolio efficiency, downside asymmetry, and exposure discipline rather than superficial win-rate optimization.
+              Wszystkie główne wskaźniki są renderowane bezpośrednio z pliku danych, dzięki czemu dashboard pozostaje spójny z ostatnią aktualizacją raportów tradingowych.
             </p>
           </div>
 
-          <div class="stats-grid reveal">
-            <article class="stat-card">
-              <span>Profit Factor</span>
-              <strong>1.92</strong>
-              <p>Gross profits consistently outweigh controlled loss sequences.</p>
-            </article>
-            <article class="stat-card">
-              <span>Sharpe Ratio</span>
-              <strong>1.41</strong>
-              <p>Risk-adjusted returns remain stable across changing market environments.</p>
-            </article>
-            <article class="stat-card">
-              <span>Sortino</span>
-              <strong>2.07</strong>
-              <p>Downside volatility is managed more effectively than total variance implies.</p>
-            </article>
-            <article class="stat-card">
-              <span>Exposure</span>
-              <strong>38%</strong>
-              <p>Capital is deployed selectively when trend conditions justify participation.</p>
-            </article>
-            <article class="stat-card">
-              <span>Win Rate</span>
-              <strong>43%</strong>
-              <p>Accuracy is secondary to the magnitude of captured outlier winners.</p>
-            </article>
-            <article class="stat-card">
-              <span>MAR Ratio</span>
-              <strong>2.14</strong>
-              <p>Return efficiency remains robust relative to realized drawdown stress.</p>
-            </article>
-          </div>
+          <div class="stats-grid reveal" id="advancedMetrics"></div>
         </div>
       </section>
 
       <section class="section strategy-section" id="strategy">
         <div class="container strategy-grid">
           <div class="strategy-copy reveal">
-            <span class="eyebrow">Strategy Architecture</span>
-            <h2>A calm process for rare moves that matter.</h2>
+            <span class="eyebrow">Architektura strategii</span>
+            <h2>Spokojny proces zaprojektowany pod rzadkie ruchy o dużym znaczeniu.</h2>
             <p>
-              MICRO CTA is built around an institutional observation: the most meaningful changes in portfolio outcomes often come from a small number of exceptional trends rather than frequent directional forecasting. The system is designed to remain present for those outlier episodes without depending on prediction.
+              MICRO CTA opiera się na instytucjonalnym założeniu, że długoterminowy wynik portfela rzadko wynika z częstego trafiania kierunku rynku. Znacznie częściej jest efektem uczestnictwa w niewielkiej liczbie ponadprzeciętnych trendów przy jednoczesnej kontroli kosztu błędu.
             </p>
             <p>
-              This requires accepting many modest losses and short-lived attempts. Capital preservation, exposure sizing, and disciplined exits are not defensive accessories to the process. They are the mechanism that keeps the strategy alive long enough to capture its rare but transformative winners.
+              W praktyce oznacza to akceptację wielu małych strat, ścisłą kontrolę ryzyka oraz bezwzględnie systematyczne wykonanie. Strategia nie próbuje zgadywać punktów zwrotnych. Reaguje na potwierdzony ruch, chroni kapitał i zwiększa ekspozycję wtedy, gdy rynek oferuje trwałą przewagę.
             </p>
             <p>
-              Trend following is treated as a repeatable decision framework rather than a narrative. Signals are executed systematically, risk is framed before conviction, and the portfolio responds to evidence instead of opinion. The objective is simple: contain damage when the market offers nothing, expand with conviction when persistence emerges.
-            </p>
-            <p>
-              In practice, this creates an asymmetric return profile shaped by small losses, larger winners, and consistency of execution. The edge comes from behavior, not prediction. From process, not noise.
+              Proces łączy asymetrię wypłat, zarządzanie obsunięciem i dyscyplinę egzekucji. Celem nie jest wysoka skuteczność za wszelką cenę, lecz obecność w momentach, które potrafią zmienić przebieg całej krzywej kapitału.
             </p>
           </div>
 
           <div class="insight-column reveal">
             <article class="insight-card">
               <span class="insight-index">A1</span>
-              <h3>Asymmetry First</h3>
-              <p>Losses are capped early so capital can stay available for nonlinear trend expansion when it appears.</p>
+              <h3>Asymetria wypłat</h3>
+              <p>Niewielkie straty są akceptowane po to, by kapitał mógł pozostać dostępny na rzadkie ruchy o ponadprzeciętnej sile.</p>
             </article>
             <article class="insight-card raised">
               <span class="insight-index">B2</span>
-              <h3>Systematic Execution</h3>
-              <p>Rules remove interpretive drift and maintain consistent decision quality through volatility and uncertainty.</p>
+              <h3>Egzekucja systematyczna</h3>
+              <p>Decyzje są oparte o reguły, co ogranicza interpretacyjny szum i stabilizuje zachowanie strategii w zmiennych warunkach.</p>
             </article>
             <article class="insight-card">
               <span class="insight-index">C3</span>
-              <h3>Risk Management</h3>
-              <p>Position sizing, exposure control, and disciplined exits form the structural edge behind durable compounding.</p>
+              <h3>Kontrola ryzyka</h3>
+              <p>Wielkość pozycji, zarządzanie obsunięciem i konsekwencja wyjść stanowią rdzeń trwałego procesu inwestycyjnego.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section returns-section" id="returns">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <span class="eyebrow">Miesięczne stopy zwrotu</span>
+              <h2>Ujęcie tear-sheet dla rytmu wyników i odporności strategii.</h2>
+            </div>
+            <p>
+              Sekcja pokazuje miesięczny profil zwrotów w formie czytelnej zarówno dla szybkiego przeglądu, jak i dla bardziej szczegółowej analizy przebiegu wyników.
+            </p>
+          </div>
+
+          <div class="monthly-summary-grid reveal" id="monthlySummary"></div>
+
+          <div class="table-card reveal">
+            <div class="table-card-header">
+              <span class="panel-label">Monthly Performance</span>
+              <h3>MIESIĘCZNE STOPY ZWROTU</h3>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table returns-table">
+                <thead>
+                  <tr>
+                    <th>Miesiąc</th>
+                    <th>Stopa zwrotu</th>
+                    <th>Narastająco</th>
+                    <th>Ocena</th>
+                  </tr>
+                </thead>
+                <tbody id="monthlyReturnsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section trade-section" id="trades">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <span class="eyebrow">Historia transakcji</span>
+              <h2>Terminalowa tabela transakcyjna zasilana bezpośrednio z danych dashboardu.</h2>
+            </div>
+            <p>
+              Historia transakcji pozwala szybko zweryfikować instrument, kierunek, wynik, relację ryzyka do zysku oraz operacyjne uwagi przypisane do każdego zagrania.
+            </p>
+          </div>
+
+          <div class="table-card reveal">
+            <div class="table-card-header">
+              <span class="panel-label">Trade Log</span>
+              <h3>HISTORIA TRANSAKCJI</h3>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table trades-table">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Instrument</th>
+                    <th>Kierunek</th>
+                    <th>Wynik</th>
+                    <th>RR</th>
+                    <th>Status</th>
+                    <th>Uwagi</th>
+                  </tr>
+                </thead>
+                <tbody id="recentTradesTable"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
@@ -237,11 +243,11 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Research Notes</span>
-              <h2>Private terminal modules for portfolio thinking.</h2>
+              <span class="eyebrow">Research notes</span>
+              <h2>Prywatne moduły analityczne dla procesu systematycznego.</h2>
             </div>
             <p>
-              Research is organized around durable concepts that inform the operating logic of the portfolio: convexity, risk framing, and participation in persistent market movement.
+              Karty researchowe pozostają częścią warstwy interpretacyjnej dashboardu i stanowią skrót najważniejszych założeń procesu oraz zarządzania ryzykiem.
             </p>
           </div>
 
@@ -250,21 +256,21 @@
               <span class="research-tag">01</span>
               <h3>Outlier Investing</h3>
               <p>
-                Portfolio construction is centered on the idea that a minority of trades can define the majority of long-term outcomes when risk is controlled and trend persistence is allowed to work.
+                Konstrukcja portfela zakłada, że relatywnie niewielka liczba transakcji może odpowiadać za większość długoterminowego wyniku, jeśli ryzyko jest konsekwentnie kontrolowane.
               </p>
             </article>
             <article class="research-card reveal">
               <span class="research-tag">02</span>
-              <h3>Risk Management</h3>
+              <h3>Zarządzanie ryzykiem</h3>
               <p>
-                Capital protection is treated as an enabling force rather than a constraint, creating the resilience needed to withstand false starts and remain exposed for exceptional moves.
+                Ochrona kapitału nie ogranicza strategii, lecz umożliwia jej przetrwanie serii nieudanych prób i utrzymanie ekspozycji na momenty o największym znaczeniu.
               </p>
             </article>
             <article class="research-card reveal">
               <span class="research-tag">03</span>
               <h3>Trend Following</h3>
               <p>
-                Signals are interpreted as evidence of persistence, not forecasts. The system responds to market structure and stays indifferent to the constant noise of short-horizon narratives.
+                Sygnały są interpretowane jako dowód trwałości ruchu, a nie jako prognoza. Proces reaguje na strukturę rynku i pozostaje obojętny na krótkoterminowy szum narracyjny.
               </p>
             </article>
           </div>
@@ -278,7 +284,7 @@
           <span class="footer-brand">WE ARE ALL TRADERS</span>
           <span class="footer-copy">MICRO CTA</span>
         </div>
-        <p>Systematic Trading Research</p>
+        <p id="footerMeta">Systematic Trading Research</p>
       </div>
     </footer>
   </div>
