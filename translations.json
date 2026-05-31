@@ -1,0 +1,482 @@
+{
+  "pl": {
+    "meta": {
+      "title": "WE ARE ALL TRADERS | MICRO CTA",
+      "description": "WE ARE ALL TRADERS | MICRO CTA | Instytucjonalny, dwujęzyczny dashboard tradingowy zasilany danymi JSON."
+    },
+    "accessibility": {
+      "home": "Przejdź do początku strony",
+      "primaryNav": "Nawigacja główna",
+      "equityChart": "Wykres krzywej kapitału"
+    },
+    "language": {
+      "switcherAria": "Przełącznik języka"
+    },
+    "nav": {
+      "dashboard": "Pulpit",
+      "strategy": "Strategia",
+      "statistics": "Statystyki",
+      "research": "Badania"
+    },
+    "hero": {
+      "eyebrow": "Systematic Trading",
+      "titleLine1": "OUTLIER",
+      "titleLine2": "INVESTING",
+      "titleLine3": "& MICRO CTA",
+      "lead": "Systematyczna strategia oparta o asymetrię, trend following oraz wyszukiwanie rzadkich ruchów typu outlier.",
+      "quoteLine1": "Nie przewidujemy rynku.",
+      "quoteLine2": "Budujemy asymetryczną ekspozycję.",
+      "primaryCta": "Zobacz statystyki",
+      "secondaryCta": "Research",
+      "ribbonMandateLabel": "Mandat",
+      "ribbonMandateValue": "Outlier Investing",
+      "ribbonEngineLabel": "Silnik",
+      "ribbonEngineValue": "Systematic Trading Research",
+      "terminalLabel": "Prywatny terminal",
+      "terminalTitle": "MICRO CTA / DASHBOARD SYSTEMATYCZNY"
+    },
+    "terminal": {
+      "updated": "Aktualizacja",
+      "trades": "Liczba transakcji",
+      "losingStreak": "Seria strat",
+      "noData": "Brak przetworzonych danych źródłowych. Umieść pliki Excel w katalogu data/ i uruchom konwerter."
+    },
+    "sections": {
+      "performanceArchive": {
+        "eyebrow": "Archiwum wyników",
+        "title": "Krzywa kapitału budowana przez proces, nie przez prognozę.",
+        "body": "Strategia akceptuje niewielkie błędy wykonania i krótkie serie strat w zamian za ekspozycję na rzadkie, trwałe ruchy trendowe o dużym znaczeniu dla wyniku portfela."
+      },
+      "equityCurve": {
+        "panelLabel": "Equity Curve",
+        "title": "INSTYTUCJONALNY STRUMIEŃ WYNIKÓW"
+      },
+      "advancedStats": {
+        "eyebrow": "Zaawansowane statystyki",
+        "title": "Jakość sygnału oceniana przez pryzmat ryzyka, wypłat i dyscypliny ekspozycji.",
+        "body": "Wszystkie główne wskaźniki są renderowane bezpośrednio z pliku danych, dzięki czemu dashboard pozostaje spójny z ostatnią aktualizacją raportów tradingowych."
+      },
+      "strategy": {
+        "eyebrow": "Architektura strategii",
+        "title": "Spokojny proces zaprojektowany pod rzadkie ruchy o dużym znaczeniu.",
+        "paragraph1": "MICRO CTA opiera się na instytucjonalnym założeniu, że długoterminowy wynik portfela rzadko wynika z częstego trafiania kierunku rynku. Znacznie częściej jest efektem uczestnictwa w niewielkiej liczbie ponadprzeciętnych trendów przy jednoczesnej kontroli kosztu błędu.",
+        "paragraph2": "W praktyce oznacza to akceptację wielu małych strat, ścisłą kontrolę ryzyka oraz bezwzględnie systematyczne wykonanie. Strategia nie próbuje zgadywać punktów zwrotnych. Reaguje na potwierdzony ruch, chroni kapitał i zwiększa ekspozycję wtedy, gdy rynek oferuje trwałą przewagę.",
+        "paragraph3": "Proces łączy asymetrię wypłat, zarządzanie obsunięciem i dyscyplinę egzekucji. Celem nie jest wysoka skuteczność za wszelką cenę, lecz obecność w momentach, które potrafią zmienić przebieg całej krzywej kapitału."
+      },
+      "strategyInsight": {
+        "card1Title": "Asymetria wypłat",
+        "card1Body": "Niewielkie straty są akceptowane po to, by kapitał mógł pozostać dostępny na rzadkie ruchy o ponadprzeciętnej sile.",
+        "card2Title": "Egzekucja systematyczna",
+        "card2Body": "Decyzje są oparte o reguły, co ogranicza interpretacyjny szum i stabilizuje zachowanie strategii w zmiennych warunkach.",
+        "card3Title": "Kontrola ryzyka",
+        "card3Body": "Wielkość pozycji, zarządzanie obsunięciem i konsekwencja wyjść stanowią rdzeń trwałego procesu inwestycyjnego."
+      },
+      "monthlyReturns": {
+        "eyebrow": "Miesięczne stopy zwrotu",
+        "title": "Ujęcie tear-sheet dla rytmu wyników i odporności strategii.",
+        "body": "Sekcja pokazuje miesięczny profil zwrotów w formie czytelnej zarówno dla szybkiego przeglądu, jak i dla bardziej szczegółowej analizy przebiegu wyników.",
+        "panelLabel": "Monthly Performance",
+        "tableTitle": "MIESIĘCZNE STOPY ZWROTU"
+      },
+      "trades": {
+        "eyebrow": "Historia transakcji",
+        "title": "Terminalowa tabela transakcyjna zasilana bezpośrednio z danych dashboardu.",
+        "body": "Historia transakcji pozwala szybko zweryfikować instrument, kierunek, wynik, relację ryzyka do zysku oraz operacyjne uwagi przypisane do każdego zagrania.",
+        "panelLabel": "Trade Log",
+        "tableTitle": "HISTORIA TRANSAKCJI"
+      },
+      "research": {
+        "eyebrow": "Research notes",
+        "title": "Prywatne moduły analityczne dla procesu systematycznego.",
+        "body": "Karty researchowe pozostają częścią warstwy interpretacyjnej dashboardu i stanowią skrót najważniejszych założeń procesu oraz zarządzania ryzykiem.",
+        "card1Title": "Outlier Investing",
+        "card1Body": "Konstrukcja portfela zakłada, że relatywnie niewielka liczba transakcji może odpowiadać za większość długoterminowego wyniku, jeśli ryzyko jest konsekwentnie kontrolowane.",
+        "card2Title": "Zarządzanie ryzykiem",
+        "card2Body": "Ochrona kapitału nie ogranicza strategii, lecz umożliwia jej przetrwanie serii nieudanych prób i utrzymanie ekspozycji na momenty o największym znaczeniu.",
+        "card3Title": "Trend Following",
+        "card3Body": "Sygnały są interpretowane jako dowód trwałości ruchu, a nie jako prognoza. Proces reaguje na strukturę rynku i pozostaje obojętny na krótkoterminowy szum narracyjny."
+      }
+    },
+    "metrics": {
+      "hero": {
+        "cagr": {
+          "label": "CAGR",
+          "note": "Roczna stopa wzrostu kapitału wyliczona z realnej historii rachunku."
+        },
+        "maxDd": {
+          "label": "MAX DD",
+          "note": "Najgłębsze zarejestrowane obsunięcie kapitału względem poprzedniego szczytu."
+        },
+        "rr": {
+          "label": "RR",
+          "note": "Relacja przeciętnego dodatniego wyniku do przeciętnej straty w danych transakcyjnych."
+        },
+        "ytd": {
+          "label": "YTD",
+          "note": "Wynik narastająco od początku bieżącego roku w danych raportowych."
+        }
+      },
+      "dashboard": {
+        "modelEquity": {
+          "label": "Kapitał modelowy",
+          "note": "Ostatni poziom equity odczytany bezpośrednio z historii rachunku."
+        },
+        "exposure": {
+          "label": "Aktywna ekspozycja",
+          "note": "Średnia ekspozycja odczytana z workbooka, jeśli taka kolumna występuje."
+        },
+        "tradeCount": {
+          "label": "Liczba transakcji",
+          "note": "Liczba wierszy transakcyjnych rozpoznanych przez parser."
+        },
+        "lastUpdate": {
+          "label": "Ostatnia aktualizacja",
+          "note": "Data wygenerowania bieżącego pliku JSON."
+        }
+      },
+      "chart": {
+        "netReturn": {
+          "label": "Stopa netto",
+          "note": ""
+        },
+        "equity": {
+          "label": "Kapitał",
+          "note": ""
+        },
+        "currentDrawdown": {
+          "label": "Obsunięcie bieżące",
+          "note": ""
+        },
+        "winRate": {
+          "label": "Skuteczność",
+          "note": ""
+        }
+      },
+      "advanced": {
+        "profitFactor": {
+          "label": "Profit Factor",
+          "note": "Wskaźnik obliczony na podstawie dodatnich i ujemnych wyników transakcyjnych."
+        },
+        "sharpeRatio": {
+          "label": "Sharpe Ratio",
+          "note": "Relacja średniego zwrotu dziennego do zmienności historii equity."
+        },
+        "sortinoRatio": {
+          "label": "Sortino",
+          "note": "Wersja wskaźnika Sharpe skupiona wyłącznie na odchyleniu od strony strat."
+        },
+        "exposure": {
+          "label": "Exposure",
+          "note": "Średnia ekspozycja wyprowadzona z workbooka, bez wartości demo."
+        },
+        "winRate": {
+          "label": "Win Rate",
+          "note": "Odsetek transakcji zakończonych dodatnim wynikiem."
+        },
+        "marRatio": {
+          "label": "MAR Ratio",
+          "note": "Relacja CAGR do bezwzględnej wartości maksymalnego obsunięcia."
+        }
+      }
+    },
+    "monthlySummary": {
+      "bestMonth": "Najlepszy miesiąc",
+      "worstMonth": "Najsłabszy miesiąc",
+      "averageMonth": "Średni miesiąc",
+      "averageMonthNote": "Średnia arytmetyczna miesięcznych stóp zwrotu.",
+      "positiveMonths": "Miesiące dodatnie",
+      "positiveMonthsNote": "Liczba miesięcy zakończonych dodatnim wynikiem."
+    },
+    "tables": {
+      "monthly": {
+        "headers": {
+          "month": "Miesiąc",
+          "return": "Stopa zwrotu",
+          "cumulative": "Narastająco",
+          "assessment": "Ocena"
+        },
+        "positive": "Miesiąc dodatni",
+        "negative": "Miesiąc ujemny"
+      },
+      "trades": {
+        "headers": {
+          "date": "Data",
+          "instrument": "Instrument",
+          "direction": "Kierunek",
+          "result": "Wynik",
+          "rr": "RR",
+          "status": "Status",
+          "notes": "Uwagi"
+        }
+      }
+    },
+    "directions": {
+      "long": "Long",
+      "short": "Short",
+      "unknown": "n/d"
+    },
+    "statuses": {
+      "active": "Aktywna",
+      "closed": "Zamknięta",
+      "cancelled": "Anulowana",
+      "unknown": "n/d"
+    },
+    "chart": {
+      "datasetLabel": "Krzywa kapitału",
+      "tooltipEquity": "Kapitał"
+    },
+    "empty": {
+      "metrics": "Brak danych metrycznych po ostatnim przeliczeniu workbooków.",
+      "monthlyReturns": "Brak miesięcznych stóp zwrotu. Sprawdź plik ReportHistory.xlsx.",
+      "trades": "Brak historii transakcji. Sprawdź plik dashboard_trading.xlsx.",
+      "chart": "Brak realnej krzywej kapitału. Uzupełnij ReportHistory.xlsx i uruchom konwerter."
+    },
+    "footer": {
+      "tagline": "Systematic Trading Research",
+      "updated": "Aktualizacja"
+    },
+    "ui": {
+      "na": "n/d"
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "WE ARE ALL TRADERS | MICRO CTA",
+      "description": "WE ARE ALL TRADERS | MICRO CTA | Bilingual institutional trading dashboard powered by JSON data."
+    },
+    "accessibility": {
+      "home": "Go to top of page",
+      "primaryNav": "Primary navigation",
+      "equityChart": "Equity curve chart"
+    },
+    "language": {
+      "switcherAria": "Language switcher"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "strategy": "Strategy",
+      "statistics": "Statistics",
+      "research": "Research"
+    },
+    "hero": {
+      "eyebrow": "Systematic Trading",
+      "titleLine1": "OUTLIER",
+      "titleLine2": "INVESTING",
+      "titleLine3": "& MICRO CTA",
+      "lead": "Systematic strategy built on asymmetry, trend following and the search for rare outlier moves.",
+      "quoteLine1": "We do not predict markets.",
+      "quoteLine2": "We build asymmetric exposure.",
+      "primaryCta": "View statistics",
+      "secondaryCta": "Research",
+      "ribbonMandateLabel": "Mandate",
+      "ribbonMandateValue": "Outlier Investing",
+      "ribbonEngineLabel": "Engine",
+      "ribbonEngineValue": "Systematic Trading Research",
+      "terminalLabel": "Private terminal",
+      "terminalTitle": "MICRO CTA / SYSTEMATIC DASHBOARD"
+    },
+    "terminal": {
+      "updated": "Updated",
+      "trades": "Trades",
+      "losingStreak": "Losing streak",
+      "noData": "No processed source data available. Place the Excel workbooks in data/ and run the converter."
+    },
+    "sections": {
+      "performanceArchive": {
+        "eyebrow": "Performance archive",
+        "title": "An equity curve built by process rather than prediction.",
+        "body": "The strategy accepts small execution errors and short losing sequences in exchange for exposure to rare, persistent trend moves that matter for total portfolio outcome."
+      },
+      "equityCurve": {
+        "panelLabel": "Equity Curve",
+        "title": "INSTITUTIONAL RETURN STREAM"
+      },
+      "advancedStats": {
+        "eyebrow": "Advanced statistics",
+        "title": "Signal quality measured through risk, payout structure and exposure discipline.",
+        "body": "Every core metric is rendered directly from the data file so the dashboard remains aligned with the latest strategy workbooks."
+      },
+      "strategy": {
+        "eyebrow": "Strategy architecture",
+        "title": "A calm process designed for rare moves that matter.",
+        "paragraph1": "MICRO CTA is built on an institutional premise: long-term portfolio outcome rarely comes from frequent directional calls. More often it comes from participating in a small number of exceptional trends while controlling the cost of error.",
+        "paragraph2": "In practice this means accepting many small losses, maintaining strict risk control and executing the process systematically. The strategy does not try to guess turning points. It reacts to confirmed movement, protects capital and increases exposure when the market offers durable opportunity.",
+        "paragraph3": "The process combines payoff asymmetry, drawdown control and execution discipline. The objective is not maximum hit rate at any price. The objective is to remain present when the moves that matter actually emerge."
+      },
+      "strategyInsight": {
+        "card1Title": "Payoff asymmetry",
+        "card1Body": "Small losses are accepted so capital remains available for rare moves with outsized impact.",
+        "card2Title": "Systematic execution",
+        "card2Body": "Rule-based decisions reduce interpretive noise and stabilize behaviour across changing market regimes.",
+        "card3Title": "Risk control",
+        "card3Body": "Position sizing, drawdown management and disciplined exits form the core of a durable investment process."
+      },
+      "monthlyReturns": {
+        "eyebrow": "Monthly returns",
+        "title": "A tear-sheet view of return rhythm and strategy resilience.",
+        "body": "This section shows the monthly return profile in a format suited both for fast review and deeper analysis of performance progression.",
+        "panelLabel": "Monthly Performance",
+        "tableTitle": "MONTHLY RETURNS"
+      },
+      "trades": {
+        "eyebrow": "Trade history",
+        "title": "A terminal-grade trade table sourced directly from dashboard data.",
+        "body": "Trade history makes it easy to review instrument, direction, result, reward-to-risk ratio and operational notes attached to each position.",
+        "panelLabel": "Trade Log",
+        "tableTitle": "TRADE HISTORY"
+      },
+      "research": {
+        "eyebrow": "Research notes",
+        "title": "Private analytical modules for a systematic process.",
+        "body": "The research cards remain part of the interpretive layer of the dashboard and summarise the key assumptions behind the process and its risk framework.",
+        "card1Title": "Outlier Investing",
+        "card1Body": "Portfolio construction assumes that a relatively small number of trades may account for most of the long-term outcome when risk is controlled consistently.",
+        "card2Title": "Risk Management",
+        "card2Body": "Capital protection is not a constraint on the process. It is what allows the strategy to survive false starts and remain exposed for the moves that matter most.",
+        "card3Title": "Trend Following",
+        "card3Body": "Signals are treated as evidence of persistence rather than prediction. The process responds to market structure and stays indifferent to short-term narrative noise."
+      }
+    },
+    "metrics": {
+      "hero": {
+        "cagr": {
+          "label": "CAGR",
+          "note": "Annualized capital growth rate calculated from real account history."
+        },
+        "maxDd": {
+          "label": "MAX DD",
+          "note": "Deepest recorded drawdown relative to the previous equity peak."
+        },
+        "rr": {
+          "label": "RR",
+          "note": "Average positive result relative to average loss in the trade dataset."
+        },
+        "ytd": {
+          "label": "YTD",
+          "note": "Year-to-date result computed from the current reporting year."
+        }
+      },
+      "dashboard": {
+        "modelEquity": {
+          "label": "Model equity",
+          "note": "Latest equity level read directly from account history."
+        },
+        "exposure": {
+          "label": "Active exposure",
+          "note": "Average exposure read from the workbook when such a column exists."
+        },
+        "tradeCount": {
+          "label": "Trade count",
+          "note": "Number of trade rows successfully detected by the parser."
+        },
+        "lastUpdate": {
+          "label": "Last update",
+          "note": "Date when the current JSON file was generated."
+        }
+      },
+      "chart": {
+        "netReturn": {
+          "label": "Net return",
+          "note": ""
+        },
+        "equity": {
+          "label": "Equity",
+          "note": ""
+        },
+        "currentDrawdown": {
+          "label": "Current drawdown",
+          "note": ""
+        },
+        "winRate": {
+          "label": "Win rate",
+          "note": ""
+        }
+      },
+      "advanced": {
+        "profitFactor": {
+          "label": "Profit Factor",
+          "note": "Computed from cumulative positive and negative trade outcomes."
+        },
+        "sharpeRatio": {
+          "label": "Sharpe Ratio",
+          "note": "Average daily return relative to volatility of the equity history."
+        },
+        "sortinoRatio": {
+          "label": "Sortino",
+          "note": "Sharpe-style ratio using downside deviation only."
+        },
+        "exposure": {
+          "label": "Exposure",
+          "note": "Average exposure derived from workbook data with no demo fallback."
+        },
+        "winRate": {
+          "label": "Win Rate",
+          "note": "Share of trades that closed with a positive result."
+        },
+        "marRatio": {
+          "label": "MAR Ratio",
+          "note": "CAGR divided by the absolute value of maximum drawdown."
+        }
+      }
+    },
+    "monthlySummary": {
+      "bestMonth": "Best month",
+      "worstMonth": "Worst month",
+      "averageMonth": "Average month",
+      "averageMonthNote": "Arithmetic mean of monthly returns.",
+      "positiveMonths": "Positive months",
+      "positiveMonthsNote": "Number of months that closed above zero."
+    },
+    "tables": {
+      "monthly": {
+        "headers": {
+          "month": "Month",
+          "return": "Return",
+          "cumulative": "Cumulative",
+          "assessment": "Assessment"
+        },
+        "positive": "Positive month",
+        "negative": "Negative month"
+      },
+      "trades": {
+        "headers": {
+          "date": "Date",
+          "instrument": "Instrument",
+          "direction": "Direction",
+          "result": "Result",
+          "rr": "RR",
+          "status": "Status",
+          "notes": "Notes"
+        }
+      }
+    },
+    "directions": {
+      "long": "Long",
+      "short": "Short",
+      "unknown": "n/a"
+    },
+    "statuses": {
+      "active": "Active",
+      "closed": "Closed",
+      "cancelled": "Cancelled",
+      "unknown": "n/a"
+    },
+    "chart": {
+      "datasetLabel": "Equity curve",
+      "tooltipEquity": "Equity"
+    },
+    "empty": {
+      "metrics": "No metric data available after the latest workbook conversion.",
+      "monthlyReturns": "No monthly returns available. Check ReportHistory.xlsx.",
+      "trades": "No trade history available. Check dashboard_trading.xlsx.",
+      "chart": "No real equity curve available. Populate ReportHistory.xlsx and run the converter."
+    },
+    "footer": {
+      "tagline": "Systematic Trading Research",
+      "updated": "Updated"
+    },
+    "ui": {
+      "na": "n/a"
+    }
+  }
+}

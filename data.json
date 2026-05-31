@@ -2,381 +2,149 @@
   "meta": {
     "brand": "WE ARE ALL TRADERS",
     "strategy": "MICRO CTA",
-    "updatedAt": "2026-06-01",
+    "generatedAt": "2026-06-01",
     "baseCurrency": "PLN",
-    "source": "data/ReportHistory.xlsx + data/dashboard_trading.xlsx"
+    "hasData": false,
+    "hasHistoryData": false,
+    "hasTradesData": false,
+    "sourceFiles": {
+      "reportHistory": "data\\ReportHistory.xlsx",
+      "dashboardTrading": "data\\dashboard_trading.xlsx"
+    },
+    "rowCounts": {
+      "history": 0,
+      "trades": 0
+    },
+    "warnings": [
+      "missing_history_equity_and_balance",
+      "missing_trade_core_columns"
+    ]
   },
   "performanceStats": {
-    "totalTrades": 8,
-    "winningTrades": 5,
-    "losingTrades": 2,
-    "averageWinR": 2.54,
-    "averageLossR": -0.7,
-    "losingStreak": 1
+    "totalTrades": 0,
+    "winningTrades": 0,
+    "losingTrades": 0,
+    "averageWinR": null,
+    "averageLossR": null,
+    "losingStreak": 0
   },
   "heroMetrics": [
     {
-      "label": "CAGR",
-      "value": "+36,6%",
-      "tone": "positive",
-      "note": "Tempo wzrostu kapitału liczone na podstawie historii wyników."
+      "id": "cagr",
+      "rawValue": null,
+      "format": "percentSigned",
+      "tone": "neutral"
     },
     {
-      "label": "MAX DD",
-      "value": "-3,5%",
-      "tone": "negative",
-      "note": "Maksymalne obsunięcie od szczytu kapitału w badanym okresie."
+      "id": "maxDd",
+      "rawValue": null,
+      "format": "percentSigned",
+      "tone": "neutral"
     },
     {
-      "label": "RR",
-      "value": "1:3,2",
-      "tone": "neutral",
-      "note": "Relacja przeciętnego zysku do kontrolowanego kosztu błędu."
+      "id": "rr",
+      "rawValue": null,
+      "format": "ratio",
+      "tone": "neutral"
     },
     {
-      "label": "YTD",
-      "value": "+10,3%",
-      "tone": "positive",
-      "note": "Wynik narastająco od początku bieżącego roku kalendarzowego."
+      "id": "ytd",
+      "rawValue": null,
+      "format": "percentSigned",
+      "tone": "neutral"
     }
   ],
   "dashboardStats": [
     {
-      "label": "Kapitał modelowy",
-      "value": "151 240 PLN",
-      "tone": "neutral",
-      "note": "Ostatni zarejestrowany poziom equity po aktualizacji raportów."
+      "id": "modelEquity",
+      "rawValue": null,
+      "format": "currency",
+      "tone": "neutral"
     },
     {
-      "label": "Aktywna ekspozycja",
-      "value": "100%",
-      "tone": "neutral",
-      "note": "Średnia ekspozycja kapitału w rynku przy aktualnym profilu systemu."
+      "id": "exposure",
+      "rawValue": null,
+      "format": "percentPlain",
+      "tone": "neutral"
     },
     {
-      "label": "Liczba transakcji",
-      "value": "9",
-      "tone": "neutral",
-      "note": "Liczba pozycji zarejestrowanych w historii strategii."
+      "id": "tradeCount",
+      "rawValue": 0,
+      "format": "integer",
+      "tone": "neutral"
     },
     {
-      "label": "Ostatnia aktualizacja",
-      "value": "01.06.2026",
-      "tone": "neutral",
-      "note": "Data ostatniego przeliczenia pliku data.json."
+      "id": "lastUpdate",
+      "rawValue": "2026-06-01",
+      "format": "date",
+      "tone": "neutral"
     }
   ],
   "chartSummary": [
     {
-      "label": "Stopa netto",
-      "value": "+51,2%",
-      "tone": "positive"
-    },
-    {
-      "label": "Kapitał",
-      "value": "151 240 PLN",
+      "id": "netReturn",
+      "rawValue": null,
+      "format": "percentSigned",
       "tone": "neutral"
     },
     {
-      "label": "Obsunięcie bieżące",
-      "value": "0,0%",
+      "id": "equity",
+      "rawValue": null,
+      "format": "currency",
       "tone": "neutral"
     },
     {
-      "label": "Skuteczność",
-      "value": "62,5%",
+      "id": "currentDrawdown",
+      "rawValue": null,
+      "format": "percentSigned",
+      "tone": "neutral"
+    },
+    {
+      "id": "winRate",
+      "rawValue": null,
+      "format": "percentPlain",
       "tone": "neutral"
     }
   ],
   "advancedMetrics": [
     {
-      "label": "Profit Factor",
-      "value": "9,71",
-      "tone": "positive",
-      "note": "Suma zysków brutto pozostaje wyraźnie wyższa od sumy strat brutto."
+      "id": "profitFactor",
+      "rawValue": null,
+      "format": "decimal",
+      "tone": "neutral"
     },
     {
-      "label": "Sharpe Ratio",
-      "value": "11,89",
-      "tone": "positive",
-      "note": "Rentowność skorygowana o zmienność pozostaje stabilna dla badanego okresu."
+      "id": "sharpeRatio",
+      "rawValue": null,
+      "format": "decimal",
+      "tone": "neutral"
     },
     {
-      "label": "Sortino",
-      "value": "62,72",
-      "tone": "positive",
-      "note": "Strategia relatywnie dobrze kompensuje ryzyko mierzone wyłącznie od strony strat."
+      "id": "sortinoRatio",
+      "rawValue": null,
+      "format": "decimal",
+      "tone": "neutral"
     },
     {
-      "label": "Exposure",
-      "value": "100%",
-      "tone": "neutral",
-      "note": "Kapitał jest angażowany selektywnie, gdy układ rynku uzasadnia wejście."
+      "id": "exposure",
+      "rawValue": null,
+      "format": "percentPlain",
+      "tone": "neutral"
     },
     {
-      "label": "Win Rate",
-      "value": "62,5%",
-      "tone": "neutral",
-      "note": "Skuteczność jest wtórna wobec asymetrii wypłat i wielkości zwycięskich trendów."
+      "id": "winRate",
+      "rawValue": null,
+      "format": "percentPlain",
+      "tone": "neutral"
     },
     {
-      "label": "MAR Ratio",
-      "value": "10,44",
-      "tone": "positive",
-      "note": "Efektywność zwrotu pozostaje wysoka względem maksymalnego obsunięcia."
+      "id": "marRatio",
+      "rawValue": null,
+      "format": "decimal",
+      "tone": "neutral"
     }
   ],
-  "equityCurve": [
-    {
-      "date": "2025-01-31",
-      "equity": 100000.0,
-      "balance": 100000.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-02-28",
-      "equity": 103200.0,
-      "balance": 103200.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-03-31",
-      "equity": 108700.0,
-      "balance": 108700.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-04-30",
-      "equity": 104900.0,
-      "balance": 104900.0,
-      "drawdown": -3.5
-    },
-    {
-      "date": "2025-05-31",
-      "equity": 112800.0,
-      "balance": 112800.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-06-30",
-      "equity": 119300.0,
-      "balance": 119300.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-07-31",
-      "equity": 124500.0,
-      "balance": 124500.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-08-31",
-      "equity": 120900.0,
-      "balance": 120900.0,
-      "drawdown": -2.9
-    },
-    {
-      "date": "2025-09-30",
-      "equity": 128300.0,
-      "balance": 128300.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-10-31",
-      "equity": 135100.0,
-      "balance": 135100.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2025-11-30",
-      "equity": 131000.0,
-      "balance": 131000.0,
-      "drawdown": -3.0
-    },
-    {
-      "date": "2025-12-31",
-      "equity": 132900.0,
-      "balance": 132900.0,
-      "drawdown": -1.6
-    },
-    {
-      "date": "2026-01-31",
-      "equity": 137100.0,
-      "balance": 137100.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2026-02-28",
-      "equity": 143200.0,
-      "balance": 143200.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2026-03-31",
-      "equity": 148400.0,
-      "balance": 148400.0,
-      "drawdown": 0.0
-    },
-    {
-      "date": "2026-04-30",
-      "equity": 145600.0,
-      "balance": 145600.0,
-      "drawdown": -1.9
-    },
-    {
-      "date": "2026-05-31",
-      "equity": 151240.0,
-      "balance": 151240.0,
-      "drawdown": 0.0
-    }
-  ],
-  "monthlyReturns": [
-    {
-      "month": "2025-02",
-      "return": 3.2
-    },
-    {
-      "month": "2025-03",
-      "return": 5.33
-    },
-    {
-      "month": "2025-04",
-      "return": -3.5
-    },
-    {
-      "month": "2025-05",
-      "return": 7.53
-    },
-    {
-      "month": "2025-06",
-      "return": 5.76
-    },
-    {
-      "month": "2025-07",
-      "return": 4.36
-    },
-    {
-      "month": "2025-08",
-      "return": -2.89
-    },
-    {
-      "month": "2025-09",
-      "return": 6.12
-    },
-    {
-      "month": "2025-10",
-      "return": 5.3
-    },
-    {
-      "month": "2025-11",
-      "return": -3.03
-    },
-    {
-      "month": "2025-12",
-      "return": 1.45
-    },
-    {
-      "month": "2026-01",
-      "return": 3.16
-    },
-    {
-      "month": "2026-02",
-      "return": 4.45
-    },
-    {
-      "month": "2026-03",
-      "return": 3.63
-    },
-    {
-      "month": "2026-04",
-      "return": -1.89
-    },
-    {
-      "month": "2026-05",
-      "return": 3.87
-    }
-  ],
-  "recentTrades": [
-    {
-      "date": "2026-05-30",
-      "instrument": "OPL",
-      "direction": "Long",
-      "result": "+0,9R",
-      "rr": "1:2,3",
-      "status": "Aktywna",
-      "notes": "Pozycja utrzymywana po wybiciu ponad lokalny zakres zmienności."
-    },
-    {
-      "date": "2026-05-28",
-      "instrument": "KGH",
-      "direction": "Long",
-      "result": "+2,4R",
-      "rr": "1:3,8",
-      "status": "Zamknięta",
-      "notes": "Kontynuacja impulsu po wybiciu ponad chmurę Ichimoku na wyższym interwale."
-    },
-    {
-      "date": "2026-05-26",
-      "instrument": "PKN",
-      "direction": "Short",
-      "result": "-0,8R",
-      "rr": "1:1,0",
-      "status": "Zamknięta",
-      "notes": "Brak kontynuacji po wejściu, pozycja zamknięta zgodnie z limitem ryzyka."
-    },
-    {
-      "date": "2026-05-21",
-      "instrument": "XTB",
-      "direction": "Long",
-      "result": "+3,1R",
-      "rr": "1:4,5",
-      "status": "Zamknięta",
-      "notes": "Silny ruch trendowy po korekcie technicznej i ponownym wybiciu."
-    },
-    {
-      "date": "2026-05-19",
-      "instrument": "PEO",
-      "direction": "Long",
-      "result": "+1,2R",
-      "rr": "1:2,1",
-      "status": "Zamknięta",
-      "notes": "Pozycja prowadzona do pierwszej oznaki spadku momentum."
-    },
-    {
-      "date": "2026-05-14",
-      "instrument": "ALR",
-      "direction": "Short",
-      "result": "-0,6R",
-      "rr": "1:1,0",
-      "status": "Zamknięta",
-      "notes": "Fałszywe wybicie i szybki powrót ceny do środka zakresu."
-    },
-    {
-      "date": "2026-05-12",
-      "instrument": "GPW",
-      "direction": "Long",
-      "result": "+4,3R",
-      "rr": "1:5,9",
-      "status": "Zamknięta",
-      "notes": "Modelowy trade trend following z niskim ryzykiem początkowym i pełnym rozwinięciem ruchu."
-    },
-    {
-      "date": "2026-05-08",
-      "instrument": "KTY",
-      "direction": "Long",
-      "result": "+0,0R",
-      "rr": "1:0,0",
-      "status": "Zamknięta",
-      "notes": "Stop przeniesiony do poziomu wejścia po braku przyspieszenia trendu."
-    },
-    {
-      "date": "2026-05-05",
-      "instrument": "MBK",
-      "direction": "Short",
-      "result": "+1,7R",
-      "rr": "1:2,7",
-      "status": "Zamknięta",
-      "notes": "Skuteczne rozegranie impulsu spadkowego po sygnale słabości sektora."
-    }
-  ]
+  "equityCurve": [],
+  "monthlyReturns": [],
+  "recentTrades": []
 }

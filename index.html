@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="WE ARE ALL TRADERS | MICRO CTA | Instytucjonalny dashboard systematic trading zasilany danymi JSON.">
-  <title>WE ARE ALL TRADERS | MICRO CTA</title>
+  <meta name="description" content="" data-i18n-content="meta.description">
+  <title data-i18n="meta.title"></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,16 +19,25 @@
 
     <header class="topbar">
       <div class="container topbar-inner">
-        <a class="brand" href="#hero" aria-label="Przejdź do początku strony">
+        <a class="brand" href="#hero" data-i18n-aria-label="accessibility.home">
           <span class="brand-mark">MICRO CTA</span>
           <span class="brand-sub">WE ARE ALL TRADERS</span>
         </a>
-        <nav class="nav" aria-label="Nawigacja główna">
-          <a href="#hero">Pulpit</a>
-          <a href="#strategy">Strategia</a>
-          <a href="#statistics">Statystyki</a>
-          <a href="#research">Badania</a>
-        </nav>
+
+        <div class="topbar-actions">
+          <nav class="nav" data-i18n-aria-label="accessibility.primaryNav">
+            <a href="#hero" data-i18n="nav.dashboard"></a>
+            <a href="#strategy" data-i18n="nav.strategy"></a>
+            <a href="#statistics" data-i18n="nav.statistics"></a>
+            <a href="#research" data-i18n="nav.research"></a>
+          </nav>
+
+          <div class="lang-switcher" data-i18n-aria-label="language.switcherAria">
+            <button class="lang-button" type="button" data-lang="pl" aria-pressed="false">PL</button>
+            <span class="lang-divider">/</span>
+            <button class="lang-button" type="button" data-lang="en" aria-pressed="false">ENG</button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -36,31 +45,34 @@
       <section class="hero" id="hero">
         <div class="container hero-grid">
           <div class="hero-copy reveal">
-            <span class="eyebrow">Systematic Trading</span>
+            <span class="eyebrow" data-i18n="hero.eyebrow"></span>
+
             <h1>
-              <span>OUTLIER</span>
-              <span class="accent-text">INVESTING</span>
-              <span>&amp; MICRO CTA</span>
+              <span data-i18n="hero.titleLine1"></span>
+              <span class="accent-text" data-i18n="hero.titleLine2"></span>
+              <span data-i18n="hero.titleLine3"></span>
             </h1>
-            <p class="hero-lead">
-              Systematyczna strategia oparta o asymetrię, trend following oraz wyszukiwanie rzadkich ruchów typu outlier.
-            </p>
+
+            <p class="hero-lead" data-i18n="hero.lead"></p>
+
             <p class="hero-quote">
-              Nie przewidujemy rynku.<br>
-              Budujemy asymetryczną ekspozycję.
+              <span data-i18n="hero.quoteLine1"></span><br>
+              <span data-i18n="hero.quoteLine2"></span>
             </p>
+
             <div class="hero-actions">
-              <a class="button button-primary" href="#statistics">Zobacz statystyki</a>
-              <a class="button button-secondary" href="#research">Research</a>
+              <a class="button button-primary" href="#statistics" data-i18n="hero.primaryCta"></a>
+              <a class="button button-secondary" href="#research" data-i18n="hero.secondaryCta"></a>
             </div>
+
             <div class="hero-ribbon">
               <div class="ribbon-card">
-                <span>Mandat</span>
-                <strong>Outlier Investing</strong>
+                <span data-i18n="hero.ribbonMandateLabel"></span>
+                <strong data-i18n="hero.ribbonMandateValue"></strong>
               </div>
               <div class="ribbon-card">
-                <span>Silnik</span>
-                <strong>Systematic Trading Research</strong>
+                <span data-i18n="hero.ribbonEngineLabel"></span>
+                <strong data-i18n="hero.ribbonEngineValue"></strong>
               </div>
             </div>
           </div>
@@ -72,12 +84,14 @@
                 <span class="status-dot"></span>
                 <span class="status-dot"></span>
               </div>
+
               <div class="terminal-copy">
-                <span class="terminal-label">Prywatny terminal</span>
-                <strong>MICRO CTA / DASHBOARD SYSTEMATYCZNY</strong>
-                <p class="terminal-meta" id="terminalMeta">Ładowanie danych...</p>
+                <span class="terminal-label" data-i18n="hero.terminalLabel"></span>
+                <strong data-i18n="hero.terminalTitle"></strong>
+                <p class="terminal-meta" id="terminalMeta"></p>
               </div>
             </div>
+
             <div class="hero-kpis" id="heroMetrics"></div>
           </div>
         </div>
@@ -91,24 +105,24 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Archiwum wyników</span>
-              <h2>Krzywa kapitału budowana przez proces, nie przez prognozę.</h2>
+              <span class="eyebrow" data-i18n="sections.performanceArchive.eyebrow"></span>
+              <h2 data-i18n="sections.performanceArchive.title"></h2>
             </div>
-            <p>
-              Strategia akceptuje niewielkie błędy wykonania i krótkie serie strat w zamian za ekspozycję na rzadkie, trwałe ruchy trendowe o dużym znaczeniu dla wyniku portfela.
-            </p>
+            <p data-i18n="sections.performanceArchive.body"></p>
           </div>
 
           <div class="chart-panel reveal">
             <div class="chart-panel-header">
               <div>
-                <span class="panel-label">Equity Curve</span>
-                <h3>INSTYTUCJONALNY STRUMIEŃ WYNIKÓW</h3>
+                <span class="panel-label" data-i18n="sections.equityCurve.panelLabel"></span>
+                <h3 data-i18n="sections.equityCurve.title"></h3>
               </div>
               <div class="chart-stat-row" id="chartSummary"></div>
             </div>
+
             <div class="chart-wrap">
-              <canvas id="equityChart" aria-label="Wykres krzywej kapitału"></canvas>
+              <canvas id="equityChart" data-i18n-aria-label="accessibility.equityChart"></canvas>
+              <div class="chart-empty-state" id="chartEmptyState" hidden data-i18n="empty.chart"></div>
             </div>
           </div>
         </div>
@@ -118,12 +132,10 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Zaawansowane statystyki</span>
-              <h2>Jakość sygnału oceniana przez pryzmat ryzyka, wypłat i dyscypliny ekspozycji.</h2>
+              <span class="eyebrow" data-i18n="sections.advancedStats.eyebrow"></span>
+              <h2 data-i18n="sections.advancedStats.title"></h2>
             </div>
-            <p>
-              Wszystkie główne wskaźniki są renderowane bezpośrednio z pliku danych, dzięki czemu dashboard pozostaje spójny z ostatnią aktualizacją raportów tradingowych.
-            </p>
+            <p data-i18n="sections.advancedStats.body"></p>
           </div>
 
           <div class="stats-grid reveal" id="advancedMetrics"></div>
@@ -133,34 +145,28 @@
       <section class="section strategy-section" id="strategy">
         <div class="container strategy-grid">
           <div class="strategy-copy reveal">
-            <span class="eyebrow">Architektura strategii</span>
-            <h2>Spokojny proces zaprojektowany pod rzadkie ruchy o dużym znaczeniu.</h2>
-            <p>
-              MICRO CTA opiera się na instytucjonalnym założeniu, że długoterminowy wynik portfela rzadko wynika z częstego trafiania kierunku rynku. Znacznie częściej jest efektem uczestnictwa w niewielkiej liczbie ponadprzeciętnych trendów przy jednoczesnej kontroli kosztu błędu.
-            </p>
-            <p>
-              W praktyce oznacza to akceptację wielu małych strat, ścisłą kontrolę ryzyka oraz bezwzględnie systematyczne wykonanie. Strategia nie próbuje zgadywać punktów zwrotnych. Reaguje na potwierdzony ruch, chroni kapitał i zwiększa ekspozycję wtedy, gdy rynek oferuje trwałą przewagę.
-            </p>
-            <p>
-              Proces łączy asymetrię wypłat, zarządzanie obsunięciem i dyscyplinę egzekucji. Celem nie jest wysoka skuteczność za wszelką cenę, lecz obecność w momentach, które potrafią zmienić przebieg całej krzywej kapitału.
-            </p>
+            <span class="eyebrow" data-i18n="sections.strategy.eyebrow"></span>
+            <h2 data-i18n="sections.strategy.title"></h2>
+            <p data-i18n="sections.strategy.paragraph1"></p>
+            <p data-i18n="sections.strategy.paragraph2"></p>
+            <p data-i18n="sections.strategy.paragraph3"></p>
           </div>
 
           <div class="insight-column reveal">
             <article class="insight-card">
               <span class="insight-index">A1</span>
-              <h3>Asymetria wypłat</h3>
-              <p>Niewielkie straty są akceptowane po to, by kapitał mógł pozostać dostępny na rzadkie ruchy o ponadprzeciętnej sile.</p>
+              <h3 data-i18n="sections.strategyInsight.card1Title"></h3>
+              <p data-i18n="sections.strategyInsight.card1Body"></p>
             </article>
             <article class="insight-card raised">
               <span class="insight-index">B2</span>
-              <h3>Egzekucja systematyczna</h3>
-              <p>Decyzje są oparte o reguły, co ogranicza interpretacyjny szum i stabilizuje zachowanie strategii w zmiennych warunkach.</p>
+              <h3 data-i18n="sections.strategyInsight.card2Title"></h3>
+              <p data-i18n="sections.strategyInsight.card2Body"></p>
             </article>
             <article class="insight-card">
               <span class="insight-index">C3</span>
-              <h3>Kontrola ryzyka</h3>
-              <p>Wielkość pozycji, zarządzanie obsunięciem i konsekwencja wyjść stanowią rdzeń trwałego procesu inwestycyjnego.</p>
+              <h3 data-i18n="sections.strategyInsight.card3Title"></h3>
+              <p data-i18n="sections.strategyInsight.card3Body"></p>
             </article>
           </div>
         </div>
@@ -170,29 +176,27 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Miesięczne stopy zwrotu</span>
-              <h2>Ujęcie tear-sheet dla rytmu wyników i odporności strategii.</h2>
+              <span class="eyebrow" data-i18n="sections.monthlyReturns.eyebrow"></span>
+              <h2 data-i18n="sections.monthlyReturns.title"></h2>
             </div>
-            <p>
-              Sekcja pokazuje miesięczny profil zwrotów w formie czytelnej zarówno dla szybkiego przeglądu, jak i dla bardziej szczegółowej analizy przebiegu wyników.
-            </p>
+            <p data-i18n="sections.monthlyReturns.body"></p>
           </div>
 
           <div class="monthly-summary-grid reveal" id="monthlySummary"></div>
 
           <div class="table-card reveal">
             <div class="table-card-header">
-              <span class="panel-label">Monthly Performance</span>
-              <h3>MIESIĘCZNE STOPY ZWROTU</h3>
+              <span class="panel-label" data-i18n="sections.monthlyReturns.panelLabel"></span>
+              <h3 data-i18n="sections.monthlyReturns.tableTitle"></h3>
             </div>
             <div class="table-wrap">
               <table class="data-table returns-table">
                 <thead>
                   <tr>
-                    <th>Miesiąc</th>
-                    <th>Stopa zwrotu</th>
-                    <th>Narastająco</th>
-                    <th>Ocena</th>
+                    <th data-i18n="tables.monthly.headers.month"></th>
+                    <th data-i18n="tables.monthly.headers.return"></th>
+                    <th data-i18n="tables.monthly.headers.cumulative"></th>
+                    <th data-i18n="tables.monthly.headers.assessment"></th>
                   </tr>
                 </thead>
                 <tbody id="monthlyReturnsTable"></tbody>
@@ -206,30 +210,28 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Historia transakcji</span>
-              <h2>Terminalowa tabela transakcyjna zasilana bezpośrednio z danych dashboardu.</h2>
+              <span class="eyebrow" data-i18n="sections.trades.eyebrow"></span>
+              <h2 data-i18n="sections.trades.title"></h2>
             </div>
-            <p>
-              Historia transakcji pozwala szybko zweryfikować instrument, kierunek, wynik, relację ryzyka do zysku oraz operacyjne uwagi przypisane do każdego zagrania.
-            </p>
+            <p data-i18n="sections.trades.body"></p>
           </div>
 
           <div class="table-card reveal">
             <div class="table-card-header">
-              <span class="panel-label">Trade Log</span>
-              <h3>HISTORIA TRANSAKCJI</h3>
+              <span class="panel-label" data-i18n="sections.trades.panelLabel"></span>
+              <h3 data-i18n="sections.trades.tableTitle"></h3>
             </div>
             <div class="table-wrap">
               <table class="data-table trades-table">
                 <thead>
                   <tr>
-                    <th>Data</th>
-                    <th>Instrument</th>
-                    <th>Kierunek</th>
-                    <th>Wynik</th>
-                    <th>RR</th>
-                    <th>Status</th>
-                    <th>Uwagi</th>
+                    <th data-i18n="tables.trades.headers.date"></th>
+                    <th data-i18n="tables.trades.headers.instrument"></th>
+                    <th data-i18n="tables.trades.headers.direction"></th>
+                    <th data-i18n="tables.trades.headers.result"></th>
+                    <th data-i18n="tables.trades.headers.rr"></th>
+                    <th data-i18n="tables.trades.headers.status"></th>
+                    <th data-i18n="tables.trades.headers.notes"></th>
                   </tr>
                 </thead>
                 <tbody id="recentTradesTable"></tbody>
@@ -243,35 +245,27 @@
         <div class="container">
           <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Research notes</span>
-              <h2>Prywatne moduły analityczne dla procesu systematycznego.</h2>
+              <span class="eyebrow" data-i18n="sections.research.eyebrow"></span>
+              <h2 data-i18n="sections.research.title"></h2>
             </div>
-            <p>
-              Karty researchowe pozostają częścią warstwy interpretacyjnej dashboardu i stanowią skrót najważniejszych założeń procesu oraz zarządzania ryzykiem.
-            </p>
+            <p data-i18n="sections.research.body"></p>
           </div>
 
           <div class="research-grid">
             <article class="research-card reveal">
               <span class="research-tag">01</span>
-              <h3>Outlier Investing</h3>
-              <p>
-                Konstrukcja portfela zakłada, że relatywnie niewielka liczba transakcji może odpowiadać za większość długoterminowego wyniku, jeśli ryzyko jest konsekwentnie kontrolowane.
-              </p>
+              <h3 data-i18n="sections.research.card1Title"></h3>
+              <p data-i18n="sections.research.card1Body"></p>
             </article>
             <article class="research-card reveal">
               <span class="research-tag">02</span>
-              <h3>Zarządzanie ryzykiem</h3>
-              <p>
-                Ochrona kapitału nie ogranicza strategii, lecz umożliwia jej przetrwanie serii nieudanych prób i utrzymanie ekspozycji na momenty o największym znaczeniu.
-              </p>
+              <h3 data-i18n="sections.research.card2Title"></h3>
+              <p data-i18n="sections.research.card2Body"></p>
             </article>
             <article class="research-card reveal">
               <span class="research-tag">03</span>
-              <h3>Trend Following</h3>
-              <p>
-                Sygnały są interpretowane jako dowód trwałości ruchu, a nie jako prognoza. Proces reaguje na strukturę rynku i pozostaje obojętny na krótkoterminowy szum narracyjny.
-              </p>
+              <h3 data-i18n="sections.research.card3Title"></h3>
+              <p data-i18n="sections.research.card3Body"></p>
             </article>
           </div>
         </div>
@@ -284,7 +278,7 @@
           <span class="footer-brand">WE ARE ALL TRADERS</span>
           <span class="footer-copy">MICRO CTA</span>
         </div>
-        <p id="footerMeta">Systematic Trading Research</p>
+        <p id="footerMeta"></p>
       </div>
     </footer>
   </div>

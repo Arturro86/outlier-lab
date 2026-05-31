@@ -164,6 +164,12 @@ canvas {
   gap: 1.5rem;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
 .brand {
   display: inline-flex;
   flex-direction: column;
@@ -231,6 +237,46 @@ canvas {
 .nav a:hover::after,
 .nav a:focus-visible::after {
   transform: scaleX(1);
+}
+
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.38rem 0.52rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.lang-button {
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  min-width: 52px;
+  min-height: 34px;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.lang-button:hover,
+.lang-button:focus-visible {
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.lang-button.is-active {
+  color: #0b1220;
+  background: linear-gradient(135deg, #e4ce9f 0%, #c8a96b 100%);
+  box-shadow: 0 10px 28px rgba(200, 169, 107, 0.22);
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.16);
+  font-size: 0.9rem;
 }
 
 .hero {
@@ -464,7 +510,7 @@ canvas {
 .terminal-meta {
   margin: 0.9rem 0 0;
   color: var(--text-secondary);
-  max-width: 28rem;
+  max-width: 32rem;
   line-height: 1.7;
 }
 
@@ -712,7 +758,21 @@ canvas {
 }
 
 .chart-wrap {
+  position: relative;
   min-height: 500px;
+}
+
+.chart-empty-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 18px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
 }
 
 .stats-grid,
@@ -859,20 +919,24 @@ canvas {
   background: rgba(217, 83, 79, 0.12);
 }
 
-.pill-status-zamknięta,
-.pill-status-zamknieta {
-  color: #dbeafe;
-  background: rgba(125, 211, 252, 0.12);
-}
-
-.pill-status-aktywna {
+.pill-status-active {
   color: #fde68a;
   background: rgba(200, 169, 107, 0.18);
 }
 
-.pill-status-anulowana {
+.pill-status-closed {
+  color: #dbeafe;
+  background: rgba(125, 211, 252, 0.12);
+}
+
+.pill-status-cancelled {
   color: #fecaca;
   background: rgba(217, 83, 79, 0.12);
+}
+
+.pill-status-unknown {
+  color: #cbd5e1;
+  background: rgba(148, 163, 184, 0.12);
 }
 
 .research-grid {
@@ -977,7 +1041,12 @@ canvas {
     --section-space: 5rem;
   }
 
+  .topbar {
+    height: auto;
+  }
+
   .topbar-inner,
+  .topbar-actions,
   .footer-inner {
     display: grid;
     grid-template-columns: 1fr;
@@ -986,10 +1055,6 @@ canvas {
 
   .topbar-inner {
     padding: 0.95rem 0;
-  }
-
-  .topbar {
-    height: auto;
   }
 
   .nav {

@@ -1,9 +1,17 @@
-let equityChart;
+let appState = {
+  language: "pl",
+  translations: null,
+  data: null
+};
+
+let equityChart = null;
+
+const LOCAL_STORAGE_LANGUAGE_KEY = "wearealltraders-language";
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeDashboard().catch((error) => {
-    console.error("Nie udało się zainicjalizować dashboardu:", error);
-    renderErrorState();
+    console.error("Dashboard initialization failed:", error);
+    renderFatalState();
   });
 });
 
@@ -11,28 +19,104 @@ async function initializeDashboard() {
   setupSmoothScroll();
   setupRevealAnimations();
 
-  const dashboardData = await loadDashboardData();
+  const [translations, dashboardData] = await Promise.all([
+    loadJson("translations.json"),
+    loadJson("data.json")
+  ]);
 
-  renderTerminalMeta(dashboardData.meta, dashboardData.performanceStats);
-  renderMetricCards("heroMetrics", dashboardData.heroMetrics, buildHeroMetricCard);
-  renderMetricCards("dashboardStats", dashboardData.dashboardStats, buildOverviewCard);
-  renderMetricCards("chartSummary", dashboardData.chartSummary, buildMiniStatCard);
-  renderMetricCards("advancedMetrics", dashboardData.advancedMetrics, buildAdvancedMetricCard);
-  renderMonthlySummary(dashboardData.monthlyReturns || []);
-  renderMonthlyTable(dashboardData.monthlyReturns || []);
-  renderTradesTable(dashboardData.recentTrades || []);
-  renderFooterMeta(dashboardData.meta);
-  initializeEquityChart(dashboardData.equityCurve || []);
+  appState.translations = translations;
+  appState.data = dashboardData;
+  appState.language = getStoredLanguage(translations);
+
+  setupLanguageSwitcher();
+  applyStaticTranslations();
+  renderDashboard();
 }
 
-async function loadDashboardData() {
-  const response = await fetch("data.json", { cache: "no-store" });
+async function loadJson(path) {
+  const response = await fetch(path, { cache: "no-store" });
 
   if (!response.ok) {
-    throw new Error(`Błąd ładowania data.json: ${response.status}`);
+    throw new Error(`Unable to load ${path}: ${response.status}`);
   }
 
   return response.json();
+}
+
+function getStoredLanguage(translations) {
+  const stored = localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY);
+  if (stored && translations[stored]) {
+    return stored;
+  }
+  return "pl";
+}
+
+function setupLanguageSwitcher() {
+  const buttons = document.querySelectorAll(".lang-button");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextLanguage = button.dataset.lang;
+
+      if (!nextLanguage || !appState.translations[nextLanguage] || nextLanguage === appState.language) {
+        return;
+      }
+
+      appState.language = nextLanguage;
+      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, nextLanguage);
+
+      applyStaticTranslations();
+      renderDashboard();
+    });
+  });
+
+  updateLanguageSwitcherState();
+}
+
+function updateLanguageSwitcherState() {
+  const buttons = document.querySelectorAll(".lang-button");
+
+  buttons.forEach((button) => {
+    const isActive = button.dataset.lang === appState.language;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function applyStaticTranslations() {
+  document.documentElement.lang = appState.language;
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    element.textContent = t(key);
+  });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+    const key = element.dataset.i18nAriaLabel;
+    element.setAttribute("aria-label", t(key));
+  });
+
+  document.querySelectorAll("[data-i18n-content]").forEach((element) => {
+    const key = element.dataset.i18nContent;
+    element.setAttribute("content", t(key));
+  });
+
+  updateLanguageSwitcherState();
+}
+
+function renderDashboard() {
+  const data = appState.data || buildEmptyData();
+
+  renderTerminalMeta(data.meta, data.performanceStats);
+  renderMetricCards("heroMetrics", data.heroMetrics, buildHeroMetricCard, "metrics.hero");
+  renderMetricCards("dashboardStats", data.dashboardStats, buildOverviewCard, "metrics.dashboard");
+  renderMetricCards("chartSummary", data.chartSummary, buildMiniStatCard, "metrics.chart");
+  renderMetricCards("advancedMetrics", data.advancedMetrics, buildAdvancedMetricCard, "metrics.advanced");
+  renderMonthlySummary(data.monthlyReturns || []);
+  renderMonthlyTable(data.monthlyReturns || []);
+  renderTradesTable(data.recentTrades || []);
+  renderFooterMeta(data.meta);
+  initializeEquityChart(data.equityCurve || []);
 }
 
 function renderTerminalMeta(meta = {}, performanceStats = {}) {
@@ -41,9 +125,14 @@ function renderTerminalMeta(meta = {}, performanceStats = {}) {
     return;
   }
 
-  const updateText = meta.updatedAt ? `Aktualizacja: ${formatDate(meta.updatedAt)}` : "Aktualizacja danych w toku";
-  const tradesText = performanceStats.totalTrades ? `Liczba transakcji: ${performanceStats.totalTrades}` : "Liczba transakcji: n/d";
-  const streakText = performanceStats.losingStreak ? `Seria strat: ${performanceStats.losingStreak}` : "Seria strat: n/d";
+  if (!meta.hasData) {
+    terminalMeta.textContent = t("terminal.noData");
+    return;
+  }
+
+  const updateText = `${t("terminal.updated")}: ${formatDate(meta.generatedAt || meta.updatedAt)}`;
+  const tradesText = `${t("terminal.trades")}: ${formatInteger(performanceStats.totalTrades)}`;
+  const streakText = `${t("terminal.losingStreak")}: ${formatInteger(performanceStats.losingStreak)}`;
 
   terminalMeta.textContent = `${updateText} | ${tradesText} | ${streakText}`;
 }
@@ -55,60 +144,60 @@ function renderFooterMeta(meta = {}) {
   }
 
   const strategy = meta.strategy || "MICRO CTA";
-  const updateDate = meta.updatedAt ? formatDate(meta.updatedAt) : "brak daty";
-  footerMeta.textContent = `Systematic Trading Research | ${strategy} | Aktualizacja ${updateDate}`;
+  const updateDate = formatDate(meta.generatedAt || meta.updatedAt);
+  footerMeta.textContent = `${t("footer.tagline")} | ${strategy} | ${t("footer.updated")} ${updateDate}`;
 }
 
-function renderMetricCards(containerId, items, templateBuilder) {
+function renderMetricCards(containerId, items, templateBuilder, sectionKey) {
   const container = document.getElementById(containerId);
   if (!container) {
     return;
   }
 
   if (!Array.isArray(items) || items.length === 0) {
-    container.innerHTML = '<div class="empty-state">Brak danych do wyświetlenia.</div>';
+    container.innerHTML = `<div class="empty-state">${escapeHtml(t("empty.metrics"))}</div>`;
     return;
   }
 
-  container.innerHTML = items.map((item, index) => templateBuilder(item, index)).join("");
+  container.innerHTML = items.map((item, index) => templateBuilder(item, index, sectionKey)).join("");
 }
 
-function buildHeroMetricCard(item, index) {
+function buildHeroMetricCard(item, index, sectionKey) {
   return `
     <article class="kpi-card">
       <span class="card-index">${String(index + 1).padStart(2, "0")}</span>
-      <span class="kpi-label">${escapeHtml(item.label || "")}</span>
-      <strong class="kpi-value ${getToneClass(item.tone)}">${escapeHtml(item.value || "n/d")}</strong>
-      <p>${escapeHtml(item.note || "")}</p>
+      <span class="kpi-label">${escapeHtml(metricLabel(sectionKey, item.id))}</span>
+      <strong class="kpi-value ${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
+      <p>${escapeHtml(metricNote(sectionKey, item.id))}</p>
     </article>
   `;
 }
 
-function buildOverviewCard(item) {
+function buildOverviewCard(item, index, sectionKey) {
   return `
     <article class="overview-card">
-      <span>${escapeHtml(item.label || "")}</span>
-      <strong class="overview-value ${getToneClass(item.tone)}">${escapeHtml(item.value || "n/d")}</strong>
-      <p>${escapeHtml(item.note || "")}</p>
+      <span>${escapeHtml(metricLabel(sectionKey, item.id))}</span>
+      <strong class="overview-value ${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
+      <p>${escapeHtml(metricNote(sectionKey, item.id))}</p>
     </article>
   `;
 }
 
-function buildMiniStatCard(item) {
+function buildMiniStatCard(item, index, sectionKey) {
   return `
     <div class="mini-stat">
-      <span>${escapeHtml(item.label || "")}</span>
-      <strong class="${getToneClass(item.tone)}">${escapeHtml(item.value || "n/d")}</strong>
+      <span>${escapeHtml(metricLabel(sectionKey, item.id))}</span>
+      <strong class="${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
     </div>
   `;
 }
 
-function buildAdvancedMetricCard(item) {
+function buildAdvancedMetricCard(item, index, sectionKey) {
   return `
     <article class="stat-card">
-      <span>${escapeHtml(item.label || "")}</span>
-      <strong class="stat-value ${getToneClass(item.tone)}">${escapeHtml(item.value || "n/d")}</strong>
-      <p>${escapeHtml(item.note || "")}</p>
+      <span>${escapeHtml(metricLabel(sectionKey, item.id))}</span>
+      <strong class="stat-value ${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
+      <p>${escapeHtml(metricNote(sectionKey, item.id))}</p>
     </article>
   `;
 }
@@ -120,39 +209,39 @@ function renderMonthlySummary(monthlyReturns) {
   }
 
   if (!Array.isArray(monthlyReturns) || monthlyReturns.length === 0) {
-    container.innerHTML = '<div class="empty-state">Brak miesięcznych stóp zwrotu.</div>';
+    container.innerHTML = `<div class="empty-state">${escapeHtml(t("empty.monthlyReturns"))}</div>`;
     return;
   }
 
-  const positiveMonths = monthlyReturns.filter((item) => Number(item.return) > 0);
-  const averageReturn = monthlyReturns.reduce((sum, item) => sum + Number(item.return || 0), 0) / monthlyReturns.length;
-  const bestMonth = monthlyReturns.reduce((best, item) => Number(item.return) > Number(best.return) ? item : best, monthlyReturns[0]);
-  const worstMonth = monthlyReturns.reduce((worst, item) => Number(item.return) < Number(worst.return) ? item : worst, monthlyReturns[0]);
+  const positiveMonths = monthlyReturns.filter((item) => Number(item.returnPct) > 0);
+  const averageReturn = monthlyReturns.reduce((sum, item) => sum + Number(item.returnPct || 0), 0) / monthlyReturns.length;
+  const bestMonth = monthlyReturns.reduce((best, item) => Number(item.returnPct) > Number(best.returnPct) ? item : best, monthlyReturns[0]);
+  const worstMonth = monthlyReturns.reduce((worst, item) => Number(item.returnPct) < Number(worst.returnPct) ? item : worst, monthlyReturns[0]);
 
   const summaryItems = [
     {
-      label: "Najlepszy miesiąc",
-      value: `${formatSignedNumber(bestMonth.return)}%`,
-      tone: bestMonth.return >= 0 ? "positive" : "negative",
+      label: t("monthlySummary.bestMonth"),
+      value: formatPercentSigned(bestMonth.returnPct),
+      tone: bestMonth.returnPct >= 0 ? "positive" : "negative",
       note: formatMonth(bestMonth.month)
     },
     {
-      label: "Najsłabszy miesiąc",
-      value: `${formatSignedNumber(worstMonth.return)}%`,
-      tone: worstMonth.return >= 0 ? "positive" : "negative",
+      label: t("monthlySummary.worstMonth"),
+      value: formatPercentSigned(worstMonth.returnPct),
+      tone: worstMonth.returnPct >= 0 ? "positive" : "negative",
       note: formatMonth(worstMonth.month)
     },
     {
-      label: "Średni miesiąc",
-      value: `${formatSignedNumber(averageReturn)}%`,
+      label: t("monthlySummary.averageMonth"),
+      value: formatPercentSigned(averageReturn),
       tone: averageReturn >= 0 ? "positive" : "negative",
-      note: "Średnia arytmetyczna okresu"
+      note: t("monthlySummary.averageMonthNote")
     },
     {
-      label: "Miesiące dodatnie",
+      label: t("monthlySummary.positiveMonths"),
       value: `${positiveMonths.length}/${monthlyReturns.length}`,
       tone: "neutral",
-      note: "Udział miesięcy zakończonych na plusie"
+      note: t("monthlySummary.positiveMonthsNote")
     }
   ];
 
@@ -172,25 +261,24 @@ function renderMonthlyTable(monthlyReturns) {
   }
 
   if (!Array.isArray(monthlyReturns) || monthlyReturns.length === 0) {
-    container.innerHTML = '<tr><td colspan="4" class="muted-cell">Brak danych miesięcznych.</td></tr>';
+    container.innerHTML = `<tr><td colspan="4" class="muted-cell">${escapeHtml(t("empty.monthlyReturns"))}</td></tr>`;
     return;
   }
 
   let cumulative = 1;
 
   container.innerHTML = monthlyReturns.map((item) => {
-    const monthReturn = Number(item.return || 0);
+    const monthReturn = Number(item.returnPct || 0);
     cumulative *= 1 + monthReturn / 100;
     const cumulativePct = (cumulative - 1) * 100;
-    const toneClass = monthReturn >= 0 ? "tone-positive" : "tone-negative";
-    const assessment = monthReturn >= 0 ? "Miesiąc dodatni" : "Miesiąc ujemny";
+    const assessment = monthReturn >= 0 ? t("tables.monthly.positive") : t("tables.monthly.negative");
 
     return `
       <tr>
         <td>${escapeHtml(formatMonth(item.month))}</td>
-        <td class="${toneClass}">${escapeHtml(formatSignedNumber(monthReturn))}%</td>
-        <td class="${cumulativePct >= 0 ? "tone-positive" : "tone-negative"}">${escapeHtml(formatSignedNumber(cumulativePct))}%</td>
-        <td class="muted-cell">${assessment}</td>
+        <td class="${monthReturn >= 0 ? "tone-positive" : "tone-negative"}">${escapeHtml(formatPercentSigned(monthReturn))}</td>
+        <td class="${cumulativePct >= 0 ? "tone-positive" : "tone-negative"}">${escapeHtml(formatPercentSigned(cumulativePct))}</td>
+        <td class="muted-cell">${escapeHtml(assessment)}</td>
       </tr>
     `;
   }).join("");
@@ -203,26 +291,25 @@ function renderTradesTable(trades) {
   }
 
   if (!Array.isArray(trades) || trades.length === 0) {
-    container.innerHTML = '<tr><td colspan="7" class="muted-cell">Brak historii transakcji.</td></tr>';
+    container.innerHTML = `<tr><td colspan="7" class="muted-cell">${escapeHtml(t("empty.trades"))}</td></tr>`;
     return;
   }
 
   container.innerHTML = trades.map((trade) => {
-    const resultNumber = parseSignedMetric(trade.result);
-    const resultClass = Number.isFinite(resultNumber) ? (resultNumber >= 0 ? "tone-positive" : "tone-negative") : "";
-    const directionClass = String(trade.direction || "").toLowerCase() === "short" ? "pill-short" : "pill-long";
-    const normalizedStatus = slugify(trade.status || "");
-    const rrText = trade.rr || "n/d";
+    const resultClass = Number.isFinite(Number(trade.resultValue)) ? (Number(trade.resultValue) >= 0 ? "tone-positive" : "tone-negative") : "";
+    const directionClass = trade.direction === "short" ? "pill-short" : "pill-long";
+    const directionLabel = trade.direction ? t(`directions.${trade.direction}`) : t("ui.na");
+    const statusLabel = trade.status ? t(`statuses.${trade.status}`) : t("ui.na");
 
     return `
       <tr>
         <td>${escapeHtml(formatDate(trade.date))}</td>
-        <td>${escapeHtml(trade.instrument || "n/d")}</td>
-        <td><span class="pill ${directionClass}">${escapeHtml(trade.direction || "n/d")}</span></td>
-        <td class="${resultClass}">${escapeHtml(trade.result || "n/d")}</td>
-        <td class="muted-cell">${escapeHtml(rrText)}</td>
-        <td><span class="pill pill-status-${normalizedStatus}">${escapeHtml(trade.status || "n/d")}</span></td>
-        <td class="notes-cell">${escapeHtml(trade.notes || "")}</td>
+        <td>${escapeHtml(trade.instrument || t("ui.na"))}</td>
+        <td><span class="pill ${directionClass}">${escapeHtml(directionLabel)}</span></td>
+        <td class="${resultClass}">${escapeHtml(formatTradeResult(trade))}</td>
+        <td class="muted-cell">${escapeHtml(formatTradeRr(trade))}</td>
+        <td><span class="pill pill-status-${escapeHtmlClass(trade.status || "unknown")}">${escapeHtml(statusLabel)}</span></td>
+        <td class="notes-cell">${escapeHtml(localizedValue(trade.notes))}</td>
       </tr>
     `;
   }).join("");
@@ -230,12 +317,26 @@ function renderTradesTable(trades) {
 
 function initializeEquityChart(equityCurve) {
   const chartElement = document.getElementById("equityChart");
+  const chartEmptyState = document.getElementById("chartEmptyState");
+
   if (!chartElement || typeof Chart === "undefined") {
     return;
   }
 
   if (!Array.isArray(equityCurve) || equityCurve.length === 0) {
+    if (equityChart) {
+      equityChart.destroy();
+      equityChart = null;
+    }
+    if (chartEmptyState) {
+      chartEmptyState.hidden = false;
+      chartEmptyState.textContent = t("empty.chart");
+    }
     return;
+  }
+
+  if (chartEmptyState) {
+    chartEmptyState.hidden = true;
   }
 
   const labels = equityCurve.map((entry) => formatChartLabel(entry.date));
@@ -251,7 +352,7 @@ function initializeEquityChart(equityCurve) {
       labels,
       datasets: [
         {
-          label: "Equity Curve",
+          label: t("chart.datasetLabel"),
           data,
           borderColor: "#C8A96B",
           backgroundColor: (context) => {
@@ -303,7 +404,7 @@ function initializeEquityChart(equityCurve) {
           padding: 14,
           callbacks: {
             label(context) {
-              return `Kapitał: ${formatCurrency(context.parsed.y)}`;
+              return `${t("chart.tooltipEquity")}: ${formatCurrency(context.parsed.y)}`;
             }
           }
         }
@@ -347,6 +448,97 @@ function initializeEquityChart(equityCurve) {
       }
     }
   });
+}
+
+function metricLabel(sectionKey, metricId) {
+  return t(`${sectionKey}.${metricId}.label`);
+}
+
+function metricNote(sectionKey, metricId) {
+  return t(`${sectionKey}.${metricId}.note`);
+}
+
+function formatMetricValue(metric) {
+  if (!metric || metric.rawValue === null || metric.rawValue === undefined || metric.rawValue === "") {
+    return t("ui.na");
+  }
+
+  switch (metric.format) {
+    case "percentSigned":
+      return formatPercentSigned(metric.rawValue);
+    case "percentPlain":
+      return formatPercentPlain(metric.rawValue);
+    case "currency":
+      return formatCurrency(metric.rawValue);
+    case "integer":
+      return formatInteger(metric.rawValue);
+    case "decimal":
+      return formatDecimal(metric.rawValue);
+    case "ratio":
+      return formatRatio(metric.rawValue);
+    case "date":
+      return formatDate(metric.rawValue);
+    default:
+      return String(metric.rawValue);
+  }
+}
+
+function formatTradeResult(trade) {
+  if (trade.resultText) {
+    return localizedValue(trade.resultText);
+  }
+
+  if (trade.resultValue === null || trade.resultValue === undefined || trade.resultValue === "") {
+    return t("ui.na");
+  }
+
+  return formatSignedDecimal(trade.resultValue);
+}
+
+function formatTradeRr(trade) {
+  if (trade.rrText) {
+    return localizedValue(trade.rrText);
+  }
+
+  if (trade.rrValue === null || trade.rrValue === undefined || trade.rrValue === "") {
+    return t("ui.na");
+  }
+
+  return formatRatio(trade.rrValue);
+}
+
+function localizedValue(value) {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    return value[appState.language] || value.pl || value.en || "";
+  }
+  return value ?? "";
+}
+
+function t(path) {
+  const bundle = appState.translations?.[appState.language];
+  if (!bundle) {
+    return path;
+  }
+
+  const value = path.split(".").reduce((current, key) => {
+    if (current && Object.prototype.hasOwnProperty.call(current, key)) {
+      return current[key];
+    }
+    return undefined;
+  }, bundle);
+
+  return typeof value === "string" ? value : path;
+}
+
+function getToneClass(tone) {
+  switch (tone) {
+    case "positive":
+      return "tone-positive";
+    case "negative":
+      return "tone-negative";
+    default:
+      return "tone-neutral";
+  }
 }
 
 function setupSmoothScroll() {
@@ -400,35 +592,32 @@ function setupRevealAnimations() {
   revealItems.forEach((item) => observer.observe(item));
 }
 
-function renderErrorState() {
-  renderMetricCards("heroMetrics", [{ label: "Błąd danych", value: "n/d", tone: "negative", note: "Nie udało się wczytać data.json." }], buildHeroMetricCard);
-  renderMetricCards("dashboardStats", [{ label: "Status", value: "Brak danych", tone: "negative", note: "Sprawdź plik data.json." }], buildOverviewCard);
-  renderMetricCards("chartSummary", [{ label: "Status", value: "Offline", tone: "negative" }], buildMiniStatCard);
-  renderMetricCards("advancedMetrics", [{ label: "Dane", value: "n/d", tone: "negative", note: "Brak połączenia z warstwą danych." }], buildAdvancedMetricCard);
-  renderMonthlySummary([]);
-  renderMonthlyTable([]);
-  renderTradesTable([]);
-
+function renderFatalState() {
   const terminalMeta = document.getElementById("terminalMeta");
   if (terminalMeta) {
-    terminalMeta.textContent = "Nie udało się załadować pliku data.json. Upewnij się, że plik istnieje i ma poprawny format.";
+    terminalMeta.textContent = "Unable to load dashboard files.";
   }
 }
 
-function getToneClass(tone) {
-  switch (tone) {
-    case "positive":
-      return "tone-positive";
-    case "negative":
-      return "tone-negative";
-    default:
-      return "tone-neutral";
-  }
+function buildEmptyData() {
+  return {
+    meta: {
+      hasData: false
+    },
+    performanceStats: {},
+    heroMetrics: [],
+    dashboardStats: [],
+    chartSummary: [],
+    advancedMetrics: [],
+    equityCurve: [],
+    monthlyReturns: [],
+    recentTrades: []
+  };
 }
 
 function formatDate(value) {
   if (!value) {
-    return "n/d";
+    return t("ui.na");
   }
 
   const parsed = new Date(value);
@@ -436,12 +625,12 @@ function formatDate(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat("pl-PL").format(parsed);
+  return new Intl.DateTimeFormat(currentLocale()).format(parsed);
 }
 
 function formatMonth(value) {
   if (!value) {
-    return "n/d";
+    return t("ui.na");
   }
 
   const parsed = new Date(`${value}-01`);
@@ -449,7 +638,7 @@ function formatMonth(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat("pl-PL", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     month: "short",
     year: "numeric"
   }).format(parsed);
@@ -465,14 +654,14 @@ function formatChartLabel(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat("pl-PL", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     month: "short",
     year: "2-digit"
   }).format(parsed);
 }
 
 function formatCurrency(value) {
-  return new Intl.NumberFormat("pl-PL", {
+  return new Intl.NumberFormat(currentLocale(), {
     style: "currency",
     currency: "PLN",
     maximumFractionDigits: 0
@@ -489,33 +678,67 @@ function formatCompactCurrency(value) {
   return String(Math.round(number));
 }
 
-function formatSignedNumber(value) {
-  const number = Number(value || 0);
+function formatPercentSigned(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return t("ui.na");
+  }
   const sign = number > 0 ? "+" : "";
-  return `${sign}${number.toFixed(1).replace(".", ",")}`;
+  return `${sign}${formatNumber(number, 1)}%`;
 }
 
-function parseSignedMetric(value) {
-  if (typeof value === "number") {
-    return value;
+function formatPercentPlain(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return t("ui.na");
   }
-
-  if (typeof value !== "string") {
-    return Number.NaN;
-  }
-
-  const normalized = value.replace(",", ".").replace(/[^0-9.+-]/g, "");
-  return Number(normalized);
+  return `${formatNumber(number, 1)}%`;
 }
 
-function slugify(value) {
-  return String(value || "")
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+function formatRatio(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return t("ui.na");
+  }
+  return `1:${formatNumber(number, 1)}`;
+}
+
+function formatDecimal(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return t("ui.na");
+  }
+  return formatNumber(number, 2);
+}
+
+function formatSignedDecimal(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return t("ui.na");
+  }
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${formatNumber(number, 2)}`;
+}
+
+function formatInteger(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return t("ui.na");
+  }
+  return new Intl.NumberFormat(currentLocale(), {
+    maximumFractionDigits: 0
+  }).format(number);
+}
+
+function formatNumber(value, digits) {
+  return new Intl.NumberFormat(currentLocale(), {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits
+  }).format(value);
+}
+
+function currentLocale() {
+  return appState.language === "pl" ? "pl-PL" : "en-GB";
 }
 
 function escapeHtml(value) {
@@ -525,4 +748,8 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function escapeHtmlClass(value) {
+  return String(value ?? "unknown").replace(/[^a-z0-9_-]/gi, "");
 }
