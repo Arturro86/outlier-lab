@@ -60,13 +60,25 @@ document.addEventListener("DOMContentLoaded", () => {
             label: "Equity Curve",
             data,
             borderColor: "#C8A96B",
-            backgroundColor: "rgba(200, 169, 107, 0.12)",
+            backgroundColor: (context) => {
+              const chart = context.chart;
+              const { ctx, chartArea } = chart;
+
+              if (!chartArea) {
+                return "rgba(200, 169, 107, 0.12)";
+              }
+
+              const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+              gradient.addColorStop(0, "rgba(200, 169, 107, 0.28)");
+              gradient.addColorStop(1, "rgba(200, 169, 107, 0)");
+              return gradient;
+            },
             fill: true,
-            tension: 0.34,
-            borderWidth: 2.4,
+            tension: 0.36,
+            borderWidth: 2.8,
             pointRadius: 0,
-            pointHoverRadius: 4,
-            pointHoverBackgroundColor: "#F3F4F6",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#F8FAFC",
             pointHoverBorderColor: "#C8A96B",
             pointHoverBorderWidth: 2
           }
@@ -91,16 +103,16 @@ document.addEventListener("DOMContentLoaded", () => {
             backgroundColor: "rgba(11, 18, 32, 0.96)",
             borderColor: "rgba(200, 169, 107, 0.22)",
             borderWidth: 1,
-            titleColor: "#F3F4F6",
+            titleColor: "#F8FAFC",
             bodyColor: "#94A3B8",
             displayColors: false,
-            padding: 12
+            padding: 14
           }
         },
         scales: {
           x: {
             grid: {
-              color: "rgba(255, 255, 255, 0.05)",
+              color: "rgba(255, 255, 255, 0.045)",
               drawBorder: false
             },
             ticks: {
@@ -116,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           y: {
             grid: {
-              color: "rgba(255, 255, 255, 0.05)",
+              color: "rgba(255, 255, 255, 0.045)",
               drawBorder: false
             },
             ticks: {
