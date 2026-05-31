@@ -3,61 +3,59 @@
     "brand": "WE ARE ALL TRADERS",
     "strategy": "MICRO CTA",
     "generatedAt": "2026-06-01",
+    "updatedAt": "2026-05-31",
     "baseCurrency": "PLN",
-    "hasData": false,
-    "hasHistoryData": false,
-    "hasTradesData": false,
+    "hasData": true,
+    "hasHistoryData": true,
+    "hasTradesData": true,
     "sourceFiles": {
       "reportHistory": "data\\ReportHistory.xlsx",
       "dashboardTrading": "data\\dashboard_trading.xlsx"
     },
     "rowCounts": {
-      "history": 0,
-      "trades": 0
+      "history": 21,
+      "trades": 19
     },
-    "warnings": [
-      "missing_history_equity_and_balance",
-      "missing_trade_core_columns"
-    ]
+    "warnings": []
   },
   "performanceStats": {
-    "totalTrades": 0,
-    "winningTrades": 0,
-    "losingTrades": 0,
-    "averageWinR": null,
-    "averageLossR": null,
-    "losingStreak": 0
+    "totalTrades": 39,
+    "winningTrades": 21,
+    "losingTrades": 18,
+    "averageWinR": 67.3781,
+    "averageLossR": -73.3167,
+    "losingStreak": 3
   },
   "heroMetrics": [
     {
       "id": "cagr",
-      "rawValue": null,
+      "rawValue": 44.4818,
       "format": "percentSigned",
-      "tone": "neutral"
+      "tone": "positive"
     },
     {
       "id": "maxDd",
-      "rawValue": null,
+      "rawValue": -5.9201,
       "format": "percentSigned",
-      "tone": "neutral"
+      "tone": "negative"
     },
     {
       "id": "rr",
-      "rawValue": null,
+      "rawValue": 0.919,
       "format": "ratio",
-      "tone": "neutral"
+      "tone": "positive"
     },
     {
       "id": "ytd",
-      "rawValue": null,
+      "rawValue": 2.6541,
       "format": "percentSigned",
-      "tone": "neutral"
+      "tone": "positive"
     }
   ],
   "dashboardStats": [
     {
       "id": "modelEquity",
-      "rawValue": null,
+      "rawValue": 5785.07,
       "format": "currency",
       "tone": "neutral"
     },
@@ -69,13 +67,13 @@
     },
     {
       "id": "tradeCount",
-      "rawValue": 0,
+      "rawValue": 39,
       "format": "integer",
       "tone": "neutral"
     },
     {
       "id": "lastUpdate",
-      "rawValue": "2026-06-01",
+      "rawValue": "2026-05-31",
       "format": "date",
       "tone": "neutral"
     }
@@ -83,47 +81,47 @@
   "chartSummary": [
     {
       "id": "netReturn",
-      "rawValue": null,
+      "rawValue": 2.6541,
       "format": "percentSigned",
-      "tone": "neutral"
+      "tone": "positive"
     },
     {
       "id": "equity",
-      "rawValue": null,
+      "rawValue": 5785.07,
       "format": "currency",
       "tone": "neutral"
     },
     {
       "id": "currentDrawdown",
-      "rawValue": null,
+      "rawValue": -3.2047,
       "format": "percentSigned",
-      "tone": "neutral"
+      "tone": "negative"
     },
     {
       "id": "winRate",
-      "rawValue": null,
+      "rawValue": 53.85,
       "format": "percentPlain",
-      "tone": "neutral"
+      "tone": "positive"
     }
   ],
   "advancedMetrics": [
     {
       "id": "profitFactor",
-      "rawValue": null,
+      "rawValue": 1.0722,
       "format": "decimal",
-      "tone": "neutral"
+      "tone": "positive"
     },
     {
       "id": "sharpeRatio",
-      "rawValue": null,
+      "rawValue": 0.0325,
       "format": "decimal",
-      "tone": "neutral"
+      "tone": "positive"
     },
     {
       "id": "sortinoRatio",
-      "rawValue": null,
+      "rawValue": 2.3669,
       "format": "decimal",
-      "tone": "neutral"
+      "tone": "positive"
     },
     {
       "id": "exposure",
@@ -133,18 +131,497 @@
     },
     {
       "id": "winRate",
-      "rawValue": null,
+      "rawValue": 53.85,
       "format": "percentPlain",
-      "tone": "neutral"
+      "tone": "positive"
     },
     {
       "id": "marRatio",
-      "rawValue": null,
+      "rawValue": 7.5137,
       "format": "decimal",
-      "tone": "neutral"
+      "tone": "positive"
     }
   ],
-  "equityCurve": [],
-  "monthlyReturns": [],
-  "recentTrades": []
+  "equityCurve": [
+    {
+      "date": "2026-05-05",
+      "value": 5635.5,
+      "equity": 5635.5,
+      "balance": 5635.5,
+      "profitLoss": 11.03,
+      "drawdownPct": 0.0
+    },
+    {
+      "date": "2026-05-06",
+      "value": 5380.38,
+      "equity": 5380.38,
+      "balance": 5380.38,
+      "profitLoss": 0.0,
+      "drawdownPct": -4.527
+    },
+    {
+      "date": "2026-05-07",
+      "value": 5525.07,
+      "equity": 5525.07,
+      "balance": 5525.07,
+      "profitLoss": 35.62,
+      "drawdownPct": -1.9595
+    },
+    {
+      "date": "2026-05-08",
+      "value": 5525.34,
+      "equity": 5525.34,
+      "balance": 5525.34,
+      "profitLoss": 0.0,
+      "drawdownPct": -1.9548
+    },
+    {
+      "date": "2026-05-11",
+      "value": 5405.63,
+      "equity": 5405.63,
+      "balance": 5405.63,
+      "profitLoss": 0.0,
+      "drawdownPct": -4.079
+    },
+    {
+      "date": "2026-05-12",
+      "value": 5301.87,
+      "equity": 5301.87,
+      "balance": 5301.87,
+      "profitLoss": -73.9,
+      "drawdownPct": -5.9201
+    },
+    {
+      "date": "2026-05-13",
+      "value": 5301.87,
+      "equity": 5301.87,
+      "balance": 5301.87,
+      "profitLoss": 0.0,
+      "drawdownPct": -5.9201
+    },
+    {
+      "date": "2026-05-14",
+      "value": 5467.42,
+      "equity": 5467.42,
+      "balance": 5467.42,
+      "profitLoss": 0.0,
+      "drawdownPct": -2.9825
+    },
+    {
+      "date": "2026-05-15",
+      "value": 5545.61,
+      "equity": 5545.61,
+      "balance": 5545.61,
+      "profitLoss": 0.0,
+      "drawdownPct": -1.5951
+    },
+    {
+      "date": "2026-05-18",
+      "value": 5418.53,
+      "equity": 5418.53,
+      "balance": 5418.53,
+      "profitLoss": 0.0,
+      "drawdownPct": -3.8501
+    },
+    {
+      "date": "2026-05-19",
+      "value": 5378.51,
+      "equity": 5378.51,
+      "balance": 5378.51,
+      "profitLoss": 5.79,
+      "drawdownPct": -4.5602
+    },
+    {
+      "date": "2026-05-20",
+      "value": 5378.58,
+      "equity": 5378.58,
+      "balance": 5378.58,
+      "profitLoss": 0.07,
+      "drawdownPct": -4.559
+    },
+    {
+      "date": "2026-05-21",
+      "value": 5378.58,
+      "equity": 5378.58,
+      "balance": 5378.58,
+      "profitLoss": 0.0,
+      "drawdownPct": -4.559
+    },
+    {
+      "date": "2026-05-22",
+      "value": 5378.58,
+      "equity": 5378.58,
+      "balance": 5378.58,
+      "profitLoss": 0.0,
+      "drawdownPct": -4.559
+    },
+    {
+      "date": "2026-05-24",
+      "value": 5379.46,
+      "equity": 5379.46,
+      "balance": 5379.46,
+      "profitLoss": 0.88,
+      "drawdownPct": -4.5433
+    },
+    {
+      "date": "2026-05-25",
+      "value": 5382.39,
+      "equity": 5382.39,
+      "balance": 5382.39,
+      "profitLoss": 2.93,
+      "drawdownPct": -4.4913
+    },
+    {
+      "date": "2026-05-26",
+      "value": 5976.6,
+      "equity": 5976.6,
+      "balance": 5976.6,
+      "profitLoss": -32.72,
+      "drawdownPct": 0.0
+    },
+    {
+      "date": "2026-05-27",
+      "value": 5915.55,
+      "equity": 5915.55,
+      "balance": 5915.55,
+      "profitLoss": -66.93,
+      "drawdownPct": -1.0215
+    },
+    {
+      "date": "2026-05-28",
+      "value": 5829.99,
+      "equity": 5829.99,
+      "balance": 5829.99,
+      "profitLoss": 0.0,
+      "drawdownPct": -2.4531
+    },
+    {
+      "date": "2026-05-29",
+      "value": 5741.83,
+      "equity": 5741.83,
+      "balance": 5741.83,
+      "profitLoss": -88.16,
+      "drawdownPct": -3.9282
+    },
+    {
+      "date": "2026-05-31",
+      "value": 5785.07,
+      "equity": 5785.07,
+      "balance": 5741.83,
+      "profitLoss": 43.24,
+      "drawdownPct": -3.2047
+    }
+  ],
+  "monthlyReturns": [
+    {
+      "month": "2026-05",
+      "returnPct": 2.6541
+    }
+  ],
+  "recentTrades": [
+    {
+      "date": "2026-05-29",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5801.39,
+      "balance": 5741.83,
+      "drawdownPct": 5.9125,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 3
+    },
+    {
+      "date": "2026-05-28",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5883.85,
+      "balance": 5829.99,
+      "drawdownPct": 4.5751,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 2
+    },
+    {
+      "date": "2026-05-27",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5862.48,
+      "balance": 5915.55,
+      "drawdownPct": 4.9217,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 1
+    },
+    {
+      "date": "2026-05-26",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 6141.48,
+      "balance": 5976.6,
+      "drawdownPct": 0.3969,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-25",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 0.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 6165.95,
+      "balance": 5379.46,
+      "drawdownPct": 0.0,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-22",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 0.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5714.8,
+      "balance": 5378.58,
+      "drawdownPct": 1.2142,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-21",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 0.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5785.04,
+      "balance": 5378.58,
+      "drawdownPct": 0.0,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-20",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 0.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5542.87,
+      "balance": 5378.58,
+      "drawdownPct": 3.6666,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-19",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5378.51,
+      "balance": 5378.51,
+      "drawdownPct": 6.5231,
+      "maxDrawdownPct": 6.5231,
+      "losingStreak": 2
+    },
+    {
+      "date": "2026-05-18",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5412.83,
+      "balance": 5418.53,
+      "drawdownPct": 5.9267,
+      "maxDrawdownPct": 5.9267,
+      "losingStreak": 1
+    },
+    {
+      "date": "2026-05-15",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5545.61,
+      "balance": 5512.27,
+      "drawdownPct": 3.619,
+      "maxDrawdownPct": 4.8905,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-14",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5649.75,
+      "balance": 5467.42,
+      "drawdownPct": 1.8091,
+      "maxDrawdownPct": 4.8905,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-13",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5554.02,
+      "balance": 5464.21,
+      "drawdownPct": 3.4728,
+      "maxDrawdownPct": 4.8905,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-12",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5472.45,
+      "balance": 5301.87,
+      "drawdownPct": 4.8905,
+      "maxDrawdownPct": 4.8905,
+      "losingStreak": 2
+    },
+    {
+      "date": "2026-05-11",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "Zamknięcie platyny tuż przed mocnym wybiciem. Niestety jest to część strategii.",
+      "equity": 5647.44,
+      "balance": 5405.63,
+      "drawdownPct": 1.8492,
+      "maxDrawdownPct": 3.8847,
+      "losingStreak": 1
+    },
+    {
+      "date": "2026-05-08",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5661.18,
+      "balance": 5525.34,
+      "drawdownPct": 1.6104,
+      "maxDrawdownPct": 3.8847,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-07",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "",
+      "equity": 5530.32,
+      "balance": 5525.07,
+      "drawdownPct": 3.8847,
+      "maxDrawdownPct": 3.8847,
+      "losingStreak": 1
+    },
+    {
+      "date": "2026-05-06",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": 1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "Wyłączyłem jpy -  zbyt duże ryzyko ponownej interwencji",
+      "equity": 5753.84,
+      "balance": 5380.38,
+      "drawdownPct": 0.0,
+      "maxDrawdownPct": 0.0,
+      "losingStreak": 0
+    },
+    {
+      "date": "2026-05-05",
+      "instrument": "",
+      "direction": "unknown",
+      "resultValue": -1.0,
+      "resultText": "",
+      "rrValue": null,
+      "rrText": "",
+      "status": "active",
+      "notes": "Olbrzymi poślizg cenowy na interwencji BOJ na GBPJPY",
+      "equity": 5432.35,
+      "balance": 5341.69,
+      "drawdownPct": 0.0,
+      "maxDrawdownPct": 0.0,
+      "losingStreak": 1
+    }
+  ]
 }

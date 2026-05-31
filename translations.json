@@ -49,7 +49,7 @@
       },
       "equityCurve": {
         "panelLabel": "Equity Curve",
-        "title": "INSTYTUCJONALNY STRUMIEŃ WYNIKÓW"
+        "title": "KRZYWA KAPITAŁU PORTFELA MICRO CTA"
       },
       "advancedStats": {
         "eyebrow": "Zaawansowane statystyki",
@@ -236,7 +236,7 @@
       "updated": "Aktualizacja"
     },
     "ui": {
-      "na": "n/d"
+      "na": "--"
     }
   },
   "en": {
@@ -289,7 +289,7 @@
       },
       "equityCurve": {
         "panelLabel": "Equity Curve",
-        "title": "INSTITUTIONAL RETURN STREAM"
+        "title": "MICRO CTA PORTFOLIO EQUITY CURVE"
       },
       "advancedStats": {
         "eyebrow": "Advanced statistics",
@@ -476,7 +476,7 @@
       "updated": "Updated"
     },
     "ui": {
-      "na": "n/a"
+      "na": "--"
     }
   }
 }

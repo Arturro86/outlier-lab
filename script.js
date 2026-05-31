@@ -7,6 +7,34 @@ let appState = {
 let equityChart = null;
 
 const LOCAL_STORAGE_LANGUAGE_KEY = "wearealltraders-language";
+const METRIC_GROUP_DEFAULTS = {
+  heroMetrics: [
+    { id: "cagr", format: "percentSigned" },
+    { id: "maxDd", format: "percentSigned" },
+    { id: "rr", format: "ratio" },
+    { id: "ytd", format: "percentSigned" }
+  ],
+  dashboardStats: [
+    { id: "modelEquity", format: "currency" },
+    { id: "exposure", format: "percentPlain" },
+    { id: "tradeCount", format: "integer" },
+    { id: "lastUpdate", format: "date" }
+  ],
+  chartSummary: [
+    { id: "netReturn", format: "percentSigned" },
+    { id: "equity", format: "currency" },
+    { id: "currentDrawdown", format: "percentSigned" },
+    { id: "winRate", format: "percentPlain" }
+  ],
+  advancedMetrics: [
+    { id: "profitFactor", format: "decimal" },
+    { id: "sharpeRatio", format: "decimal" },
+    { id: "sortinoRatio", format: "decimal" },
+    { id: "exposure", format: "percentPlain" },
+    { id: "winRate", format: "percentPlain" },
+    { id: "marRatio", format: "decimal" }
+  ]
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeDashboard().catch((error) => {
@@ -25,7 +53,7 @@ async function initializeDashboard() {
   ]);
 
   appState.translations = translations;
-  appState.data = dashboardData;
+  appState.data = normalizeDashboardData(dashboardData);
   appState.language = getStoredLanguage(translations);
 
   setupLanguageSwitcher();
@@ -105,7 +133,7 @@ function applyStaticTranslations() {
 }
 
 function renderDashboard() {
-  const data = appState.data || buildEmptyData();
+  const data = normalizeDashboardData(appState.data || buildEmptyData());
 
   renderTerminalMeta(data.meta, data.performanceStats);
   renderMetricCards("heroMetrics", data.heroMetrics, buildHeroMetricCard, "metrics.hero");
@@ -130,7 +158,7 @@ function renderTerminalMeta(meta = {}, performanceStats = {}) {
     return;
   }
 
-  const updateText = `${t("terminal.updated")}: ${formatDate(meta.generatedAt || meta.updatedAt)}`;
+  const updateText = `${t("terminal.updated")}: ${formatDate(meta.updatedAt || meta.generatedAt)}`;
   const tradesText = `${t("terminal.trades")}: ${formatInteger(performanceStats.totalTrades)}`;
   const streakText = `${t("terminal.losingStreak")}: ${formatInteger(performanceStats.losingStreak)}`;
 
@@ -144,18 +172,13 @@ function renderFooterMeta(meta = {}) {
   }
 
   const strategy = meta.strategy || "MICRO CTA";
-  const updateDate = formatDate(meta.generatedAt || meta.updatedAt);
+  const updateDate = formatDate(meta.updatedAt || meta.generatedAt);
   footerMeta.textContent = `${t("footer.tagline")} | ${strategy} | ${t("footer.updated")} ${updateDate}`;
 }
 
 function renderMetricCards(containerId, items, templateBuilder, sectionKey) {
   const container = document.getElementById(containerId);
   if (!container) {
-    return;
-  }
-
-  if (!Array.isArray(items) || items.length === 0) {
-    container.innerHTML = `<div class="empty-state">${escapeHtml(t("empty.metrics"))}</div>`;
     return;
   }
 
@@ -209,7 +232,40 @@ function renderMonthlySummary(monthlyReturns) {
   }
 
   if (!Array.isArray(monthlyReturns) || monthlyReturns.length === 0) {
-    container.innerHTML = `<div class="empty-state">${escapeHtml(t("empty.monthlyReturns"))}</div>`;
+    const placeholderCards = [
+      {
+        label: t("monthlySummary.bestMonth"),
+        value: t("ui.na"),
+        tone: "neutral",
+        note: t("ui.na")
+      },
+      {
+        label: t("monthlySummary.worstMonth"),
+        value: t("ui.na"),
+        tone: "neutral",
+        note: t("ui.na")
+      },
+      {
+        label: t("monthlySummary.averageMonth"),
+        value: t("ui.na"),
+        tone: "neutral",
+        note: t("monthlySummary.averageMonthNote")
+      },
+      {
+        label: t("monthlySummary.positiveMonths"),
+        value: t("ui.na"),
+        tone: "neutral",
+        note: t("monthlySummary.positiveMonthsNote")
+      }
+    ];
+
+    container.innerHTML = placeholderCards.map((item) => `
+      <article class="monthly-card">
+        <span>${escapeHtml(item.label)}</span>
+        <strong class="monthly-value ${getToneClass(item.tone)}">${escapeHtml(item.value)}</strong>
+        <p>${escapeHtml(item.note)}</p>
+      </article>
+    `).join("");
     return;
   }
 
@@ -297,7 +353,7 @@ function renderTradesTable(trades) {
 
   container.innerHTML = trades.map((trade) => {
     const resultClass = Number.isFinite(Number(trade.resultValue)) ? (Number(trade.resultValue) >= 0 ? "tone-positive" : "tone-negative") : "";
-    const directionClass = trade.direction === "short" ? "pill-short" : "pill-long";
+    const directionClass = trade.direction === "short" ? "pill-short" : trade.direction === "long" ? "pill-long" : "";
     const directionLabel = trade.direction ? t(`directions.${trade.direction}`) : t("ui.na");
     const statusLabel = trade.status ? t(`statuses.${trade.status}`) : t("ui.na");
 
@@ -309,7 +365,7 @@ function renderTradesTable(trades) {
         <td class="${resultClass}">${escapeHtml(formatTradeResult(trade))}</td>
         <td class="muted-cell">${escapeHtml(formatTradeRr(trade))}</td>
         <td><span class="pill pill-status-${escapeHtmlClass(trade.status || "unknown")}">${escapeHtml(statusLabel)}</span></td>
-        <td class="notes-cell">${escapeHtml(localizedValue(trade.notes))}</td>
+        <td class="notes-cell">${escapeHtml(localizedValue(trade.notes) || t("ui.na"))}</td>
       </tr>
     `;
   }).join("");
@@ -318,12 +374,15 @@ function renderTradesTable(trades) {
 function initializeEquityChart(equityCurve) {
   const chartElement = document.getElementById("equityChart");
   const chartEmptyState = document.getElementById("chartEmptyState");
+  const safeCurve = Array.isArray(equityCurve)
+    ? equityCurve.filter((entry) => entry && entry.date && Number.isFinite(Number(entry.value ?? entry.equity)))
+    : [];
 
   if (!chartElement || typeof Chart === "undefined") {
     return;
   }
 
-  if (!Array.isArray(equityCurve) || equityCurve.length === 0) {
+  if (safeCurve.length === 0) {
     if (equityChart) {
       equityChart.destroy();
       equityChart = null;
@@ -339,8 +398,8 @@ function initializeEquityChart(equityCurve) {
     chartEmptyState.hidden = true;
   }
 
-  const labels = equityCurve.map((entry) => formatChartLabel(entry.date));
-  const data = equityCurve.map((entry) => Number(entry.equity || 0));
+  const labels = safeCurve.map((entry) => formatChartLabel(entry.date));
+  const data = safeCurve.map((entry) => Number(entry.value ?? entry.equity));
 
   if (equityChart) {
     equityChart.destroy();
@@ -600,19 +659,140 @@ function renderFatalState() {
 }
 
 function buildEmptyData() {
+  return normalizeDashboardData({});
+}
+
+function normalizeDashboardData(rawData) {
+  const data = rawData && typeof rawData === "object" ? rawData : {};
+  const meta = data.meta && typeof data.meta === "object" ? data.meta : {};
+
   return {
     meta: {
-      hasData: false
+      hasData: Boolean(meta.hasData),
+      hasHistoryData: Boolean(meta.hasHistoryData),
+      hasTradesData: Boolean(meta.hasTradesData),
+      strategy: meta.strategy || "MICRO CTA",
+      generatedAt: meta.generatedAt || null,
+      updatedAt: meta.updatedAt || null,
+      warnings: Array.isArray(meta.warnings) ? meta.warnings : []
     },
-    performanceStats: {},
-    heroMetrics: [],
-    dashboardStats: [],
-    chartSummary: [],
-    advancedMetrics: [],
-    equityCurve: [],
-    monthlyReturns: [],
-    recentTrades: []
+    performanceStats: normalizePerformanceStats(data.performanceStats),
+    heroMetrics: ensureMetricGroup(data.heroMetrics, METRIC_GROUP_DEFAULTS.heroMetrics),
+    dashboardStats: ensureMetricGroup(data.dashboardStats, METRIC_GROUP_DEFAULTS.dashboardStats),
+    chartSummary: ensureMetricGroup(data.chartSummary, METRIC_GROUP_DEFAULTS.chartSummary),
+    advancedMetrics: ensureMetricGroup(data.advancedMetrics, METRIC_GROUP_DEFAULTS.advancedMetrics),
+    equityCurve: normalizeEquityCurve(data.equityCurve),
+    monthlyReturns: normalizeMonthlyReturns(data.monthlyReturns),
+    recentTrades: normalizeTrades(data.recentTrades)
   };
+}
+
+function normalizePerformanceStats(stats) {
+  const source = stats && typeof stats === "object" ? stats : {};
+  return {
+    totalTrades: normalizeNumberOrNull(source.totalTrades),
+    winningTrades: normalizeNumberOrNull(source.winningTrades),
+    losingTrades: normalizeNumberOrNull(source.losingTrades),
+    averageWinR: normalizeNumberOrNull(source.averageWinR),
+    averageLossR: normalizeNumberOrNull(source.averageLossR),
+    losingStreak: normalizeNumberOrNull(source.losingStreak)
+  };
+}
+
+function ensureMetricGroup(items, defaults) {
+  const source = Array.isArray(items) ? items : [];
+  const byId = new Map(source.filter((item) => item && item.id).map((item) => [item.id, item]));
+
+  return defaults.map((spec) => {
+    const existing = byId.get(spec.id);
+    if (!existing) {
+      return {
+        id: spec.id,
+        rawValue: null,
+        format: spec.format,
+        tone: "neutral"
+      };
+    }
+
+    return {
+      id: existing.id || spec.id,
+      rawValue: existing.rawValue ?? null,
+      format: existing.format || spec.format,
+      tone: existing.tone || "neutral"
+    };
+  });
+}
+
+function normalizeEquityCurve(items) {
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items
+    .filter((item) => item && item.date)
+    .map((item) => ({
+      date: item.date,
+      value: normalizeNumberOrNull(item.value ?? item.equity),
+      equity: normalizeNumberOrNull(item.equity ?? item.value),
+      balance: normalizeNumberOrNull(item.balance),
+      drawdownPct: normalizeNumberOrNull(item.drawdownPct),
+      profitLoss: normalizeNumberOrNull(item.profitLoss)
+    }))
+    .filter((item) => item.value !== null);
+}
+
+function normalizeMonthlyReturns(items) {
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items
+    .filter((item) => item && item.month)
+    .map((item) => ({
+      month: item.month,
+      returnPct: normalizeNumberOrNull(item.returnPct)
+    }))
+    .filter((item) => item.returnPct !== null);
+}
+
+function normalizeTrades(items) {
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items
+    .filter((item) => item && item.date)
+    .map((item) => ({
+      date: item.date,
+      instrument: cleanDisplayText(item.instrument),
+      direction: normalizeTradeDirection(item.direction),
+      resultValue: normalizeNumberOrNull(item.resultValue),
+      resultText: cleanDisplayText(item.resultText),
+      rrValue: normalizeNumberOrNull(item.rrValue),
+      rrText: cleanDisplayText(item.rrText),
+      status: normalizeTradeStatus(item.status),
+      notes: cleanDisplayText(item.notes)
+    }));
+}
+
+function normalizeNumberOrNull(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function cleanDisplayText(value) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeTradeDirection(direction) {
+  return direction === "long" || direction === "short" ? direction : "unknown";
+}
+
+function normalizeTradeStatus(status) {
+  if (status === "active" || status === "closed" || status === "cancelled") {
+    return status;
+  }
+  return "unknown";
 }
 
 function formatDate(value) {
@@ -620,7 +800,7 @@ function formatDate(value) {
     return t("ui.na");
   }
 
-  const parsed = new Date(value);
+  const parsed = parseDateValue(value);
   if (Number.isNaN(parsed.getTime())) {
     return String(value);
   }
@@ -633,7 +813,7 @@ function formatMonth(value) {
     return t("ui.na");
   }
 
-  const parsed = new Date(`${value}-01`);
+  const parsed = parseDateValue(`${value}-01`);
   if (Number.isNaN(parsed.getTime())) {
     return String(value);
   }
@@ -649,7 +829,7 @@ function formatChartLabel(value) {
     return "";
   }
 
-  const parsed = new Date(value);
+  const parsed = parseDateValue(value);
   if (Number.isNaN(parsed.getTime())) {
     return String(value);
   }
@@ -735,6 +915,23 @@ function formatNumber(value, digits) {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits
   }).format(value);
+}
+
+function parseDateValue(value) {
+  if (value instanceof Date) {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const normalized = value.trim();
+    const dateOnlyMatch = normalized.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (dateOnlyMatch) {
+      const [, year, month, day] = dateOnlyMatch;
+      return new Date(Number(year), Number(month) - 1, Number(day));
+    }
+  }
+
+  return new Date(value);
 }
 
 function currentLocale() {
