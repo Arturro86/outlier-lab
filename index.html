@@ -1,67 +1,222 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Micro CTA | Outlier Investing</title>
-
+  <meta name="description" content="WE ARE ALL TRADERS | MICRO CTA | Systematic trading research and outlier investing dashboard.">
+  <title>WE ARE ALL TRADERS | MICRO CTA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <div class="site-shell">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
 
-<header>
-  <div class="logo">MICRO CTA</div>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#hero" aria-label="WE ARE ALL TRADERS home">
+          <span class="brand-mark">MICRO CTA</span>
+          <span class="brand-sub">WE ARE ALL TRADERS</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#hero">Dashboard</a>
+          <a href="#strategy">Strategy</a>
+          <a href="#statistics">Statistics</a>
+          <a href="#research">Research</a>
+        </nav>
+      </div>
+    </header>
 
-  <nav>
-    <a href="#dashboard">Dashboard</a>
-    <a href="#strategy">Strategia</a>
-    <a href="#metrics">Statystyki</a>
-    <a href="#research">Research</a>
-  </nav>
-</header>
+    <main>
+      <section class="hero section" id="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow">SYSTEMATIC TRADING RESEARCH</div>
+            <h1>OUTLIER INVESTING<br>&amp; MICRO CTA</h1>
+            <p class="hero-subheadline">
+              Systematic strategy focused on asymmetry, trend following and capturing rare outlier moves.
+            </p>
+            <p class="hero-philosophy">
+              We do not predict markets.<br>
+              We build asymmetric exposure.
+            </p>
+            <div class="hero-meta">
+              <div class="hero-meta-card">
+                <span class="meta-label">Framework</span>
+                <span class="meta-value">Systematic Trend Capture</span>
+              </div>
+              <div class="hero-meta-card">
+                <span class="meta-label">Mandate</span>
+                <span class="meta-value">Micro CTA / Outlier Investing</span>
+              </div>
+            </div>
+          </div>
 
-<section class="hero" id="dashboard">
+          <div class="hero-kpis reveal">
+            <article class="kpi-card featured">
+              <span class="kpi-label">CAGR</span>
+              <strong class="kpi-value">24.8%</strong>
+              <span class="kpi-note positive">Compounded systematic growth</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-label">MAX DD</span>
+              <strong class="kpi-value">-11.6%</strong>
+              <span class="kpi-note negative">Contained downside profile</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-label">RR</span>
+              <strong class="kpi-value">3.4</strong>
+              <span class="kpi-note">Asymmetric reward focus</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-label">YTD</span>
+              <strong class="kpi-value">+9.7%</strong>
+              <span class="kpi-note positive">Trend persistence capture</span>
+            </article>
+          </div>
+        </div>
+      </section>
 
-  <div class="hero-left">
-    <p class="tag">SYSTEMATIC TRADING</p>
+      <section class="section statistics-section" id="statistics">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <span class="eyebrow">PERFORMANCE ARCHIVE</span>
+              <h2>EQUITY CURVE</h2>
+            </div>
+            <p>
+              A disciplined return stream built on small losses, infrequent large winners, and unwavering execution across changing market regimes.
+            </p>
+          </div>
 
-    <h1>
-      Outlier Investing<br>
-      & Micro CTA
-    </h1>
+          <div class="chart-panel reveal">
+            <div class="chart-panel-header">
+              <div>
+                <span class="panel-label">LIVE MODEL VIEW</span>
+                <h3>Equity Curve</h3>
+              </div>
+              <div class="panel-stats">
+                <div>
+                  <span>Net Return</span>
+                  <strong class="positive">+51.0%</strong>
+                </div>
+                <div>
+                  <span>Volatility Regime</span>
+                  <strong>Adaptive</strong>
+                </div>
+                <div>
+                  <span>Execution Bias</span>
+                  <strong>Systematic</strong>
+                </div>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="equityChart" aria-label="Equity Curve Chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <p class="hero-description">
-      Strategia oparta o asymetrię ryzyka,
-      łapanie outlierów oraz systemowe
-      zarządzanie pozycją.
-    </p>
+      <section class="section strategy-section" id="strategy">
+        <div class="container strategy-grid">
+          <div class="strategy-copy reveal">
+            <span class="eyebrow">PROCESS ARCHITECTURE</span>
+            <h2>Systematic outlier capture built for asymmetry</h2>
+            <p>
+              MICRO CTA is designed around a simple institutional truth: meaningful portfolio convexity rarely comes from frequent forecasting accuracy. It comes from structured participation in persistent moves while keeping losses contained when the market offers no edge.
+            </p>
+            <p>
+              The engine prioritizes trend following, position discipline, and consistent rule execution over narrative interpretation. This means accepting many small failed attempts in exchange for rare but significant directional expansions that reshape the equity curve.
+            </p>
+            <p>
+              Rather than predicting turning points, the process observes price behavior, responds to regime shifts, and maintains asymmetric exposure when conditions align. The objective is not to be right often. The objective is to be positioned when outliers emerge.
+            </p>
+          </div>
+
+          <div class="metrics-grid reveal">
+            <article class="metric-card">
+              <span>Profit Factor</span>
+              <strong>1.92</strong>
+            </article>
+            <article class="metric-card">
+              <span>Sharpe Ratio</span>
+              <strong>1.41</strong>
+            </article>
+            <article class="metric-card">
+              <span>Sortino</span>
+              <strong>2.07</strong>
+            </article>
+            <article class="metric-card">
+              <span>Exposure</span>
+              <strong>38%</strong>
+            </article>
+            <article class="metric-card">
+              <span>Win Rate</span>
+              <strong>43%</strong>
+            </article>
+            <article class="metric-card">
+              <span>MAR Ratio</span>
+              <strong>2.14</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section research-section" id="research">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <span class="eyebrow">RESEARCH NOTES</span>
+              <h2>Institutional lenses on return generation</h2>
+            </div>
+            <p>
+              Each module distills the operating principles behind a modern quantitative trend process: convex payoffs, disciplined risk, and patient exposure to abnormal moves.
+            </p>
+          </div>
+
+          <div class="research-grid">
+            <article class="research-card reveal">
+              <span class="research-tag">01</span>
+              <h3>Outlier Investing</h3>
+              <p>
+                The return distribution is intentionally skewed toward a small number of exceptional trades. Capital is allocated to survive normal noise and fully participate in rare persistence.
+              </p>
+            </article>
+            <article class="research-card reveal">
+              <span class="research-tag">02</span>
+              <h3>Risk Management</h3>
+              <p>
+                Risk is defined before conviction. Position sizing, downside containment, and exposure control create the resilience required to keep the strategy active through adverse conditions.
+              </p>
+            </article>
+            <article class="research-card reveal">
+              <span class="research-tag">03</span>
+              <h3>Trend Following</h3>
+              <p>
+                Market direction is treated as an observable state, not a prediction problem. The system reacts to durable flows and remains indifferent to short-term narrative volatility.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <span class="footer-brand">WE ARE ALL TRADERS</span>
+          <span class="footer-copy">MICRO CTA</span>
+        </div>
+        <p>Systematic Trading Research</p>
+      </div>
+    </footer>
   </div>
 
-  <div class="hero-right">
-
-    <div class="kpi-card">
-      <span>CAGR</span>
-      <h2>+28.4%</h2>
-    </div>
-
-    <div class="kpi-card">
-      <span>MAX DD</span>
-      <h2>-11.2%</h2>
-    </div>
-
-    <div class="kpi-card">
-      <span>RR</span>
-      <h2>1 : 4.7</h2>
-    </div>
-
-    <div class="kpi-card">
-      <span>YTD</span>
-      <h2>+13.8%</h2>
-    </div>
-
-  </div>
-</section>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
