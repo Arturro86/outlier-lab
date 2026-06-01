@@ -1,638 +1,545 @@
-let appState = {
-  language: "pl",
+const state = {
+  chart: null,
+  data: null,
   translations: null,
-  data: null
+  lang: localStorage.getItem("micro-cta-lang") || document.documentElement.lang || "pl",
 };
 
-let equityChart = null;
-
-const LOCAL_STORAGE_LANGUAGE_KEY = "wearealltraders-language";
-const METRIC_GROUP_DEFAULTS = {
-  heroMetrics: [
-    { id: "cagr", format: "percentSigned" },
-    { id: "maxDd", format: "percentSigned" },
-    { id: "rr", format: "ratio" },
-    { id: "ytd", format: "percentSigned" }
-  ],
-  dashboardStats: [
-    { id: "modelEquity", format: "currency" },
-    { id: "exposure", format: "percentPlain" },
-    { id: "tradeCount", format: "integer" },
-    { id: "lastUpdate", format: "date" }
-  ],
-  chartSummary: [
-    { id: "netReturn", format: "percentSigned" },
-    { id: "equity", format: "currency" },
-    { id: "currentDrawdown", format: "percentSigned" },
-    { id: "winRate", format: "percentPlain" }
-  ],
-  advancedMetrics: [
-    { id: "profitFactor", format: "decimal" },
-    { id: "sharpeRatio", format: "decimal" },
-    { id: "sortinoRatio", format: "decimal" },
-    { id: "exposure", format: "percentPlain" },
-    { id: "winRate", format: "percentPlain" },
-    { id: "marRatio", format: "decimal" }
-  ]
+const els = {
+  heroMetrics: document.getElementById("heroMetrics"),
+  dashboardStats: document.getElementById("dashboardStats"),
+  chartSummary: document.getElementById("chartSummary"),
+  advancedMetrics: document.getElementById("advancedMetrics"),
+  monthlySummary: document.getElementById("monthlySummary"),
+  monthlyReturnsTable: document.getElementById("monthlyReturnsTable"),
+  recentTradesTable: document.getElementById("recentTradesTable"),
+  terminalMeta: document.getElementById("terminalMeta"),
+  footerMeta: document.getElementById("footerMeta"),
+  chartCanvas: document.getElementById("equityChart"),
+  chartEmptyState: document.getElementById("chartEmptyState"),
+  langButtons: Array.from(document.querySelectorAll(".lang-button")),
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  initializeDashboard().catch((error) => {
-    console.error("Dashboard initialization failed:", error);
-    renderFatalState();
-  });
-});
+const metricGroups = {
+  heroMetrics: { container: els.heroMetrics, type: "hero" },
+  dashboardStats: { container: els.dashboardStats, type: "dashboard" },
+  chartSummary: { container: els.chartSummary, type: "chart" },
+  advancedMetrics: { container: els.advancedMetrics, type: "advanced" },
+};
 
-async function initializeDashboard() {
-  setupSmoothScroll();
-  setupRevealAnimations();
+async function init() {
+  bindLanguageSwitcher();
+  setupRevealObserver();
 
-  const [translations, dashboardData] = await Promise.all([
-    loadJson("translations.json"),
-    loadJson("data.json")
-  ]);
+  try {
+    const [translations, data] = await Promise.all([
+      fetchJson("translations.json"),
+      fetchJson("data.json"),
+    ]);
 
-  appState.translations = translations;
-  appState.data = normalizeDashboardData(dashboardData);
-  appState.language = getStoredLanguage(translations);
+    state.translations = translations;
+    state.data = data;
 
-  setupLanguageSwitcher();
-  applyStaticTranslations();
-  renderDashboard();
+    applyLanguage(state.lang);
+    render();
+  } catch (error) {
+    console.error("Failed to initialize dashboard", error);
+    state.data = buildEmptyData();
+    state.translations = { pl: {}, en: {} };
+    applyLanguage(state.lang);
+    render();
+  }
 }
 
-async function loadJson(path) {
+async function fetchJson(path) {
   const response = await fetch(path, { cache: "no-store" });
-
   if (!response.ok) {
-    throw new Error(`Unable to load ${path}: ${response.status}`);
+    throw new Error(`Failed to fetch ${path}: ${response.status}`);
   }
-
   return response.json();
 }
 
-function getStoredLanguage(translations) {
-  const stored = localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY);
-  if (stored && translations[stored]) {
-    return stored;
-  }
-  return "pl";
+function buildEmptyData() {
+  return {
+    meta: {
+      generatedAt: null,
+      baseCurrency: "PLN",
+      warnings: [],
+    },
+    performanceStats: {},
+    heroMetrics: [],
+    dashboardStats: [],
+    chartSummary: [],
+    advancedMetrics: [],
+    equityCurve: [],
+    monthlyReturns: [],
+    recentTrades: [],
+  };
 }
 
-function setupLanguageSwitcher() {
-  const buttons = document.querySelectorAll(".lang-button");
-
-  buttons.forEach((button) => {
+function bindLanguageSwitcher() {
+  els.langButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const nextLanguage = button.dataset.lang;
-
-      if (!nextLanguage || !appState.translations[nextLanguage] || nextLanguage === appState.language) {
-        return;
-      }
-
-      appState.language = nextLanguage;
-      localStorage.setItem(LOCAL_STORAGE_LANGUAGE_KEY, nextLanguage);
-
-      applyStaticTranslations();
-      renderDashboard();
+      applyLanguage(button.dataset.lang || "pl");
+      render();
     });
   });
-
-  updateLanguageSwitcherState();
 }
 
-function updateLanguageSwitcherState() {
-  const buttons = document.querySelectorAll(".lang-button");
+function applyLanguage(lang) {
+  state.lang = state.translations && state.translations[lang] ? lang : "pl";
+  document.documentElement.lang = state.lang;
+  localStorage.setItem("micro-cta-lang", state.lang);
 
-  buttons.forEach((button) => {
-    const isActive = button.dataset.lang === appState.language;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
+  els.langButtons.forEach((button) => {
+    const active = button.dataset.lang === state.lang;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  applyTranslations();
+}
+
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach((node) => {
+    node.textContent = t(node.dataset.i18n);
+  });
+
+  document.querySelectorAll("[data-i18n-content]").forEach((node) => {
+    node.setAttribute("content", t(node.dataset.i18nContent));
+  });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => {
+    node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel));
   });
 }
 
-function applyStaticTranslations() {
-  document.documentElement.lang = appState.language;
-
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const key = element.dataset.i18n;
-    element.textContent = t(key);
-  });
-
-  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
-    const key = element.dataset.i18nAriaLabel;
-    element.setAttribute("aria-label", t(key));
-  });
-
-  document.querySelectorAll("[data-i18n-content]").forEach((element) => {
-    const key = element.dataset.i18nContent;
-    element.setAttribute("content", t(key));
-  });
-
-  updateLanguageSwitcherState();
+function render() {
+  renderMetricGroup("heroMetrics", state.data.heroMetrics);
+  renderMetricGroup("dashboardStats", state.data.dashboardStats);
+  renderMetricGroup("chartSummary", state.data.chartSummary);
+  renderMetricGroup("advancedMetrics", state.data.advancedMetrics);
+  renderTerminalMeta();
+  renderFooterMeta();
+  renderMonthlySummary();
+  renderMonthlyReturnsTable();
+  renderTradesTable();
+  renderChart();
 }
 
-function renderDashboard() {
-  const data = normalizeDashboardData(appState.data || buildEmptyData());
+function renderMetricGroup(groupKey, items) {
+  const config = metricGroups[groupKey];
+  const metrics = Array.isArray(items) ? items : [];
 
-  renderTerminalMeta(data.meta, data.performanceStats);
-  renderMetricCards("heroMetrics", data.heroMetrics, buildHeroMetricCard, "metrics.hero");
-  renderMetricCards("dashboardStats", data.dashboardStats, buildOverviewCard, "metrics.dashboard");
-  renderMetricCards("chartSummary", data.chartSummary, buildMiniStatCard, "metrics.chart");
-  renderMetricCards("advancedMetrics", data.advancedMetrics, buildAdvancedMetricCard, "metrics.advanced");
-  renderMonthlySummary(data.monthlyReturns || []);
-  renderMonthlyTable(data.monthlyReturns || []);
-  renderTradesTable(data.recentTrades || []);
-  renderFooterMeta(data.meta);
-  initializeEquityChart(data.equityCurve || []);
-}
-
-function renderTerminalMeta(meta = {}, performanceStats = {}) {
-  const terminalMeta = document.getElementById("terminalMeta");
-  if (!terminalMeta) {
+  if (!config.container) {
     return;
   }
 
-  if (!meta.hasData) {
-    terminalMeta.textContent = t("terminal.noData");
+  if (!metrics.length) {
+    config.container.innerHTML = "";
     return;
   }
 
-  const updateText = `${t("terminal.updated")}: ${formatDate(meta.updatedAt || meta.generatedAt)}`;
-  const tradesText = `${t("terminal.trades")}: ${formatInteger(performanceStats.totalTrades)}`;
-  const streakText = `${t("terminal.losingStreak")}: ${formatInteger(performanceStats.losingStreak)}`;
-
-  terminalMeta.textContent = `${updateText} | ${tradesText} | ${streakText}`;
-}
-
-function renderFooterMeta(meta = {}) {
-  const footerMeta = document.getElementById("footerMeta");
-  if (!footerMeta) {
+  if (config.type === "hero") {
+    config.container.innerHTML = metrics.map(renderHeroMetric).join("");
     return;
   }
 
-  const strategy = meta.strategy || "MICRO CTA";
-  const updateDate = formatDate(meta.updatedAt || meta.generatedAt);
-  footerMeta.textContent = `${t("footer.tagline")} | ${strategy} | ${t("footer.updated")} ${updateDate}`;
-}
-
-function renderMetricCards(containerId, items, templateBuilder, sectionKey) {
-  const container = document.getElementById(containerId);
-  if (!container) {
+  if (config.type === "dashboard") {
+    config.container.innerHTML = metrics.map(renderOverviewMetric).join("");
     return;
   }
 
-  container.innerHTML = items.map((item, index) => templateBuilder(item, index, sectionKey)).join("");
+  if (config.type === "chart") {
+    config.container.innerHTML = metrics.map(renderChartMetric).join("");
+    return;
+  }
+
+  config.container.innerHTML = metrics.map(renderAdvancedMetric).join("");
 }
 
-function buildHeroMetricCard(item, index, sectionKey) {
+function renderHeroMetric(metric, index) {
   return `
     <article class="kpi-card">
-      <span class="card-index">${String(index + 1).padStart(2, "0")}</span>
-      <span class="kpi-label">${escapeHtml(metricLabel(sectionKey, item.id))}</span>
-      <strong class="kpi-value ${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
-      <p>${escapeHtml(metricNote(sectionKey, item.id))}</p>
+      <span class="card-index">0${index + 1}</span>
+      <span class="kpi-label">${escapeHtml(metricLabel("hero", metric.id))}</span>
+      <strong class="kpi-value tone-${metric.tone}">${escapeHtml(formatMetricValue(metric))}</strong>
+      <p>${escapeHtml(metricNote("hero", metric.id))}</p>
     </article>
   `;
 }
 
-function buildOverviewCard(item, index, sectionKey) {
+function renderOverviewMetric(metric) {
   return `
     <article class="overview-card">
-      <span>${escapeHtml(metricLabel(sectionKey, item.id))}</span>
-      <strong class="overview-value ${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
-      <p>${escapeHtml(metricNote(sectionKey, item.id))}</p>
+      <span>${escapeHtml(metricLabel("dashboard", metric.id))}</span>
+      <strong class="overview-value tone-${metric.tone}">${escapeHtml(formatMetricValue(metric))}</strong>
+      <p>${escapeHtml(metricNote("dashboard", metric.id))}</p>
     </article>
   `;
 }
 
-function buildMiniStatCard(item, index, sectionKey) {
+function renderChartMetric(metric) {
   return `
     <div class="mini-stat">
-      <span>${escapeHtml(metricLabel(sectionKey, item.id))}</span>
-      <strong class="${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
+      <span>${escapeHtml(metricLabel("chart", metric.id))}</span>
+      <strong class="tone-${metric.tone}">${escapeHtml(formatMetricValue(metric))}</strong>
     </div>
   `;
 }
 
-function buildAdvancedMetricCard(item, index, sectionKey) {
+function renderAdvancedMetric(metric) {
   return `
     <article class="stat-card">
-      <span>${escapeHtml(metricLabel(sectionKey, item.id))}</span>
-      <strong class="stat-value ${getToneClass(item.tone)}">${escapeHtml(formatMetricValue(item))}</strong>
-      <p>${escapeHtml(metricNote(sectionKey, item.id))}</p>
+      <span>${escapeHtml(metricLabel("advanced", metric.id))}</span>
+      <strong class="stat-value tone-${metric.tone}">${escapeHtml(formatMetricValue(metric))}</strong>
+      <p>${escapeHtml(metricNote("advanced", metric.id))}</p>
     </article>
   `;
 }
 
-function renderMonthlySummary(monthlyReturns) {
-  const container = document.getElementById("monthlySummary");
-  if (!container) {
+function renderTerminalMeta() {
+  const stats = state.data.performanceStats || {};
+  const updated = formatMetricValue({ rawValue: stats.lastUpdate, format: "date" });
+  const trades = formatMetricValue({ rawValue: stats.totalTrades, format: "integer" });
+  const losingStreak = formatMetricValue({ rawValue: stats.losingStreak, format: "integer" });
+
+  els.terminalMeta.textContent = [
+    `${t("terminal.updated")}: ${updated}`,
+    `${t("terminal.trades")}: ${trades}`,
+    `${t("terminal.losingStreak")}: ${losingStreak}`,
+  ].join("  |  ");
+}
+
+function renderFooterMeta() {
+  const generatedAt = formatMetricValue({
+    rawValue: state.data.meta?.generatedAt,
+    format: "date",
+  });
+  els.footerMeta.textContent = `${t("footer.tagline")}  |  ${t("footer.updated")}: ${generatedAt}`;
+}
+
+function renderMonthlySummary() {
+  const rows = Array.isArray(state.data.monthlyReturns) ? state.data.monthlyReturns : [];
+  if (!rows.length) {
+    els.monthlySummary.innerHTML = `
+      <div class="empty-state">${escapeHtml(t("empty.monthlyReturns"))}</div>
+    `;
     return;
   }
 
-  if (!Array.isArray(monthlyReturns) || monthlyReturns.length === 0) {
-    const placeholderCards = [
-      {
-        label: t("monthlySummary.bestMonth"),
-        value: t("ui.na"),
-        tone: "neutral",
-        note: t("ui.na")
-      },
-      {
-        label: t("monthlySummary.worstMonth"),
-        value: t("ui.na"),
-        tone: "neutral",
-        note: t("ui.na")
-      },
-      {
-        label: t("monthlySummary.averageMonth"),
-        value: t("ui.na"),
-        tone: "neutral",
-        note: t("monthlySummary.averageMonthNote")
-      },
-      {
-        label: t("monthlySummary.positiveMonths"),
-        value: t("ui.na"),
-        tone: "neutral",
-        note: t("monthlySummary.positiveMonthsNote")
-      }
-    ];
+  const returns = rows.map((row) => Number(row.return)).filter((value) => Number.isFinite(value));
+  const best = rows.reduce((carry, row) => (!carry || row.return > carry.return ? row : carry), null);
+  const worst = rows.reduce((carry, row) => (!carry || row.return < carry.return ? row : carry), null);
+  const average = returns.length ? returns.reduce((sum, value) => sum + value, 0) / returns.length : null;
+  const positiveMonths = returns.filter((value) => value > 0).length;
 
-    container.innerHTML = placeholderCards.map((item) => `
-      <article class="monthly-card">
-        <span>${escapeHtml(item.label)}</span>
-        <strong class="monthly-value ${getToneClass(item.tone)}">${escapeHtml(item.value)}</strong>
-        <p>${escapeHtml(item.note)}</p>
-      </article>
-    `).join("");
-    return;
-  }
-
-  const positiveMonths = monthlyReturns.filter((item) => Number(item.returnPct) > 0);
-  const averageReturn = monthlyReturns.reduce((sum, item) => sum + Number(item.returnPct || 0), 0) / monthlyReturns.length;
-  const bestMonth = monthlyReturns.reduce((best, item) => Number(item.returnPct) > Number(best.returnPct) ? item : best, monthlyReturns[0]);
-  const worstMonth = monthlyReturns.reduce((worst, item) => Number(item.returnPct) < Number(worst.returnPct) ? item : worst, monthlyReturns[0]);
-
-  const summaryItems = [
+  const cards = [
     {
-      label: t("monthlySummary.bestMonth"),
-      value: formatPercentSigned(bestMonth.returnPct),
-      tone: bestMonth.returnPct >= 0 ? "positive" : "negative",
-      note: formatMonth(bestMonth.month)
+      key: "bestMonth",
+      value: best ? `${best.month}  |  ${formatValue(best.return, "percentSigned")}` : t("ui.na"),
+      note: "",
     },
     {
-      label: t("monthlySummary.worstMonth"),
-      value: formatPercentSigned(worstMonth.returnPct),
-      tone: worstMonth.returnPct >= 0 ? "positive" : "negative",
-      note: formatMonth(worstMonth.month)
+      key: "worstMonth",
+      value: worst ? `${worst.month}  |  ${formatValue(worst.return, "percentSigned")}` : t("ui.na"),
+      note: "",
     },
     {
-      label: t("monthlySummary.averageMonth"),
-      value: formatPercentSigned(averageReturn),
-      tone: averageReturn >= 0 ? "positive" : "negative",
-      note: t("monthlySummary.averageMonthNote")
+      key: "averageMonth",
+      value: formatValue(average, "percentSigned"),
+      note: t("monthlySummary.averageMonthNote"),
     },
     {
-      label: t("monthlySummary.positiveMonths"),
-      value: `${positiveMonths.length}/${monthlyReturns.length}`,
-      tone: "neutral",
-      note: t("monthlySummary.positiveMonthsNote")
-    }
+      key: "positiveMonths",
+      value: formatValue(positiveMonths, "integer"),
+      note: t("monthlySummary.positiveMonthsNote"),
+    },
   ];
 
-  container.innerHTML = summaryItems.map((item) => `
-    <article class="monthly-card">
-      <span>${escapeHtml(item.label)}</span>
-      <strong class="monthly-value ${getToneClass(item.tone)}">${escapeHtml(item.value)}</strong>
-      <p>${escapeHtml(item.note)}</p>
-    </article>
-  `).join("");
+  els.monthlySummary.innerHTML = cards
+    .map(
+      (card) => `
+        <article class="monthly-card">
+          <span>${escapeHtml(t(`monthlySummary.${card.key}`))}</span>
+          <strong class="monthly-value">${escapeHtml(card.value)}</strong>
+          <p>${escapeHtml(card.note)}</p>
+        </article>
+      `
+    )
+    .join("");
 }
 
-function renderMonthlyTable(monthlyReturns) {
-  const container = document.getElementById("monthlyReturnsTable");
-  if (!container) {
+function renderMonthlyReturnsTable() {
+  const rows = Array.isArray(state.data.monthlyReturns) ? state.data.monthlyReturns : [];
+  if (!rows.length) {
+    els.monthlyReturnsTable.innerHTML = renderEmptyRow(4, t("empty.monthlyReturns"));
     return;
   }
 
-  if (!Array.isArray(monthlyReturns) || monthlyReturns.length === 0) {
-    container.innerHTML = `<tr><td colspan="4" class="muted-cell">${escapeHtml(t("empty.monthlyReturns"))}</td></tr>`;
-    return;
-  }
-
-  let cumulative = 1;
-
-  container.innerHTML = monthlyReturns.map((item) => {
-    const monthReturn = Number(item.returnPct || 0);
-    cumulative *= 1 + monthReturn / 100;
-    const cumulativePct = (cumulative - 1) * 100;
-    const assessment = monthReturn >= 0 ? t("tables.monthly.positive") : t("tables.monthly.negative");
-
-    return `
-      <tr>
-        <td>${escapeHtml(formatMonth(item.month))}</td>
-        <td class="${monthReturn >= 0 ? "tone-positive" : "tone-negative"}">${escapeHtml(formatPercentSigned(monthReturn))}</td>
-        <td class="${cumulativePct >= 0 ? "tone-positive" : "tone-negative"}">${escapeHtml(formatPercentSigned(cumulativePct))}</td>
-        <td class="muted-cell">${escapeHtml(assessment)}</td>
-      </tr>
-    `;
-  }).join("");
+  els.monthlyReturnsTable.innerHTML = rows
+    .map((row) => {
+      const positive = Number(row.return) >= 0;
+      return `
+        <tr>
+          <td>${escapeHtml(row.month || t("ui.na"))}</td>
+          <td class="${positive ? "positive" : "negative"}">${escapeHtml(formatValue(row.return, "percentSigned"))}</td>
+          <td>${escapeHtml(formatValue(row.cumulative, "percentSigned"))}</td>
+          <td class="muted-cell">${escapeHtml(t(`tables.monthly.${positive ? "positive" : "negative"}`))}</td>
+        </tr>
+      `;
+    })
+    .join("");
 }
 
-function renderTradesTable(trades) {
-  const container = document.getElementById("recentTradesTable");
-  if (!container) {
+function renderTradesTable() {
+  const trades = Array.isArray(state.data.recentTrades) ? state.data.recentTrades : [];
+  if (!trades.length) {
+    els.recentTradesTable.innerHTML = renderEmptyRow(7, t("empty.trades"));
     return;
   }
 
-  if (!Array.isArray(trades) || trades.length === 0) {
-    container.innerHTML = `<tr><td colspan="7" class="muted-cell">${escapeHtml(t("empty.trades"))}</td></tr>`;
-    return;
-  }
-
-  container.innerHTML = trades.map((trade) => {
-    const resultClass = Number.isFinite(Number(trade.resultValue)) ? (Number(trade.resultValue) >= 0 ? "tone-positive" : "tone-negative") : "";
-    const directionClass = trade.direction === "short" ? "pill-short" : trade.direction === "long" ? "pill-long" : "";
-    const directionLabel = trade.direction ? t(`directions.${trade.direction}`) : t("ui.na");
-    const statusLabel = trade.status ? t(`statuses.${trade.status}`) : t("ui.na");
-
-    return `
-      <tr>
-        <td>${escapeHtml(formatDate(trade.date))}</td>
-        <td>${escapeHtml(trade.instrument || t("ui.na"))}</td>
-        <td><span class="pill ${directionClass}">${escapeHtml(directionLabel)}</span></td>
-        <td class="${resultClass}">${escapeHtml(formatTradeResult(trade))}</td>
-        <td class="muted-cell">${escapeHtml(formatTradeRr(trade))}</td>
-        <td><span class="pill pill-status-${escapeHtmlClass(trade.status || "unknown")}">${escapeHtml(statusLabel)}</span></td>
-        <td class="notes-cell">${escapeHtml(localizedValue(trade.notes) || t("ui.na"))}</td>
-      </tr>
-    `;
-  }).join("");
+  els.recentTradesTable.innerHTML = trades
+    .map(
+      (trade) => `
+        <tr>
+          <td>${escapeHtml(formatValue(trade.date, "date"))}</td>
+          <td>${escapeHtml(trade.instrument || t("ui.na"))}</td>
+          <td>${renderDirectionPill(trade.direction)}</td>
+          <td class="${Number(trade.result) >= 0 ? "positive" : "negative"}">${escapeHtml(formatValue(trade.result, "currency"))}</td>
+          <td class="muted-cell">${escapeHtml(formatValue(trade.rr, "ratio"))}</td>
+          <td>${renderStatusPill(trade.status)}</td>
+          <td class="notes-cell">${escapeHtml(trade.notes || "")}</td>
+        </tr>
+      `
+    )
+    .join("");
 }
 
-function initializeEquityChart(equityCurve) {
-  const chartElement = document.getElementById("equityChart");
-  const chartEmptyState = document.getElementById("chartEmptyState");
-  const safeCurve = Array.isArray(equityCurve)
-    ? equityCurve.filter((entry) => entry && entry.date && Number.isFinite(Number(entry.value ?? entry.equity)))
-    : [];
+function renderDirectionPill(direction) {
+  const key = ["long", "short"].includes(direction) ? direction : "unknown";
+  return `<span class="pill pill-${key}">${escapeHtml(t(`directions.${key}`))}</span>`;
+}
 
-  if (!chartElement || typeof Chart === "undefined") {
-    return;
-  }
+function renderStatusPill(status) {
+  const key = ["active", "closed", "cancelled"].includes(status) ? status : "unknown";
+  return `<span class="pill pill-status-${key}">${escapeHtml(t(`statuses.${key}`))}</span>`;
+}
 
-  if (safeCurve.length === 0) {
-    if (equityChart) {
-      equityChart.destroy();
-      equityChart = null;
-    }
-    if (chartEmptyState) {
-      chartEmptyState.hidden = false;
-      chartEmptyState.textContent = t("empty.chart");
+function renderChart() {
+  const curve = Array.isArray(state.data.equityCurve) ? state.data.equityCurve : [];
+  const hasCurve = curve.length > 0;
+
+  els.chartCanvas.hidden = !hasCurve;
+  els.chartEmptyState.hidden = hasCurve;
+
+  if (!hasCurve) {
+    if (state.chart) {
+      state.chart.destroy();
+      state.chart = null;
     }
     return;
   }
 
-  if (chartEmptyState) {
-    chartEmptyState.hidden = true;
-  }
+  const labels = curve.map((point) => formatValue(point.date, "date"));
+  const values = curve.map((point) => Number(point.value));
 
-  const labels = safeCurve.map((entry) => formatChartLabel(entry.date));
-  const data = safeCurve.map((entry) => Number(entry.value ?? entry.equity));
-
-  if (equityChart) {
-    equityChart.destroy();
-  }
-
-  equityChart = new Chart(chartElement, {
+  const chartConfig = {
     type: "line",
     data: {
       labels,
       datasets: [
         {
           label: t("chart.datasetLabel"),
-          data,
-          borderColor: "#C8A96B",
-          backgroundColor: (context) => {
-            const chart = context.chart;
-            const { ctx, chartArea } = chart;
-
-            if (!chartArea) {
-              return "rgba(200, 169, 107, 0.12)";
-            }
-
-            const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-            gradient.addColorStop(0, "rgba(200, 169, 107, 0.28)");
-            gradient.addColorStop(1, "rgba(200, 169, 107, 0)");
-            return gradient;
-          },
-          fill: true,
-          tension: 0.36,
-          borderWidth: 2.8,
+          data: values,
+          borderColor: "#d4b174",
+          backgroundColor: "rgba(212, 177, 116, 0.16)",
+          borderWidth: 2,
           pointRadius: 0,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#F8FAFC",
-          pointHoverBorderColor: "#C8A96B",
-          pointHoverBorderWidth: 2
-        }
-      ]
+          pointHoverRadius: 4,
+          fill: true,
+          tension: 0.28,
+        },
+      ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      animation: {
-        duration: 1200,
-        easing: "easeOutQuart"
-      },
+      animation: false,
       interaction: {
         mode: "index",
-        intersect: false
+        intersect: false,
       },
       plugins: {
         legend: {
-          display: false
+          display: false,
         },
         tooltip: {
-          backgroundColor: "rgba(11, 18, 32, 0.96)",
-          borderColor: "rgba(200, 169, 107, 0.22)",
-          borderWidth: 1,
-          titleColor: "#F8FAFC",
-          bodyColor: "#94A3B8",
-          displayColors: false,
-          padding: 14,
           callbacks: {
+            title(items) {
+              return items[0]?.label || "";
+            },
             label(context) {
-              return `${t("chart.tooltipEquity")}: ${formatCurrency(context.parsed.y)}`;
-            }
-          }
-        }
+              const point = curve[context.dataIndex];
+              const parts = [`${t("chart.tooltipEquity")}: ${formatValue(point.value, "currency")}`];
+              if (point.balance != null) {
+                parts.push(`Balance: ${formatValue(point.balance, "currency")}`);
+              }
+              if (point.drawdown != null) {
+                parts.push(`DD: ${formatValue(point.drawdown, "percentPlain")}`);
+              }
+              if (point.status) {
+                parts.push(`Status: ${point.status}`);
+              }
+              return parts;
+            },
+            afterLabel(context) {
+              const point = curve[context.dataIndex];
+              return point.notes ? [`Notes: ${point.notes}`] : [];
+            },
+          },
+        },
       },
       scales: {
         x: {
           grid: {
-            color: "rgba(255, 255, 255, 0.045)",
-            drawBorder: false
+            color: "rgba(255, 255, 255, 0.05)",
           },
           ticks: {
-            color: "#94A3B8",
-            font: {
-              family: "Inter",
-              size: 12
-            }
+            color: "rgba(226, 232, 240, 0.72)",
+            maxRotation: 0,
+            autoSkipPadding: 20,
           },
-          border: {
-            display: false
-          }
         },
         y: {
           grid: {
-            color: "rgba(255, 255, 255, 0.045)",
-            drawBorder: false
+            color: "rgba(255, 255, 255, 0.05)",
           },
           ticks: {
-            color: "#94A3B8",
-            font: {
-              family: "Inter",
-              size: 12
-            },
+            color: "rgba(226, 232, 240, 0.72)",
             callback(value) {
-              return formatCompactCurrency(value);
-            }
+              return formatValue(value, "currency");
+            },
           },
-          border: {
-            display: false
-          }
-        }
-      }
-    }
-  });
-}
+        },
+      },
+    },
+  };
 
-function metricLabel(sectionKey, metricId) {
-  return t(`${sectionKey}.${metricId}.label`);
-}
-
-function metricNote(sectionKey, metricId) {
-  return t(`${sectionKey}.${metricId}.note`);
-}
-
-function formatMetricValue(metric) {
-  if (!metric || metric.rawValue === null || metric.rawValue === undefined || metric.rawValue === "") {
-    return t("ui.na");
-  }
-
-  switch (metric.format) {
-    case "percentSigned":
-      return formatPercentSigned(metric.rawValue);
-    case "percentPlain":
-      return formatPercentPlain(metric.rawValue);
-    case "currency":
-      return formatCurrency(metric.rawValue);
-    case "integer":
-      return formatInteger(metric.rawValue);
-    case "decimal":
-      return formatDecimal(metric.rawValue);
-    case "ratio":
-      return formatRatio(metric.rawValue);
-    case "date":
-      return formatDate(metric.rawValue);
-    default:
-      return String(metric.rawValue);
-  }
-}
-
-function formatTradeResult(trade) {
-  if (trade.resultText) {
-    return localizedValue(trade.resultText);
-  }
-
-  if (trade.resultValue === null || trade.resultValue === undefined || trade.resultValue === "") {
-    return t("ui.na");
-  }
-
-  return formatSignedDecimal(trade.resultValue);
-}
-
-function formatTradeRr(trade) {
-  if (trade.rrText) {
-    return localizedValue(trade.rrText);
-  }
-
-  if (trade.rrValue === null || trade.rrValue === undefined || trade.rrValue === "") {
-    return t("ui.na");
-  }
-
-  return formatRatio(trade.rrValue);
-}
-
-function localizedValue(value) {
-  if (value && typeof value === "object" && !Array.isArray(value)) {
-    return value[appState.language] || value.pl || value.en || "";
-  }
-  return value ?? "";
-}
-
-function t(path) {
-  const bundle = appState.translations?.[appState.language];
-  if (!bundle) {
-    return path;
-  }
-
-  const value = path.split(".").reduce((current, key) => {
-    if (current && Object.prototype.hasOwnProperty.call(current, key)) {
-      return current[key];
-    }
-    return undefined;
-  }, bundle);
-
-  return typeof value === "string" ? value : path;
-}
-
-function getToneClass(tone) {
-  switch (tone) {
-    case "positive":
-      return "tone-positive";
-    case "negative":
-      return "tone-negative";
-    default:
-      return "tone-neutral";
-  }
-}
-
-function setupSmoothScroll() {
-  const links = document.querySelectorAll('.nav a[href^="#"], .brand[href^="#"], .button[href^="#"]');
-
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-      const target = targetId ? document.querySelector(targetId) : null;
-
-      if (!target) {
-        return;
-      }
-
-      event.preventDefault();
-
-      const headerOffset = document.querySelector(".topbar")?.offsetHeight || 0;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
-
-      window.scrollTo({
-        top: targetTop,
-        behavior: "smooth"
-      });
-    });
-  });
-}
-
-function setupRevealAnimations() {
-  const revealItems = document.querySelectorAll(".reveal");
-
-  if (!("IntersectionObserver" in window)) {
-    revealItems.forEach((item) => item.classList.add("is-visible"));
+  if (state.chart) {
+    state.chart.data = chartConfig.data;
+    state.chart.options = chartConfig.options;
+    state.chart.update();
     return;
   }
 
+  state.chart = new Chart(els.chartCanvas, chartConfig);
+}
+
+function renderEmptyRow(colspan, message) {
+  return `<tr><td colspan="${colspan}" class="muted-cell">${escapeHtml(message)}</td></tr>`;
+}
+
+function formatMetricValue(metric) {
+  return formatValue(metric?.rawValue, metric?.format);
+}
+
+function formatValue(value, format) {
+  if (value === null || value === undefined || value === "") {
+    return t("ui.na");
+  }
+
+  switch (format) {
+    case "currency":
+      return new Intl.NumberFormat(locale(), {
+        style: "currency",
+        currency: state.data?.meta?.baseCurrency || "PLN",
+        maximumFractionDigits: 2,
+      }).format(Number(value));
+    case "percentSigned":
+      return new Intl.NumberFormat(locale(), {
+        style: "percent",
+        signDisplay: "always",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(Number(value));
+    case "percentPlain":
+      return new Intl.NumberFormat(locale(), {
+        style: "percent",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(Number(value));
+    case "integer":
+      return new Intl.NumberFormat(locale(), {
+        maximumFractionDigits: 0,
+      }).format(Number(value));
+    case "ratio":
+    case "decimal":
+      return new Intl.NumberFormat(locale(), {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(Number(value));
+    case "date":
+      return formatDate(value);
+    default:
+      return String(value);
+  }
+}
+
+function formatDate(value) {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    const [year, month, day] = value.split("-").map(Number);
+    const parsedLocal = new Date(year, month - 1, day);
+    return new Intl.DateTimeFormat(locale(), {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(parsedLocal);
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return value || t("ui.na");
+  }
+  return new Intl.DateTimeFormat(locale(), {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(parsed);
+}
+
+function metricLabel(section, id) {
+  return t(`metrics.${section}.${id}.label`);
+}
+
+function metricNote(section, id) {
+  return t(`metrics.${section}.${id}.note`);
+}
+
+function t(path) {
+  const dict = state.translations?.[state.lang] || {};
+  const fallback = state.translations?.pl || {};
+  return getPath(dict, path) ?? getPath(fallback, path) ?? path;
+}
+
+function getPath(source, path) {
+  return path.split(".").reduce((carry, key) => (carry && key in carry ? carry[key] : undefined), source);
+}
+
+function locale() {
+  return state.lang === "pl" ? "pl-PL" : "en-US";
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function setupRevealObserver() {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -642,311 +549,10 @@ function setupRevealAnimations() {
         }
       });
     },
-    {
-      threshold: 0.16,
-      rootMargin: "0px 0px -40px 0px"
-    }
+    { threshold: 0.15 }
   );
 
-  revealItems.forEach((item) => observer.observe(item));
+  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 }
 
-function renderFatalState() {
-  const terminalMeta = document.getElementById("terminalMeta");
-  if (terminalMeta) {
-    terminalMeta.textContent = "Unable to load dashboard files.";
-  }
-}
-
-function buildEmptyData() {
-  return normalizeDashboardData({});
-}
-
-function normalizeDashboardData(rawData) {
-  const data = rawData && typeof rawData === "object" ? rawData : {};
-  const meta = data.meta && typeof data.meta === "object" ? data.meta : {};
-
-  return {
-    meta: {
-      hasData: Boolean(meta.hasData),
-      hasHistoryData: Boolean(meta.hasHistoryData),
-      hasTradesData: Boolean(meta.hasTradesData),
-      strategy: meta.strategy || "MICRO CTA",
-      generatedAt: meta.generatedAt || null,
-      updatedAt: meta.updatedAt || null,
-      warnings: Array.isArray(meta.warnings) ? meta.warnings : []
-    },
-    performanceStats: normalizePerformanceStats(data.performanceStats),
-    heroMetrics: ensureMetricGroup(data.heroMetrics, METRIC_GROUP_DEFAULTS.heroMetrics),
-    dashboardStats: ensureMetricGroup(data.dashboardStats, METRIC_GROUP_DEFAULTS.dashboardStats),
-    chartSummary: ensureMetricGroup(data.chartSummary, METRIC_GROUP_DEFAULTS.chartSummary),
-    advancedMetrics: ensureMetricGroup(data.advancedMetrics, METRIC_GROUP_DEFAULTS.advancedMetrics),
-    equityCurve: normalizeEquityCurve(data.equityCurve),
-    monthlyReturns: normalizeMonthlyReturns(data.monthlyReturns),
-    recentTrades: normalizeTrades(data.recentTrades)
-  };
-}
-
-function normalizePerformanceStats(stats) {
-  const source = stats && typeof stats === "object" ? stats : {};
-  return {
-    totalTrades: normalizeNumberOrNull(source.totalTrades),
-    winningTrades: normalizeNumberOrNull(source.winningTrades),
-    losingTrades: normalizeNumberOrNull(source.losingTrades),
-    averageWinR: normalizeNumberOrNull(source.averageWinR),
-    averageLossR: normalizeNumberOrNull(source.averageLossR),
-    losingStreak: normalizeNumberOrNull(source.losingStreak)
-  };
-}
-
-function ensureMetricGroup(items, defaults) {
-  const source = Array.isArray(items) ? items : [];
-  const byId = new Map(source.filter((item) => item && item.id).map((item) => [item.id, item]));
-
-  return defaults.map((spec) => {
-    const existing = byId.get(spec.id);
-    if (!existing) {
-      return {
-        id: spec.id,
-        rawValue: null,
-        format: spec.format,
-        tone: "neutral"
-      };
-    }
-
-    return {
-      id: existing.id || spec.id,
-      rawValue: existing.rawValue ?? null,
-      format: existing.format || spec.format,
-      tone: existing.tone || "neutral"
-    };
-  });
-}
-
-function normalizeEquityCurve(items) {
-  if (!Array.isArray(items)) {
-    return [];
-  }
-
-  return items
-    .filter((item) => item && item.date)
-    .map((item) => ({
-      date: item.date,
-      value: normalizeNumberOrNull(item.value ?? item.equity),
-      equity: normalizeNumberOrNull(item.equity ?? item.value),
-      balance: normalizeNumberOrNull(item.balance),
-      drawdownPct: normalizeNumberOrNull(item.drawdownPct),
-      profitLoss: normalizeNumberOrNull(item.profitLoss)
-    }))
-    .filter((item) => item.value !== null);
-}
-
-function normalizeMonthlyReturns(items) {
-  if (!Array.isArray(items)) {
-    return [];
-  }
-
-  return items
-    .filter((item) => item && item.month)
-    .map((item) => ({
-      month: item.month,
-      returnPct: normalizeNumberOrNull(item.returnPct)
-    }))
-    .filter((item) => item.returnPct !== null);
-}
-
-function normalizeTrades(items) {
-  if (!Array.isArray(items)) {
-    return [];
-  }
-
-  return items
-    .filter((item) => item && item.date)
-    .map((item) => ({
-      date: item.date,
-      instrument: cleanDisplayText(item.instrument),
-      direction: normalizeTradeDirection(item.direction),
-      resultValue: normalizeNumberOrNull(item.resultValue),
-      resultText: cleanDisplayText(item.resultText),
-      rrValue: normalizeNumberOrNull(item.rrValue),
-      rrText: cleanDisplayText(item.rrText),
-      status: normalizeTradeStatus(item.status),
-      notes: cleanDisplayText(item.notes)
-    }));
-}
-
-function normalizeNumberOrNull(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : null;
-}
-
-function cleanDisplayText(value) {
-  return typeof value === "string" ? value.trim() : "";
-}
-
-function normalizeTradeDirection(direction) {
-  return direction === "long" || direction === "short" ? direction : "unknown";
-}
-
-function normalizeTradeStatus(status) {
-  if (status === "active" || status === "closed" || status === "cancelled") {
-    return status;
-  }
-  return "unknown";
-}
-
-function formatDate(value) {
-  if (!value) {
-    return t("ui.na");
-  }
-
-  const parsed = parseDateValue(value);
-  if (Number.isNaN(parsed.getTime())) {
-    return String(value);
-  }
-
-  return new Intl.DateTimeFormat(currentLocale()).format(parsed);
-}
-
-function formatMonth(value) {
-  if (!value) {
-    return t("ui.na");
-  }
-
-  const parsed = parseDateValue(`${value}-01`);
-  if (Number.isNaN(parsed.getTime())) {
-    return String(value);
-  }
-
-  return new Intl.DateTimeFormat(currentLocale(), {
-    month: "short",
-    year: "numeric"
-  }).format(parsed);
-}
-
-function formatChartLabel(value) {
-  if (!value) {
-    return "";
-  }
-
-  const parsed = parseDateValue(value);
-  if (Number.isNaN(parsed.getTime())) {
-    return String(value);
-  }
-
-  return new Intl.DateTimeFormat(currentLocale(), {
-    month: "short",
-    year: "2-digit"
-  }).format(parsed);
-}
-
-function formatCurrency(value) {
-  return new Intl.NumberFormat(currentLocale(), {
-    style: "currency",
-    currency: "PLN",
-    maximumFractionDigits: 0
-  }).format(Number(value || 0));
-}
-
-function formatCompactCurrency(value) {
-  const number = Number(value || 0);
-
-  if (Math.abs(number) >= 1000) {
-    return `${Math.round(number / 1000)}k`;
-  }
-
-  return String(Math.round(number));
-}
-
-function formatPercentSigned(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return t("ui.na");
-  }
-  const sign = number > 0 ? "+" : "";
-  return `${sign}${formatNumber(number, 1)}%`;
-}
-
-function formatPercentPlain(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return t("ui.na");
-  }
-  return `${formatNumber(number, 1)}%`;
-}
-
-function formatRatio(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return t("ui.na");
-  }
-  return `1:${formatNumber(number, 1)}`;
-}
-
-function formatDecimal(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return t("ui.na");
-  }
-  return formatNumber(number, 2);
-}
-
-function formatSignedDecimal(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return t("ui.na");
-  }
-  const sign = number > 0 ? "+" : "";
-  return `${sign}${formatNumber(number, 2)}`;
-}
-
-function formatInteger(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return t("ui.na");
-  }
-  return new Intl.NumberFormat(currentLocale(), {
-    maximumFractionDigits: 0
-  }).format(number);
-}
-
-function formatNumber(value, digits) {
-  return new Intl.NumberFormat(currentLocale(), {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits
-  }).format(value);
-}
-
-function parseDateValue(value) {
-  if (value instanceof Date) {
-    return value;
-  }
-
-  if (typeof value === "string") {
-    const normalized = value.trim();
-    const dateOnlyMatch = normalized.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (dateOnlyMatch) {
-      const [, year, month, day] = dateOnlyMatch;
-      return new Date(Number(year), Number(month) - 1, Number(day));
-    }
-  }
-
-  return new Date(value);
-}
-
-function currentLocale() {
-  return appState.language === "pl" ? "pl-PL" : "en-GB";
-}
-
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function escapeHtmlClass(value) {
-  return String(value ?? "unknown").replace(/[^a-z0-9_-]/gi, "");
-}
+init();

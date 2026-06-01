@@ -227,9 +227,9 @@
     },
     "empty": {
       "metrics": "Brak danych metrycznych po ostatnim przeliczeniu workbooków.",
-      "monthlyReturns": "Brak miesięcznych stóp zwrotu. Sprawdź plik ReportHistory.xlsx.",
-      "trades": "Brak historii transakcji. Sprawdź plik dashboard_trading.xlsx.",
-      "chart": "Brak realnej krzywej kapitału. Uzupełnij ReportHistory.xlsx i uruchom konwerter."
+      "monthlyReturns": "Brak miesięcznych stóp zwrotu. Sprawdź plik dashboard_trading.xlsx.",
+      "trades": "Brak historii transakcji. Sprawdź plik ReportHistory.xlsx.",
+      "chart": "Brak realnej krzywej kapitału. Uzupełnij dashboard_trading.xlsx i uruchom konwerter."
     },
     "footer": {
       "tagline": "Systematic Trading Research",
@@ -467,9 +467,9 @@
     },
     "empty": {
       "metrics": "No metric data available after the latest workbook conversion.",
-      "monthlyReturns": "No monthly returns available. Check ReportHistory.xlsx.",
-      "trades": "No trade history available. Check dashboard_trading.xlsx.",
-      "chart": "No real equity curve available. Populate ReportHistory.xlsx and run the converter."
+      "monthlyReturns": "No monthly returns available. Check dashboard_trading.xlsx.",
+      "trades": "No trade history available. Check ReportHistory.xlsx.",
+      "chart": "No real equity curve available. Populate dashboard_trading.xlsx and run the converter."
     },
     "footer": {
       "tagline": "Systematic Trading Research",
