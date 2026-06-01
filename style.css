@@ -292,6 +292,9 @@ canvas {
   padding: clamp(5rem, 7vw, 8rem) 0 clamp(4rem, 6vw, 6rem);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "main"
+    "overview";
   justify-items: center;
   align-items: start;
 }
@@ -520,13 +523,20 @@ canvas {
 .hero > .container {
   width: var(--container);
   max-width: 100%;
+  justify-self: center;
+}
+
+.hero > .container:first-child {
+  grid-area: main;
 }
 
 .hero .container:last-child {
+  grid-area: overview;
   display: block;
   width: var(--container);
   max-width: 100%;
   margin-inline: auto;
+  margin-top: 0;
 }
 
 .terminal-frame {
@@ -687,6 +697,7 @@ canvas {
   gap: 1rem;
   align-items: stretch;
   clear: both;
+  grid-column: 1 / -1;
 }
 
 .overview-card {
