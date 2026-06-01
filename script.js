@@ -20,6 +20,11 @@ const els = {
   langButtons: Array.from(document.querySelectorAll(".lang-button")),
 };
 
+if (els.chartEmptyState) {
+  els.chartEmptyState.removeAttribute("data-i18n");
+  els.chartEmptyState.textContent = "";
+}
+
 const metricGroups = {
   heroMetrics: { container: els.heroMetrics, type: "hero" },
   dashboardStats: { container: els.dashboardStats, type: "dashboard" },
@@ -339,10 +344,7 @@ function setChartEmptyStateVisible(isVisible) {
   els.chartEmptyState.style.opacity = isVisible ? "1" : "0";
   els.chartEmptyState.style.visibility = isVisible ? "visible" : "hidden";
   els.chartEmptyState.style.pointerEvents = isVisible ? "auto" : "none";
-
-  if (!isVisible) {
-    els.chartEmptyState.textContent = "";
-  }
+  els.chartEmptyState.textContent = isVisible ? t("empty.chart") : "";
 }
 
 function renderChart() {
