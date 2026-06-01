@@ -53,7 +53,7 @@
       },
       "advancedStats": {
         "eyebrow": "Zaawansowane statystyki",
-        "title": "Jakość sygnału oceniana przez pryzmat ryzyka, wypłat i dyscypliny ekspozycji.",
+        "title": "Jakość sygnału oceniana przez pryzmat ryzyka, opłacalności i dyscypliny ekspozycji.",
         "body": ""
       },
       "strategy": {
@@ -80,7 +80,7 @@
       },
       "trades": {
         "eyebrow": "Historia transakcji",
-        "title": "Terminalowa tabela transakcyjna zasilana bezpośrednio z danych dashboardu.",
+        "title": "Terminalowa tabela transakcyjna ostatnich pięciu transakcji.",
         "body": "",
         "panelLabel": "Trade Log",
         "tableTitle": "HISTORIA TRANSAKCJI"
@@ -293,7 +293,7 @@
       },
       "advancedStats": {
         "eyebrow": "Advanced statistics",
-        "title": "Signal quality measured through risk, payout structure and exposure discipline.",
+        "title": "Signal quality measured through risk, profitability and exposure discipline.",
         "body": ""
       },
       "strategy": {
@@ -320,7 +320,7 @@
       },
       "trades": {
         "eyebrow": "Trade history",
-        "title": "A terminal-grade trade table sourced directly from dashboard data.",
+        "title": "A terminal-grade table of the five most recent trades.",
         "body": "",
         "panelLabel": "Trade Log",
         "tableTitle": "TRADE HISTORY"

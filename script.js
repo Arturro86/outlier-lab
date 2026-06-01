@@ -140,7 +140,7 @@ function render() {
 
 function renderMetricGroup(groupKey, items) {
   const config = metricGroups[groupKey];
-  const metrics = Array.isArray(items) ? items : [];
+  const metrics = (Array.isArray(items) ? items : []).filter((metric) => metric?.id !== "exposure");
 
   if (!config.container) {
     return;
@@ -317,7 +317,7 @@ function renderTradesTable() {
       const rightDate = Date.parse(right?.date || "") || 0;
       return rightDate - leftDate;
     })
-    .slice(0, 10);
+    .slice(0, 5);
 
   els.recentTradesTable.innerHTML = visibleTrades
     .map(
