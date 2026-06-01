@@ -54,7 +54,7 @@
       "advancedStats": {
         "eyebrow": "Zaawansowane statystyki",
         "title": "Jakość sygnału oceniana przez pryzmat ryzyka, wypłat i dyscypliny ekspozycji.",
-        "body": "Wszystkie główne wskaźniki są renderowane bezpośrednio z pliku danych, dzięki czemu dashboard pozostaje spójny z ostatnią aktualizacją raportów tradingowych."
+        "body": ""
       },
       "strategy": {
         "eyebrow": "Architektura strategii",
@@ -74,21 +74,21 @@
       "monthlyReturns": {
         "eyebrow": "Miesięczne stopy zwrotu",
         "title": "Ujęcie tear-sheet dla rytmu wyników i odporności strategii.",
-        "body": "Sekcja pokazuje miesięczny profil zwrotów w formie czytelnej zarówno dla szybkiego przeglądu, jak i dla bardziej szczegółowej analizy przebiegu wyników.",
+        "body": "",
         "panelLabel": "Monthly Performance",
         "tableTitle": "MIESIĘCZNE STOPY ZWROTU"
       },
       "trades": {
         "eyebrow": "Historia transakcji",
         "title": "Terminalowa tabela transakcyjna zasilana bezpośrednio z danych dashboardu.",
-        "body": "Historia transakcji pozwala szybko zweryfikować instrument, kierunek, wynik, relację ryzyka do zysku oraz operacyjne uwagi przypisane do każdego zagrania.",
+        "body": "",
         "panelLabel": "Trade Log",
         "tableTitle": "HISTORIA TRANSAKCJI"
       },
       "research": {
         "eyebrow": "Research notes",
-        "title": "Prywatne moduły analityczne dla procesu systematycznego.",
-        "body": "Karty researchowe pozostają częścią warstwy interpretacyjnej dashboardu i stanowią skrót najważniejszych założeń procesu oraz zarządzania ryzykiem.",
+        "title": "Autorskie moduły analizy rynku i zarządzania ryzykiem.",
+        "body": "",
         "card1Title": "Outlier Investing",
         "card1Body": "Konstrukcja portfela zakłada, że relatywnie niewielka liczba transakcji może odpowiadać za większość długoterminowego wyniku, jeśli ryzyko jest konsekwentnie kontrolowane.",
         "card2Title": "Zarządzanie ryzykiem",
@@ -294,7 +294,7 @@
       "advancedStats": {
         "eyebrow": "Advanced statistics",
         "title": "Signal quality measured through risk, payout structure and exposure discipline.",
-        "body": "Every core metric is rendered directly from the data file so the dashboard remains aligned with the latest strategy workbooks."
+        "body": ""
       },
       "strategy": {
         "eyebrow": "Strategy architecture",
@@ -314,21 +314,21 @@
       "monthlyReturns": {
         "eyebrow": "Monthly returns",
         "title": "A tear-sheet view of return rhythm and strategy resilience.",
-        "body": "This section shows the monthly return profile in a format suited both for fast review and deeper analysis of performance progression.",
+        "body": "",
         "panelLabel": "Monthly Performance",
         "tableTitle": "MONTHLY RETURNS"
       },
       "trades": {
         "eyebrow": "Trade history",
         "title": "A terminal-grade trade table sourced directly from dashboard data.",
-        "body": "Trade history makes it easy to review instrument, direction, result, reward-to-risk ratio and operational notes attached to each position.",
+        "body": "",
         "panelLabel": "Trade Log",
         "tableTitle": "TRADE HISTORY"
       },
       "research": {
         "eyebrow": "Research notes",
-        "title": "Private analytical modules for a systematic process.",
-        "body": "The research cards remain part of the interpretive layer of the dashboard and summarise the key assumptions behind the process and its risk framework.",
+        "title": "Proprietary market analysis and risk management modules.",
+        "body": "",
         "card1Title": "Outlier Investing",
         "card1Body": "Portfolio construction assumes that a relatively small number of trades may account for most of the long-term outcome when risk is controlled consistently.",
         "card2Title": "Risk Management",

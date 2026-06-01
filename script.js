@@ -23,6 +23,7 @@ const els = {
 if (els.chartEmptyState) {
   els.chartEmptyState.removeAttribute("data-i18n");
   els.chartEmptyState.textContent = "";
+  els.chartEmptyState.remove();
 }
 
 const metricGroups = {
@@ -107,7 +108,12 @@ function applyLanguage(lang) {
 
 function applyTranslations() {
   document.querySelectorAll("[data-i18n]").forEach((node) => {
-    node.textContent = t(node.dataset.i18n);
+    const value = t(node.dataset.i18n);
+    node.textContent = value;
+
+    if (node.tagName === "P") {
+      node.hidden = value === "";
+    }
   });
 
   document.querySelectorAll("[data-i18n-content]").forEach((node) => {
@@ -304,7 +310,16 @@ function renderTradesTable() {
     return;
   }
 
-  els.recentTradesTable.innerHTML = trades
+  const visibleTrades = trades
+    .slice()
+    .sort((left, right) => {
+      const leftDate = Date.parse(left?.date || "") || 0;
+      const rightDate = Date.parse(right?.date || "") || 0;
+      return rightDate - leftDate;
+    })
+    .slice(0, 5);
+
+  els.recentTradesTable.innerHTML = visibleTrades
     .map(
       (trade) => `
         <tr>
