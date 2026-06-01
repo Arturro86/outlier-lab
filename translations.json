@@ -119,7 +119,7 @@
       "dashboard": {
         "modelEquity": {
           "label": "Kapitał modelowy",
-          "note": "Ostatni poziom equity odczytany bezpośrednio z historii rachunku."
+          "note": "Bieżący stan kapitału oparty o historię strategii."
         },
         "exposure": {
           "label": "Aktywna ekspozycja",
@@ -127,11 +127,11 @@
         },
         "tradeCount": {
           "label": "Liczba transakcji",
-          "note": "Liczba wierszy transakcyjnych rozpoznanych przez parser."
+          "note": "Łączna liczba zrealizowanych transakcji."
         },
         "lastUpdate": {
           "label": "Ostatnia aktualizacja",
-          "note": "Data wygenerowania bieżącego pliku JSON."
+          "note": "Data ostatniej aktualizacji wyników strategii."
         }
       },
       "chart": {
