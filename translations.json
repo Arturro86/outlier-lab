@@ -45,7 +45,7 @@
       "performanceArchive": {
         "eyebrow": "Archiwum wyników",
         "title": "Krzywa kapitału budowana przez proces, nie przez prognozę.",
-        "body": "Strategia akceptuje niewielkie błędy wykonania i krótkie serie strat w zamian za ekspozycję na rzadkie, trwałe ruchy trendowe o dużym znaczeniu dla wyniku portfela."
+        "body": ""
       },
       "equityCurve": {
         "panelLabel": "Equity Curve",

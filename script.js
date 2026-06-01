@@ -317,7 +317,7 @@ function renderTradesTable() {
       const rightDate = Date.parse(right?.date || "") || 0;
       return rightDate - leftDate;
     })
-    .slice(0, 5);
+    .slice(0, 10);
 
   els.recentTradesTable.innerHTML = visibleTrades
     .map(
