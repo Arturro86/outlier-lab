@@ -290,7 +290,10 @@ canvas {
 .hero {
   min-height: auto;
   padding: clamp(5rem, 7vw, 8rem) 0 clamp(4rem, 6vw, 6rem);
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  align-items: start;
 }
 
 .hero-grid {
@@ -298,12 +301,14 @@ canvas {
   grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1fr);
   gap: clamp(3rem, 5vw, 6rem);
   align-items: center;
+  width: 100%;
 }
 
 .hero-copy {
   max-width: 720px;
   min-width: 0;
   overflow: visible;
+  justify-self: start;
 }
 
 .eyebrow {
@@ -509,6 +514,12 @@ canvas {
   max-width: 720px;
   min-height: auto;
   justify-self: end;
+  align-self: start;
+}
+
+.hero > .container {
+  width: var(--container);
+  max-width: 100%;
 }
 
 .hero .container:last-child {
@@ -679,6 +690,7 @@ canvas {
 }
 
 .overview-card {
+  min-width: 0;
   padding: 1.25rem 1.25rem 1.3rem;
   border-radius: var(--radius-md);
 }
