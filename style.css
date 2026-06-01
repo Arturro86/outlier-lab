@@ -693,7 +693,7 @@ canvas {
   margin-top: clamp(2.5rem, 4vw, 4rem);
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   align-items: stretch;
   clear: both;
@@ -821,7 +821,7 @@ canvas {
 .chart-empty-state {
   position: absolute;
   inset: 0;
-  display: grid;
+  display: none !important;
   place-items: center;
   text-align: center;
   padding: 2rem;
@@ -829,6 +829,9 @@ canvas {
   color: var(--text-secondary);
   background: rgba(255, 255, 255, 0.02);
   border: 1px dashed rgba(255, 255, 255, 0.08);
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .chart-empty-state[hidden] {
@@ -838,7 +841,7 @@ canvas {
 .stats-grid,
 .monthly-summary-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
 }
 
