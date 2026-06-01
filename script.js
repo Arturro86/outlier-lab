@@ -326,12 +326,20 @@ function renderStatusPill(status) {
   return `<span class="pill pill-status-${key}">${escapeHtml(t(`statuses.${key}`))}</span>`;
 }
 
+function setChartEmptyStateVisible(isVisible) {
+  els.chartCanvas.hidden = isVisible;
+  els.chartEmptyState.hidden = !isVisible;
+  els.chartEmptyState.setAttribute("aria-hidden", String(!isVisible));
+  els.chartEmptyState.style.opacity = isVisible ? "1" : "0";
+  els.chartEmptyState.style.visibility = isVisible ? "visible" : "hidden";
+  els.chartEmptyState.style.pointerEvents = isVisible ? "auto" : "none";
+}
+
 function renderChart() {
   const curve = Array.isArray(state.data.equityCurve) ? state.data.equityCurve : [];
   const hasCurve = curve.length > 0;
 
-  els.chartCanvas.hidden = !hasCurve;
-  els.chartEmptyState.hidden = hasCurve;
+  setChartEmptyStateVisible(!hasCurve);
 
   if (!hasCurve) {
     if (state.chart) {

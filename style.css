@@ -831,6 +831,10 @@ canvas {
   border: 1px dashed rgba(255, 255, 255, 0.08);
 }
 
+.chart-empty-state[hidden] {
+  display: none !important;
+}
+
 .stats-grid,
 .monthly-summary-grid {
   display: grid;
