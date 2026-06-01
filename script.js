@@ -327,12 +327,22 @@ function renderStatusPill(status) {
 }
 
 function setChartEmptyStateVisible(isVisible) {
+  if (!els.chartEmptyState) {
+    els.chartCanvas.hidden = isVisible;
+    return;
+  }
+
   els.chartCanvas.hidden = isVisible;
   els.chartEmptyState.hidden = !isVisible;
   els.chartEmptyState.setAttribute("aria-hidden", String(!isVisible));
+  els.chartEmptyState.style.display = isVisible ? "grid" : "none";
   els.chartEmptyState.style.opacity = isVisible ? "1" : "0";
   els.chartEmptyState.style.visibility = isVisible ? "visible" : "hidden";
   els.chartEmptyState.style.pointerEvents = isVisible ? "auto" : "none";
+
+  if (!isVisible) {
+    els.chartEmptyState.textContent = "";
+  }
 }
 
 function renderChart() {
