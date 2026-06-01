@@ -23,7 +23,7 @@
       "titleLine1": "OUTLIER",
       "titleLine2": "INVESTING",
       "titleLine3": "& MICRO CTA",
-      "lead": "Systematyczna strategia oparta o asymetrię, trend following oraz wyszukiwanie rzadkich ruchów typu outlier.",
+      "lead": "Systematyczna strategia oparta o asymetrię, trend following oraz wychwytywanie rzadkich, ponadprzeciętnych ruchów rynkowych.",
       "quoteLine1": "Nie przewidujemy rynku.",
       "quoteLine2": "Budujemy asymetryczną ekspozycję.",
       "primaryCta": "Zobacz statystyki",
@@ -44,7 +44,7 @@
     "sections": {
       "performanceArchive": {
         "eyebrow": "Archiwum wyników",
-        "title": "Krzywa kapitału budowana przez proces, nie przez prognozę.",
+        "title": "Track record strategii oraz przebieg kapitału.",
         "body": ""
       },
       "equityCurve": {
@@ -80,7 +80,7 @@
       },
       "trades": {
         "eyebrow": "Historia transakcji",
-        "title": "Terminalowa tabela transakcyjna ostatnich pięciu transakcji.",
+        "title": "Terminalowa tabela ostatnich pięciu transakcji.",
         "body": "",
         "panelLabel": "Trade Log",
         "tableTitle": "HISTORIA TRANSAKCJI"
@@ -284,7 +284,7 @@
     "sections": {
       "performanceArchive": {
         "eyebrow": "Performance archive",
-        "title": "An equity curve built by process rather than prediction.",
+        "title": "Strategy track record and equity progression.",
         "body": "The strategy accepts small execution errors and short losing sequences in exchange for exposure to rare, persistent trend moves that matter for total portfolio outcome."
       },
       "equityCurve": {
