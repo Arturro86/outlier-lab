@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Journal | WE ARE ALL TRADERS</title>
+  <meta name="description" content="Research Journal WE ARE ALL TRADERS: strategie, futures, makro, ryzyko i proces inwestycyjny bez informacyjnego szumu.">
+  <meta property="og:title" content="Research Journal | WE ARE ALL TRADERS">
+  <meta property="og:description" content="Uporządkowane wpisy o strategiach, ryzyku, futures, makro i procesie inwestycyjnym.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wearealltraders.pl/blog/">
+  <meta property="og:site_name" content="WE ARE ALL TRADERS">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-blog.css">
+</head>
+<body>
+  <div class="blog-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient ambient-c"></div>
 
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/blog/" aria-label="Strona główna bloga">
+          <span class="brand-mark">WE ARE ALL TRADERS</span>
+          <span class="brand-sub">Research Journal</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Główna nawigacja">
+          <a href="/blog/" class="is-active">Blog</a>
+          <a href="#filters" data-nav-filter="Strategie">Strategie</a>
+          <a href="#filters" data-nav-filter="Risk Management">Ryzyko</a>
+          <a href="#filters" data-nav-filter="Futures">Futures</a>
+          <a href="#filters" data-nav-filter="Makro">Makro</a>
+          <a href="https://wearealltraders.pl" class="nav-cta">Dashboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="masthead">
+        <div class="container masthead-grid">
+          <div class="masthead-copy">
+            <span class="eyebrow">Editorial Companion</span>
+            <h1>Research Journal</h1>
+            <p class="masthead-lead">Giełda, futures, trend following, ryzyko i proces inwestycyjny - bez informacyjnego śmietnika.</p>
+            <p class="masthead-text">Miejsce na uporządkowane wpisy o strategiach, wynikach, psychologii ryzyka oraz praktycznej stronie budowania systematycznego podejścia do rynku.</p>
+            <div class="masthead-actions">
+              <a class="button button-primary" href="#latest-posts">Najnowsze wpisy</a>
+              <a class="button button-secondary" href="https://wearealltraders.pl">Dashboard strategii</a>
+            </div>
+          </div>
+
+          <aside class="masthead-panel">
+            <span class="panel-kicker">Scope</span>
+            <h2>Praktyczne notatki dla osób, które chcą budować proces zamiast śledzić hałas.</h2>
+            <p>Blog pozostaje spokojniejszy niż główny dashboard. Ma porządkować wiedzę o strategiach, futures, makro oraz ryzyku i tworzyć czytelne archiwum researchu.</p>
+            <div class="mini-metrics">
+              <article class="metric-card">
+                <span>Tematy</span>
+                <strong>Strategie / Ryzyko</strong>
+              </article>
+              <article class="metric-card">
+                <span>Format</span>
+                <strong>Research Notes</strong>
+              </article>
+              <article class="metric-card">
+                <span>Styl</span>
+                <strong>Calm Financial Editorial</strong>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="featured-section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Featured Post</span>
+              <h2>Wyróżniony wpis</h2>
+            </div>
+            <p>Najważniejszy materiał z aktualnie opublikowanych wpisów. Jeśli nie ma wpisu oznaczonego jako featured, sekcja pokaże po prostu najnowszy tekst.</p>
+          </div>
+
+          <div id="featured-post" class="featured-post" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="filters" class="filters-section">
+        <div class="container">
+          <div class="section-heading section-heading-compact">
+            <div>
+              <span class="eyebrow">Sections</span>
+              <h2>Tematy</h2>
+            </div>
+            <p>Filtrowanie działa lokalnie w JavaScript i korzysta wyłącznie z danych zapisanych w <code>posts.json</code>.</p>
+          </div>
+
+          <div class="filter-row" id="category-filters" role="tablist" aria-label="Filtry kategorii">
+            <button class="filter-chip is-active" type="button" data-category="Wszystkie" aria-pressed="true">Wszystkie</button>
+            <button class="filter-chip" type="button" data-category="Strategie" aria-pressed="false">Strategie</button>
+            <button class="filter-chip" type="button" data-category="Mikro CTA" aria-pressed="false">Mikro CTA</button>
+            <button class="filter-chip" type="button" data-category="Risk Management" aria-pressed="false">Risk Management</button>
+            <button class="filter-chip" type="button" data-category="Futures" aria-pressed="false">Futures</button>
+            <button class="filter-chip" type="button" data-category="Makro" aria-pressed="false">Makro</button>
+            <button class="filter-chip" type="button" data-category="Psychologia" aria-pressed="false">Psychologia</button>
+            <button class="filter-chip" type="button" data-category="Narzędzia" aria-pressed="false">Narzędzia</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="latest-posts" class="posts-section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Latest Notes</span>
+              <h2>Wszystkie opublikowane wpisy</h2>
+            </div>
+            <p id="results-summary">Ładowanie wpisów...</p>
+          </div>
+
+          <div id="posts-grid" class="posts-grid" aria-live="polite"></div>
+          <div id="posts-empty" class="empty-state" hidden>Brak opublikowanych wpisów w tej kategorii.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-copy">
+          <strong>WE ARE ALL TRADERS</strong>
+          <span>Research Journal</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="https://wearealltraders.pl">Dashboard</a>
+          <a href="#filters">Archiwum tematów</a>
+          <a href="/blog/">Blog</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="blog.js"></script>
+</body>
+</html>
