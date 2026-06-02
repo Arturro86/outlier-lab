@@ -16,7 +16,8 @@
       "dashboard": "Pulpit",
       "strategy": "Strategia",
       "statistics": "Statystyki",
-      "research": "Badania"
+      "research": "Badania",
+      "blog": "Blog"
     },
     "hero": {
       "eyebrow": "Systematic Trading",
@@ -256,7 +257,8 @@
       "dashboard": "Dashboard",
       "strategy": "Strategy",
       "statistics": "Statistics",
-      "research": "Research"
+      "research": "Research",
+      "blog": "Blog"
     },
     "hero": {
       "eyebrow": "Systematic Trading",
