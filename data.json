@@ -2,7 +2,7 @@
   "meta": {
     "brand": "WE ARE ALL TRADERS",
     "strategy": "MICRO CTA",
-    "generatedAt": "2026-06-01",
+    "generatedAt": "2026-06-02",
     "baseCurrency": "PLN",
     "hasData": true,
     "hasHistoryData": true,
@@ -31,7 +31,7 @@
     "profitFactor": 1.102439451032412,
     "winRate": 0.547619,
     "rr": 0.910711,
-    "losingStreak": 4,
+    "losingStreak": 6,
     "netReturn": 0.083439,
     "maxDrawdown": 0.065231,
     "currentDrawdown": 0.045464,
@@ -52,7 +52,8 @@
       "largestWinTrade": 302.46,
       "largestLossTrade": -293.81,
       "averageWinValue": 65.04913,
-      "averageLossValue": -73.383158
+      "averageLossValue": -73.383158,
+      "maxConsecutiveLosses": 6
     }
   },
   "heroMetrics": [
