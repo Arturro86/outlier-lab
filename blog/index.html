@@ -3,147 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research Journal | WE ARE ALL TRADERS</title>
-  <meta name="description" content="Research Journal WE ARE ALL TRADERS: strategie, futures, makro, ryzyko i proces inwestycyjny bez informacyjnego szumu.">
-  <meta property="og:title" content="Research Journal | WE ARE ALL TRADERS">
-  <meta property="og:description" content="Uporządkowane wpisy o strategiach, ryzyku, futures, makro i procesie inwestycyjnym.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wearealltraders.pl/blog/">
-  <meta property="og:site_name" content="WE ARE ALL TRADERS">
+  <meta name="description" content="" data-i18n-content="meta.description">
+  <title data-i18n="meta.title"></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style-blog.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="blog-shell">
-    <div class="ambient ambient-a"></div>
-    <div class="ambient ambient-b"></div>
-    <div class="ambient ambient-c"></div>
+  <div class="site-shell">
+    <div class="ambient ambient-orbit ambient-a"></div>
+    <div class="ambient ambient-orbit ambient-b"></div>
+    <div class="ambient ambient-orbit ambient-c"></div>
+    <div class="ambient ambient-beam ambient-d"></div>
 
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/blog/" aria-label="Strona główna bloga">
-          <span class="brand-mark">WE ARE ALL TRADERS</span>
-          <span class="brand-sub">Research Journal</span>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#hero" data-i18n-aria-label="accessibility.home">
+          <span class="brand-mark">MICRO CTA</span>
+          <span class="brand-sub">WE ARE ALL TRADERS</span>
         </a>
 
-        <nav class="main-nav" aria-label="Główna nawigacja">
-          <a href="/blog/" class="is-active">Blog</a>
-          <a href="#filters" data-nav-filter="Strategie">Strategie</a>
-          <a href="#filters" data-nav-filter="Risk Management">Ryzyko</a>
-          <a href="#filters" data-nav-filter="Futures">Futures</a>
-          <a href="#filters" data-nav-filter="Makro">Makro</a>
-          <a href="https://wearealltraders.pl" class="nav-cta">Dashboard</a>
-        </nav>
+        <div class="topbar-actions">
+          <nav class="nav" data-i18n-aria-label="accessibility.primaryNav">
+            <a href="#hero" data-i18n="nav.dashboard"></a>
+            <a href="#strategy" data-i18n="nav.strategy"></a>
+            <a href="#statistics" data-i18n="nav.statistics"></a>
+            <a href="#research" data-i18n="nav.research"></a>
+            <a href="/blog/" data-i18n="nav.blog"></a>
+          </nav>
+
+          <div class="lang-switcher" data-i18n-aria-label="language.switcherAria">
+            <button class="lang-button" type="button" data-lang="pl" aria-pressed="false">PL</button>
+            <span class="lang-divider">/</span>
+            <button class="lang-button" type="button" data-lang="en" aria-pressed="false">ENG</button>
+          </div>
+        </div>
       </div>
     </header>
 
     <main>
-      <section class="masthead">
-        <div class="container masthead-grid">
-          <div class="masthead-copy">
-            <span class="eyebrow">Editorial Companion</span>
-            <h1>Research Journal</h1>
-            <p class="masthead-lead">Giełda, futures, trend following, ryzyko i proces inwestycyjny - bez informacyjnego śmietnika.</p>
-            <p class="masthead-text">Miejsce na uporządkowane wpisy o strategiach, wynikach, psychologii ryzyka oraz praktycznej stronie budowania systematycznego podejścia do rynku.</p>
-            <div class="masthead-actions">
-              <a class="button button-primary" href="#latest-posts">Najnowsze wpisy</a>
-              <a class="button button-secondary" href="https://wearealltraders.pl">Dashboard strategii</a>
+      <section class="hero" id="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow" data-i18n="hero.eyebrow"></span>
+
+            <h1>
+              <span data-i18n="hero.titleLine1"></span>
+              <span class="accent-text" data-i18n="hero.titleLine2"></span>
+              <span data-i18n="hero.titleLine3"></span>
+            </h1>
+
+            <p class="hero-lead" data-i18n="hero.lead"></p>
+
+            <p class="hero-quote">
+              <span data-i18n="hero.quoteLine1"></span><br>
+              <span data-i18n="hero.quoteLine2"></span>
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#statistics" data-i18n="hero.primaryCta"></a>
+              <a class="button button-secondary" href="#research" data-i18n="hero.secondaryCta"></a>
             </div>
+
           </div>
 
-          <aside class="masthead-panel">
-            <span class="panel-kicker">Scope</span>
-            <h2>Praktyczne notatki dla osób, które chcą budować proces zamiast śledzić hałas.</h2>
-            <p>Blog pozostaje spokojniejszy niż główny dashboard. Ma porządkować wiedzę o strategiach, futures, makro oraz ryzyku i tworzyć czytelne archiwum researchu.</p>
-            <div class="mini-metrics">
-              <article class="metric-card">
-                <span>Tematy</span>
-                <strong>Strategie / Ryzyko</strong>
-              </article>
-              <article class="metric-card">
-                <span>Format</span>
-                <strong>Research Notes</strong>
-              </article>
-              <article class="metric-card">
-                <span>Styl</span>
-                <strong>Calm Financial Editorial</strong>
-              </article>
+          <div class="hero-stage reveal">
+            <div class="terminal-frame">
+              <div class="terminal-topline">
+                <span class="status-dot"></span>
+                <span class="status-dot"></span>
+                <span class="status-dot"></span>
+              </div>
+
+              <div class="terminal-copy">
+                <span class="terminal-label" data-i18n="hero.terminalLabel"></span>
+                <strong data-i18n="hero.terminalTitle"></strong>
+                <p class="terminal-meta" id="terminalMeta"></p>
+              </div>
             </div>
-          </aside>
+
+            <div class="hero-kpis" id="heroMetrics"></div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="overview-strip reveal" id="dashboardStats"></div>
         </div>
       </section>
 
-      <section class="featured-section">
+      <section class="section chart-section" id="statistics">
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Featured Post</span>
-              <h2>Wyróżniony wpis</h2>
+              <span class="eyebrow" data-i18n="sections.performanceArchive.eyebrow"></span>
+              <h2 data-i18n="sections.performanceArchive.title"></h2>
             </div>
-            <p>Najważniejszy materiał z aktualnie opublikowanych wpisów. Jeśli nie ma wpisu oznaczonego jako featured, sekcja pokaże po prostu najnowszy tekst.</p>
+            <p data-i18n="sections.performanceArchive.body"></p>
           </div>
 
-          <div id="featured-post" class="featured-post" aria-live="polite"></div>
-        </div>
-      </section>
-
-      <section id="filters" class="filters-section">
-        <div class="container">
-          <div class="section-heading section-heading-compact">
-            <div>
-              <span class="eyebrow">Sections</span>
-              <h2>Tematy</h2>
+          <div class="chart-panel reveal">
+            <div class="chart-panel-header">
+              <div>
+                <span class="panel-label" data-i18n="sections.equityCurve.panelLabel"></span>
+                <h3 data-i18n="sections.equityCurve.title"></h3>
+              </div>
+              <div class="chart-stat-row" id="chartSummary"></div>
             </div>
-            <p>Filtrowanie działa lokalnie w JavaScript i korzysta wyłącznie z danych zapisanych w <code>posts.json</code>.</p>
-          </div>
 
-          <div class="filter-row" id="category-filters" role="tablist" aria-label="Filtry kategorii">
-            <button class="filter-chip is-active" type="button" data-category="Wszystkie" aria-pressed="true">Wszystkie</button>
-            <button class="filter-chip" type="button" data-category="Strategie" aria-pressed="false">Strategie</button>
-            <button class="filter-chip" type="button" data-category="Mikro CTA" aria-pressed="false">Mikro CTA</button>
-            <button class="filter-chip" type="button" data-category="Risk Management" aria-pressed="false">Risk Management</button>
-            <button class="filter-chip" type="button" data-category="Futures" aria-pressed="false">Futures</button>
-            <button class="filter-chip" type="button" data-category="Makro" aria-pressed="false">Makro</button>
-            <button class="filter-chip" type="button" data-category="Psychologia" aria-pressed="false">Psychologia</button>
-            <button class="filter-chip" type="button" data-category="Narzędzia" aria-pressed="false">Narzędzia</button>
+            <div class="chart-wrap">
+              <canvas id="equityChart" data-i18n-aria-label="accessibility.equityChart"></canvas>
+              <div class="chart-empty-state" id="chartEmptyState" hidden data-i18n="empty.chart"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="latest-posts" class="posts-section">
+      <section class="section stats-section">
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading reveal">
             <div>
-              <span class="eyebrow">Latest Notes</span>
-              <h2>Wszystkie opublikowane wpisy</h2>
+              <span class="eyebrow" data-i18n="sections.advancedStats.eyebrow"></span>
+              <h2 data-i18n="sections.advancedStats.title"></h2>
             </div>
-            <p id="results-summary">Ładowanie wpisów...</p>
+            <p data-i18n="sections.advancedStats.body"></p>
           </div>
 
-          <div id="posts-grid" class="posts-grid" aria-live="polite"></div>
-          <div id="posts-empty" class="empty-state" hidden>Brak opublikowanych wpisów w tej kategorii.</div>
+          <div class="stats-grid reveal" id="advancedMetrics"></div>
+        </div>
+      </section>
+
+      <section class="section strategy-section" id="strategy">
+        <div class="container strategy-grid">
+          <div class="strategy-copy reveal">
+            <span class="eyebrow" data-i18n="sections.strategy.eyebrow"></span>
+            <h2 data-i18n="sections.strategy.title"></h2>
+            <p data-i18n="sections.strategy.paragraph1"></p>
+            <p data-i18n="sections.strategy.paragraph2"></p>
+            <p data-i18n="sections.strategy.paragraph3"></p>
+          </div>
+
+          <div class="insight-column reveal">
+            <article class="insight-card">
+              <span class="insight-index">A1</span>
+              <h3 data-i18n="sections.strategyInsight.card1Title"></h3>
+              <p data-i18n="sections.strategyInsight.card1Body"></p>
+            </article>
+            <article class="insight-card raised">
+              <span class="insight-index">B2</span>
+              <h3 data-i18n="sections.strategyInsight.card2Title"></h3>
+              <p data-i18n="sections.strategyInsight.card2Body"></p>
+            </article>
+            <article class="insight-card">
+              <span class="insight-index">C3</span>
+              <h3 data-i18n="sections.strategyInsight.card3Title"></h3>
+              <p data-i18n="sections.strategyInsight.card3Body"></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section returns-section" id="returns">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <span class="eyebrow" data-i18n="sections.monthlyReturns.eyebrow"></span>
+              <h2 data-i18n="sections.monthlyReturns.title"></h2>
+            </div>
+            <p data-i18n="sections.monthlyReturns.body"></p>
+          </div>
+
+          <div class="monthly-summary-grid reveal" id="monthlySummary"></div>
+
+          <div class="table-card reveal">
+            <div class="table-card-header">
+              <span class="panel-label" data-i18n="sections.monthlyReturns.panelLabel"></span>
+              <h3 data-i18n="sections.monthlyReturns.tableTitle"></h3>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table returns-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="tables.monthly.headers.month"></th>
+                    <th data-i18n="tables.monthly.headers.return"></th>
+                    <th data-i18n="tables.monthly.headers.cumulative"></th>
+                    <th data-i18n="tables.monthly.headers.assessment"></th>
+                  </tr>
+                </thead>
+                <tbody id="monthlyReturnsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section trade-section" id="trades">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <span class="eyebrow" data-i18n="sections.trades.eyebrow"></span>
+              <h2 data-i18n="sections.trades.title"></h2>
+            </div>
+            <p data-i18n="sections.trades.body"></p>
+          </div>
+
+          <div class="table-card reveal">
+            <div class="table-card-header">
+              <span class="panel-label" data-i18n="sections.trades.panelLabel"></span>
+              <h3 data-i18n="sections.trades.tableTitle"></h3>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table trades-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="tables.trades.headers.date"></th>
+                    <th data-i18n="tables.trades.headers.instrument"></th>
+                    <th data-i18n="tables.trades.headers.direction"></th>
+                    <th data-i18n="tables.trades.headers.result"></th>
+                    <th data-i18n="tables.trades.headers.rr"></th>
+                    <th data-i18n="tables.trades.headers.status"></th>
+                    <th data-i18n="tables.trades.headers.notes"></th>
+                  </tr>
+                </thead>
+                <tbody id="recentTradesTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section research-section" id="research">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <span class="eyebrow" data-i18n="sections.research.eyebrow"></span>
+              <h2 data-i18n="sections.research.title"></h2>
+            </div>
+            <p data-i18n="sections.research.body"></p>
+          </div>
+
+          <div class="research-grid">
+            <article class="research-card reveal">
+              <span class="research-tag">01</span>
+              <h3 data-i18n="sections.research.card1Title"></h3>
+              <p data-i18n="sections.research.card1Body"></p>
+            </article>
+            <article class="research-card reveal">
+              <span class="research-tag">02</span>
+              <h3 data-i18n="sections.research.card2Title"></h3>
+              <p data-i18n="sections.research.card2Body"></p>
+            </article>
+            <article class="research-card reveal">
+              <span class="research-tag">03</span>
+              <h3 data-i18n="sections.research.card3Title"></h3>
+              <p data-i18n="sections.research.card3Body"></p>
+            </article>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="footer">
       <div class="container footer-inner">
-        <div class="footer-copy">
-          <strong>WE ARE ALL TRADERS</strong>
-          <span>Research Journal</span>
+        <div class="footer-brand-group">
+          <span class="footer-brand">WE ARE ALL TRADERS</span>
+          <span class="footer-copy">MICRO CTA</span>
         </div>
-
-        <div class="footer-links">
-          <a href="https://wearealltraders.pl">Dashboard</a>
-          <a href="#filters">Archiwum tematów</a>
-          <a href="/blog/">Blog</a>
-        </div>
+        <p id="footerMeta"></p>
       </div>
     </footer>
   </div>
 
-  <script src="blog.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
