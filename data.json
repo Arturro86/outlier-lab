@@ -12,15 +12,15 @@
       "tradeSource": "data/ReportHistory.xlsx"
     },
     "rowCounts": {
-      "performanceRows": 25,
+      "performanceRows": 19,
       "closedTrades": 55,
       "rawTransactions": 119
     },
     "warnings": []
   },
   "performanceStats": {
-    "latestEquity": 5456.72,
-    "latestBalance": 5456.72,
+    "latestEquity": 5801.39,
+    "latestBalance": 5741.83,
     "totalTrades": 55,
     "winningTrades": 26,
     "losingTrades": 29,
@@ -32,15 +32,15 @@
     "winRate": 0.472727,
     "rr": 0.787688,
     "losingStreak": 6,
-    "netReturn": 0.004486,
-    "maxDrawdown": 0.141393,
-    "currentDrawdown": 0.141393,
-    "cagr": 0.045177,
-    "ytd": 0.004486,
-    "sharpeRatio": 0.367497,
-    "sortinoRatio": 0.68707,
-    "marRatio": 0.319511,
-    "lastUpdate": "2026-06-11",
+    "netReturn": 0.067934,
+    "maxDrawdown": 0.065231,
+    "currentDrawdown": 0.059125,
+    "cagr": 1.718998,
+    "ytd": 0.067934,
+    "sharpeRatio": 1.975532,
+    "sortinoRatio": 4.466363,
+    "marRatio": 26.352467,
+    "lastUpdate": "2026-05-29",
     "summary": {
       "reportDate": "2026.06.14 18:27",
       "balance": 5456.72,
@@ -59,13 +59,13 @@
   "heroMetrics": [
     {
       "id": "cagr",
-      "rawValue": 0.045177,
+      "rawValue": 1.718998,
       "format": "percentSigned",
       "tone": "positive"
     },
     {
       "id": "maxDd",
-      "rawValue": 0.141393,
+      "rawValue": 0.065231,
       "format": "percentPlain",
       "tone": "negative"
     },
@@ -77,7 +77,7 @@
     },
     {
       "id": "ytd",
-      "rawValue": 0.004486,
+      "rawValue": 0.067934,
       "format": "percentSigned",
       "tone": "positive"
     }
@@ -85,7 +85,7 @@
   "dashboardStats": [
     {
       "id": "modelEquity",
-      "rawValue": 5456.72,
+      "rawValue": 5801.39,
       "format": "currency",
       "tone": "positive"
     },
@@ -103,7 +103,7 @@
     },
     {
       "id": "lastUpdate",
-      "rawValue": "2026-06-11",
+      "rawValue": "2026-05-29",
       "format": "date",
       "tone": "neutral"
     }
@@ -111,19 +111,19 @@
   "chartSummary": [
     {
       "id": "netReturn",
-      "rawValue": 0.004486,
+      "rawValue": 0.067934,
       "format": "percentSigned",
       "tone": "positive"
     },
     {
       "id": "equity",
-      "rawValue": 5456.72,
+      "rawValue": 5801.39,
       "format": "currency",
       "tone": "positive"
     },
     {
       "id": "currentDrawdown",
-      "rawValue": 0.141393,
+      "rawValue": 0.059125,
       "format": "percentPlain",
       "tone": "negative"
     },
@@ -143,13 +143,13 @@
     },
     {
       "id": "sharpeRatio",
-      "rawValue": 0.367497,
+      "rawValue": 1.975532,
       "format": "decimal",
       "tone": "positive"
     },
     {
       "id": "sortinoRatio",
-      "rawValue": 0.68707,
+      "rawValue": 4.466363,
       "format": "decimal",
       "tone": "positive"
     },
@@ -167,7 +167,7 @@
     },
     {
       "id": "marRatio",
-      "rawValue": 0.319511,
+      "rawValue": 26.352467,
       "format": "decimal",
       "tone": "positive"
     }
@@ -381,86 +381,20 @@
       "notes": "",
       "tradeResult": -1.0,
       "losingStreak": 3
-    },
-    {
-      "date": "2026-06-01",
-      "value": 5885.62,
-      "balance": 5748.44,
-      "drawdown": 0.045464,
-      "maxDrawdown": 0.065231,
-      "status": "ON",
-      "notes": "",
-      "tradeResult": 0.0,
-      "losingStreak": 0
-    },
-    {
-      "date": "2026-06-02",
-      "value": 6355.32,
-      "balance": 6124.66,
-      "drawdown": 0.0,
-      "maxDrawdown": 0.065231,
-      "status": "ON",
-      "notes": "Nastąpiła zaplanowana dopłata 500zł do rachunku",
-      "tradeResult": -1.0,
-      "losingStreak": 1
-    },
-    {
-      "date": "2026-06-03",
-      "value": 5885.94,
-      "balance": 5877.45,
-      "drawdown": 0.073856,
-      "maxDrawdown": 0.073856,
-      "status": "ON",
-      "notes": "",
-      "tradeResult": -1.0,
-      "losingStreak": 2
-    },
-    {
-      "date": "2026-06-04",
-      "value": 5769.53,
-      "balance": 5829.49,
-      "drawdown": 0.092173,
-      "maxDrawdown": 0.092173,
-      "status": "ON",
-      "notes": "",
-      "tradeResult": -1.0,
-      "losingStreak": 3
-    },
-    {
-      "date": "2026-06-08",
-      "value": 5493.83,
-      "balance": 5513.92,
-      "drawdown": 0.135554,
-      "maxDrawdown": 0.135554,
-      "status": "ON",
-      "notes": "",
-      "tradeResult": -1.0,
-      "losingStreak": 4
-    },
-    {
-      "date": "2026-06-11",
-      "value": 5456.72,
-      "balance": 5456.72,
-      "drawdown": 0.141393,
-      "maxDrawdown": 0.141393,
-      "status": "ON",
-      "notes": "",
-      "tradeResult": -1.0,
-      "losingStreak": 5
     }
   ],
   "benchmarks": {
     "year": 2026,
     "updatedAt": "2026-06-14",
     "items": [
-      {
-        "id": "microCta",
-        "name": "MICRO CTA",
-        "ytd": 0.004486,
-        "source": "dashboard_trading.xlsx",
-        "status": "ok",
-        "asOf": "2026-06-11"
-      },
+    {
+      "id": "microCta",
+      "name": "MICRO CTA",
+      "ytd": 0.067934,
+      "source": "strategyResults",
+      "status": "ok",
+      "asOf": "2026-05-29"
+    },
       {
         "id": "sgCta",
         "name": "SG CTA Index",
@@ -493,11 +427,6 @@
       "month": "2026-05",
       "return": 0.067934,
       "cumulative": 0.067934
-    },
-    {
-      "month": "2026-06",
-      "return": -0.072873,
-      "cumulative": 0.004486
     }
   ],
   "recentTrades": [
