@@ -57,6 +57,11 @@
         "title": "Jakość sygnału oceniana przez pryzmat ryzyka, opłacalności i dyscypliny ekspozycji.",
         "body": ""
       },
+      "benchmarks": {
+        "eyebrow": "Benchmark YTD",
+        "title": "Benchmark YTD",
+        "body": "Porównanie wyniku strategii MICRO CTA z wybranymi benchmarkami rynku trend following oraz głównymi indeksami."
+      },
       "strategy": {
         "eyebrow": "Architektura strategii",
         "title": "Spokojny proces zaprojektowany pod rzadkie ruchy o dużym znaczeniu.",
@@ -226,6 +231,19 @@
       "datasetLabel": "Krzywa kapitału",
       "tooltipEquity": "Kapitał"
     },
+    "benchmarks": {
+      "source": "Źródło",
+      "updated": "Aktualizacja",
+      "noData": "Brak danych",
+      "status": {
+        "ok": "Aktualne",
+        "missing": "Brak danych",
+        "stale": "Nieaktualne"
+      },
+      "statusNote": {
+        "ok": "Dane pobrane automatycznie."
+      }
+    },
     "empty": {
       "metrics": "Brak danych metrycznych po ostatnim przeliczeniu workbooków.",
       "monthlyReturns": "Brak miesięcznych stóp zwrotu. Sprawdź plik dashboard_trading.xlsx.",
@@ -297,6 +315,11 @@
         "eyebrow": "Advanced statistics",
         "title": "Signal quality measured through risk, profitability and exposure discipline.",
         "body": ""
+      },
+      "benchmarks": {
+        "eyebrow": "YTD Benchmark",
+        "title": "YTD Benchmark",
+        "body": "Comparison of MICRO CTA performance against selected trend-following benchmarks and major equity indices."
       },
       "strategy": {
         "eyebrow": "Strategy architecture",
@@ -466,6 +489,19 @@
     "chart": {
       "datasetLabel": "Equity curve",
       "tooltipEquity": "Equity"
+    },
+    "benchmarks": {
+      "source": "Source",
+      "updated": "Updated",
+      "noData": "No data",
+      "status": {
+        "ok": "Updated",
+        "missing": "No data",
+        "stale": "Stale"
+      },
+      "statusNote": {
+        "ok": "Data fetched automatically."
+      }
     },
     "empty": {
       "metrics": "No metric data available after the latest workbook conversion.",

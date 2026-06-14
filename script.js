@@ -10,6 +10,7 @@ const els = {
   dashboardStats: document.getElementById("dashboardStats"),
   chartSummary: document.getElementById("chartSummary"),
   advancedMetrics: document.getElementById("advancedMetrics"),
+  benchmarkCards: document.getElementById("benchmarkCards"),
   monthlySummary: document.getElementById("monthlySummary"),
   monthlyReturnsTable: document.getElementById("monthlyReturnsTable"),
   recentTradesTable: document.getElementById("recentTradesTable"),
@@ -78,6 +79,7 @@ function buildEmptyData() {
     chartSummary: [],
     advancedMetrics: [],
     equityCurve: [],
+    benchmarks: null,
     monthlyReturns: [],
     recentTrades: [],
   };
@@ -130,6 +132,7 @@ function render() {
   renderMetricGroup("dashboardStats", state.data.dashboardStats);
   renderMetricGroup("chartSummary", state.data.chartSummary);
   renderMetricGroup("advancedMetrics", state.data.advancedMetrics);
+  renderBenchmarks();
   renderTerminalMeta();
   renderFooterMeta();
   renderMonthlySummary();
@@ -230,6 +233,57 @@ function renderFooterMeta() {
   els.footerMeta.textContent = `${t("footer.tagline")}  |  ${t("footer.updated")}: ${generatedAt}`;
 }
 
+function renderBenchmarks() {
+  if (!els.benchmarkCards) {
+    return;
+  }
+
+  const benchmarks = state.data.benchmarks || {};
+  const items = Array.isArray(benchmarks.items) ? benchmarks.items : [];
+  const updatedAt = benchmarks.updatedAt || null;
+
+  if (!items.length) {
+    els.benchmarkCards.innerHTML = `
+      <div class="empty-state">${escapeHtml(t("benchmarks.noData"))}</div>
+    `;
+    return;
+  }
+
+  els.benchmarkCards.innerHTML = items.map((item) => renderBenchmarkCard(item, updatedAt)).join("");
+}
+
+function renderBenchmarkCard(item, updatedAt) {
+  const ytd = Number(item?.ytd);
+  const hasValue = Number.isFinite(ytd);
+  const tone = hasValue ? (ytd > 0 ? "positive" : ytd < 0 ? "negative" : "neutral") : "neutral";
+  const status = normalizeBenchmarkStatus(item?.status);
+  const displayDate = item?.asOf || updatedAt;
+  const value = hasValue ? formatValue(ytd, "percentSigned") : t("ui.na");
+
+  return `
+    <article class="benchmark-card benchmark-card-${status}">
+      <div class="benchmark-card-top">
+        <span class="benchmark-name">${escapeHtml(item?.name || t("ui.na"))}</span>
+        <span class="benchmark-status benchmark-status-${status}">${escapeHtml(t(`benchmarks.status.${status}`))}</span>
+      </div>
+      <strong class="benchmark-value tone-${tone}">${escapeHtml(value)}</strong>
+      <div class="benchmark-meta">
+        <span>${escapeHtml(t("benchmarks.source"))}</span>
+        <strong>${escapeHtml(item?.source || t("ui.na"))}</strong>
+      </div>
+      <div class="benchmark-meta">
+        <span>${escapeHtml(t("benchmarks.updated"))}</span>
+        <strong>${escapeHtml(displayDate ? formatValue(displayDate, "date") : t("ui.na"))}</strong>
+      </div>
+      <p>${escapeHtml(hasValue ? t("benchmarks.statusNote.ok") : t("benchmarks.noData"))}</p>
+    </article>
+  `;
+}
+
+function normalizeBenchmarkStatus(status) {
+  return ["ok", "missing", "stale"].includes(status) ? status : "missing";
+}
+
 function renderMonthlySummary() {
   const rows = Array.isArray(state.data.monthlyReturns) ? state.data.monthlyReturns : [];
   if (!rows.length) {
@@ -310,13 +364,8 @@ function renderTradesTable() {
     return;
   }
 
-  const visibleTrades = trades
-    .slice()
-    .sort((left, right) => {
-      const leftDate = Date.parse(left?.date || "") || 0;
-      const rightDate = Date.parse(right?.date || "") || 0;
-      return rightDate - leftDate;
-    })
+  const visibleTrades = [...trades]
+    .sort((left, right) => new Date(right?.date || 0) - new Date(left?.date || 0))
     .slice(0, 5);
 
   els.recentTradesTable.innerHTML = visibleTrades

@@ -2,7 +2,7 @@
   "meta": {
     "brand": "WE ARE ALL TRADERS",
     "strategy": "MICRO CTA",
-    "generatedAt": "2026-06-02",
+    "generatedAt": "2026-06-14",
     "baseCurrency": "PLN",
     "hasData": true,
     "hasHistoryData": true,
@@ -12,72 +12,72 @@
       "tradeSource": "data/ReportHistory.xlsx"
     },
     "rowCounts": {
-      "performanceRows": 21,
-      "closedTrades": 45,
-      "rawTransactions": 101
+      "performanceRows": 25,
+      "closedTrades": 55,
+      "rawTransactions": 119
     },
     "warnings": []
   },
   "performanceStats": {
-    "latestEquity": 6355.32,
-    "latestBalance": 6124.66,
-    "totalTrades": 45,
-    "winningTrades": 24,
-    "losingTrades": 21,
-    "averageWinValue": 63.099167,
-    "averageLossValue": -71.295238,
+    "latestEquity": 5456.72,
+    "latestBalance": 5456.72,
+    "totalTrades": 55,
+    "winningTrades": 26,
+    "losingTrades": 29,
+    "averageWinValue": 60.665,
+    "averageLossValue": -77.016552,
     "averageWinR": null,
     "averageLossR": null,
-    "profitFactor": 1.0114747528720278,
-    "winRate": 0.533333,
-    "rr": 0.88504,
+    "profitFactor": 0.7062028762290239,
+    "winRate": 0.472727,
+    "rr": 0.787688,
     "losingStreak": 6,
-    "netReturn": 0.169903,
-    "maxDrawdown": 0.065231,
-    "currentDrawdown": 0.0,
-    "cagr": 6.744408,
-    "ytd": 0.169903,
-    "sharpeRatio": 3.73678,
-    "sortinoRatio": 9.055449,
-    "marRatio": 103.392683,
-    "lastUpdate": "2026-06-02",
+    "netReturn": 0.004486,
+    "maxDrawdown": 0.141393,
+    "currentDrawdown": 0.141393,
+    "cagr": 0.045177,
+    "ytd": 0.004486,
+    "sharpeRatio": 0.367497,
+    "sortinoRatio": 0.68707,
+    "marRatio": 0.319511,
+    "lastUpdate": "2026-06-11",
     "summary": {
-      "reportDate": "2026.06.02 22:36",
-      "balance": 6124.66,
-      "grossProfit": 1497.93,
-      "grossLoss": -1519.86,
-      "profitFactor": 0.985571,
-      "sharpeRatio": 0.003759,
-      "totalTrades": 45,
+      "reportDate": "2026.06.14 18:27",
+      "balance": 5456.72,
+      "grossProfit": 1555.38,
+      "grossLoss": -2263.9,
+      "profitFactor": 0.687036,
+      "sharpeRatio": -0.133461,
+      "totalTrades": 55,
       "largestWinTrade": 302.46,
       "largestLossTrade": -293.81,
-      "averageWinValue": 62.41375,
-      "averageLossValue": -72.374286,
+      "averageWinValue": 59.822308,
+      "averageLossValue": -78.065517,
       "maxConsecutiveLosses": 6
     }
   },
   "heroMetrics": [
     {
       "id": "cagr",
-      "rawValue": 6.744408,
+      "rawValue": 0.045177,
       "format": "percentSigned",
       "tone": "positive"
     },
     {
       "id": "maxDd",
-      "rawValue": 0.065231,
+      "rawValue": 0.141393,
       "format": "percentPlain",
       "tone": "negative"
     },
     {
       "id": "rr",
-      "rawValue": 0.88504,
+      "rawValue": 0.787688,
       "format": "ratio",
       "tone": "positive"
     },
     {
       "id": "ytd",
-      "rawValue": 0.169903,
+      "rawValue": 0.004486,
       "format": "percentSigned",
       "tone": "positive"
     }
@@ -85,7 +85,7 @@
   "dashboardStats": [
     {
       "id": "modelEquity",
-      "rawValue": 6355.32,
+      "rawValue": 5456.72,
       "format": "currency",
       "tone": "positive"
     },
@@ -97,13 +97,13 @@
     },
     {
       "id": "tradeCount",
-      "rawValue": 45,
+      "rawValue": 55,
       "format": "integer",
       "tone": "positive"
     },
     {
       "id": "lastUpdate",
-      "rawValue": "2026-06-02",
+      "rawValue": "2026-06-11",
       "format": "date",
       "tone": "neutral"
     }
@@ -111,25 +111,25 @@
   "chartSummary": [
     {
       "id": "netReturn",
-      "rawValue": 0.169903,
+      "rawValue": 0.004486,
       "format": "percentSigned",
       "tone": "positive"
     },
     {
       "id": "equity",
-      "rawValue": 6355.32,
+      "rawValue": 5456.72,
       "format": "currency",
       "tone": "positive"
     },
     {
       "id": "currentDrawdown",
-      "rawValue": 0.0,
+      "rawValue": 0.141393,
       "format": "percentPlain",
-      "tone": "neutral"
+      "tone": "negative"
     },
     {
       "id": "winRate",
-      "rawValue": 0.533333,
+      "rawValue": 0.472727,
       "format": "percentPlain",
       "tone": "positive"
     }
@@ -137,19 +137,19 @@
   "advancedMetrics": [
     {
       "id": "profitFactor",
-      "rawValue": 1.0114747528720278,
+      "rawValue": 0.7062028762290239,
       "format": "decimal",
       "tone": "positive"
     },
     {
       "id": "sharpeRatio",
-      "rawValue": 3.73678,
+      "rawValue": 0.367497,
       "format": "decimal",
       "tone": "positive"
     },
     {
       "id": "sortinoRatio",
-      "rawValue": 9.055449,
+      "rawValue": 0.68707,
       "format": "decimal",
       "tone": "positive"
     },
@@ -161,13 +161,13 @@
     },
     {
       "id": "winRate",
-      "rawValue": 0.533333,
+      "rawValue": 0.472727,
       "format": "percentPlain",
       "tone": "positive"
     },
     {
       "id": "marRatio",
-      "rawValue": 103.392683,
+      "rawValue": 0.319511,
       "format": "decimal",
       "tone": "positive"
     }
@@ -400,11 +400,94 @@
       "drawdown": 0.0,
       "maxDrawdown": 0.065231,
       "status": "ON",
-      "notes": "",
+      "notes": "Nastąpiła zaplanowana dopłata 500zł do rachunku",
       "tradeResult": -1.0,
       "losingStreak": 1
+    },
+    {
+      "date": "2026-06-03",
+      "value": 5885.94,
+      "balance": 5877.45,
+      "drawdown": 0.073856,
+      "maxDrawdown": 0.073856,
+      "status": "ON",
+      "notes": "",
+      "tradeResult": -1.0,
+      "losingStreak": 2
+    },
+    {
+      "date": "2026-06-04",
+      "value": 5769.53,
+      "balance": 5829.49,
+      "drawdown": 0.092173,
+      "maxDrawdown": 0.092173,
+      "status": "ON",
+      "notes": "",
+      "tradeResult": -1.0,
+      "losingStreak": 3
+    },
+    {
+      "date": "2026-06-08",
+      "value": 5493.83,
+      "balance": 5513.92,
+      "drawdown": 0.135554,
+      "maxDrawdown": 0.135554,
+      "status": "ON",
+      "notes": "",
+      "tradeResult": -1.0,
+      "losingStreak": 4
+    },
+    {
+      "date": "2026-06-11",
+      "value": 5456.72,
+      "balance": 5456.72,
+      "drawdown": 0.141393,
+      "maxDrawdown": 0.141393,
+      "status": "ON",
+      "notes": "",
+      "tradeResult": -1.0,
+      "losingStreak": 5
     }
   ],
+  "benchmarks": {
+    "year": 2026,
+    "updatedAt": "2026-06-14",
+    "items": [
+      {
+        "id": "microCta",
+        "name": "MICRO CTA",
+        "ytd": 0.004486,
+        "source": "dashboard_trading.xlsx",
+        "status": "ok",
+        "asOf": "2026-06-11"
+      },
+      {
+        "id": "sgCta",
+        "name": "SG CTA Index",
+        "ytd": 0.1002,
+        "source": "Societe Generale",
+        "status": "ok",
+        "asOf": "2026-06-11"
+      },
+      {
+        "id": "sp500",
+        "name": "S&P 500",
+        "ytd": 0.083545,
+        "source": "Yahoo Finance",
+        "status": "ok",
+        "asOf": "2026-06-12"
+      },
+      {
+        "id": "wig20",
+        "name": "WIG20",
+        "ytd": 0.138361,
+        "source": "BiznesRadar",
+        "status": "ok",
+        "asOf": "2026-06-12"
+      }
+    ],
+    "warnings": []
+  },
   "monthlyReturns": [
     {
       "month": "2026-05",
@@ -413,11 +496,101 @@
     },
     {
       "month": "2026-06",
-      "return": 0.079805,
-      "cumulative": 0.169903
+      "return": -0.072873,
+      "cumulative": 0.004486
     }
   ],
   "recentTrades": [
+    {
+      "date": "2026-06-10",
+      "instrument": "EU50.pro",
+      "direction": "long",
+      "result": -55.94,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-08",
+      "instrument": "EU50.pro",
+      "direction": "long",
+      "result": -100.08,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-05",
+      "instrument": "US500.pro",
+      "direction": "long",
+      "result": -87.71,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-05",
+      "instrument": "COPPER-US.pro",
+      "direction": "long",
+      "result": -141.0,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-04",
+      "instrument": "JP225.pro",
+      "direction": "long",
+      "result": 19.01,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-04",
+      "instrument": "US100.pro",
+      "direction": "long",
+      "result": -66.14,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-03",
+      "instrument": "EU50.pro",
+      "direction": "long",
+      "result": -60.28,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-03",
+      "instrument": "COPPER-US.pro",
+      "direction": "long",
+      "result": 43.9,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-03",
+      "instrument": "AUDUSD.pro",
+      "direction": "long",
+      "result": -113.13,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-03",
+      "instrument": "US500.pro",
+      "direction": "long",
+      "result": -112.0,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
     {
       "date": "2026-06-02",
       "instrument": "JP225.pro",
@@ -510,18 +683,18 @@
     },
     {
       "date": "2026-05-27",
-      "instrument": "US100.pro",
+      "instrument": "COPPER-US.pro",
       "direction": "long",
-      "result": 80.76,
+      "result": -58.25,
       "rr": null,
       "status": "closed",
       "notes": ""
     },
     {
       "date": "2026-05-27",
-      "instrument": "COPPER-US.pro",
+      "instrument": "US100.pro",
       "direction": "long",
-      "result": -58.25,
+      "result": 80.76,
       "rr": null,
       "status": "closed",
       "notes": ""

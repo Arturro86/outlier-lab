@@ -430,6 +430,7 @@ canvas {
 .overview-card,
 .chart-panel,
 .stat-card,
+.benchmark-card,
 .insight-card,
 .research-card,
 .monthly-card,
@@ -450,6 +451,7 @@ canvas {
 .overview-card::before,
 .chart-panel::before,
 .stat-card::before,
+.benchmark-card::before,
 .insight-card::before,
 .research-card::before,
 .monthly-card::before,
@@ -473,6 +475,7 @@ canvas {
 .overview-card::after,
 .chart-panel::after,
 .stat-card::after,
+.benchmark-card::after,
 .insight-card::after,
 .research-card::after,
 .monthly-card::after,
@@ -603,6 +606,7 @@ canvas {
 .kpi-card,
 .overview-card,
 .stat-card,
+.benchmark-card,
 .monthly-card,
 .insight-card,
 .research-card {
@@ -628,6 +632,7 @@ canvas {
 .kpi-card:hover,
 .overview-card:hover,
 .stat-card:hover,
+.benchmark-card:hover,
 .monthly-card:hover,
 .insight-card:hover,
 .research-card:hover {
@@ -845,6 +850,12 @@ canvas {
   gap: 1rem;
 }
 
+.benchmark-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
 .stat-card,
 .monthly-card {
   padding: 1.4rem 1.35rem 1.5rem;
@@ -866,6 +877,94 @@ canvas {
 
 .monthly-value {
   font-size: clamp(1.7rem, 2.4vw, 2.25rem);
+}
+
+.benchmark-card {
+  padding: 1.45rem 1.35rem 1.5rem;
+  border-radius: var(--radius-lg);
+  display: grid;
+  gap: 0.95rem;
+  min-height: 240px;
+}
+
+.benchmark-card-top,
+.benchmark-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.benchmark-card-top {
+  align-items: flex-start;
+}
+
+.benchmark-name,
+.benchmark-meta span {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.benchmark-name {
+  max-width: 16ch;
+}
+
+.benchmark-value {
+  display: block;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2rem, 2.7vw, 2.7rem);
+  line-height: 1;
+}
+
+.benchmark-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.benchmark-status-ok {
+  color: #b9fbc0;
+  background: rgba(76, 175, 80, 0.12);
+}
+
+.benchmark-status-missing {
+  color: #cbd5e1;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.benchmark-status-stale {
+  color: #fde68a;
+  background: rgba(200, 169, 107, 0.16);
+}
+
+.benchmark-meta strong {
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.benchmark-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.benchmark-card-ok {
+  border-color: rgba(76, 175, 80, 0.18);
+}
+
+.benchmark-card-stale {
+  border-color: rgba(200, 169, 107, 0.18);
 }
 
 .strategy-grid {
@@ -1096,6 +1195,7 @@ canvas {
 
   .overview-strip,
   .stats-grid,
+  .benchmark-grid,
   .monthly-summary-grid,
   .research-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1168,6 +1268,7 @@ canvas {
   .hero-kpis,
   .overview-strip,
   .stats-grid,
+  .benchmark-grid,
   .monthly-summary-grid,
   .research-grid,
   .hero-ribbon {
@@ -1200,6 +1301,7 @@ canvas {
 
   .chart-panel,
   .stat-card,
+  .benchmark-card,
   .monthly-card,
   .insight-card,
   .research-card,
