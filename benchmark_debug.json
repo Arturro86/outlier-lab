@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-06-22T09:14:45",
+  "year": 2026,
+  "sources": {
+    "microCta": {
+      "source": "dashboard_trading.xlsx",
+      "success": true,
+      "asOf": "2026-06-22",
+      "ytd": -0.022707,
+      "status": "ok"
+    },
+    "sgCta": {
+      "url": "https://wholesale.banking.societegenerale.com/fileadmin/indices_feeds/CTA.xml",
+      "success": true,
+      "tradeDate": "2026-06-17",
+      "rawYtd": "9.7%",
+      "ytd": 0.097,
+      "status": "ok"
+    },
+    "sp500": {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=1y&includePrePost=false&events=div%2Csplits",
+      "symbol": "^GSPC",
+      "success": true,
+      "rowCount": 251,
+      "yearRowCount": 116,
+      "firstDate": "2026-01-02",
+      "lastDate": "2026-06-18",
+      "ytd": 0.093623,
+      "status": "ok"
+    },
+    "wig20": {
+      "url": "https://www.biznesradar.pl/notowania-historyczne/WIG20",
+      "success": true,
+      "pagesFetched": 3,
+      "rowCount": 150,
+      "yearRowCount": 116,
+      "firstDate": "2026-01-02",
+      "lastDate": "2026-06-19",
+      "ytd": 0.127621,
+      "status": "ok"
+    }
+  },
+  "warnings": []
+}
