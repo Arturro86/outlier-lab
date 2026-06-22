@@ -1,0 +1,39 @@
+{
+  "year": 2026,
+  "updatedAt": "2026-06-22",
+  "items": [
+    {
+      "id": "microCta",
+      "name": "MICRO CTA",
+      "ytd": -0.022707,
+      "source": "strategyResults",
+      "status": "ok",
+      "asOf": "2026-06-22"
+    },
+    {
+      "id": "sgCta",
+      "name": "SG CTA Index",
+      "ytd": 0.097,
+      "source": "Societe Generale",
+      "status": "ok",
+      "asOf": "2026-06-17"
+    },
+    {
+      "id": "sp500",
+      "name": "S&P 500",
+      "ytd": 0.093623,
+      "source": "Yahoo Finance",
+      "status": "ok",
+      "asOf": "2026-06-18"
+    },
+    {
+      "id": "wig20",
+      "name": "WIG20",
+      "ytd": 0.127621,
+      "source": "BiznesRadar",
+      "status": "ok",
+      "asOf": "2026-06-19"
+    }
+  ],
+  "warnings": []
+}
