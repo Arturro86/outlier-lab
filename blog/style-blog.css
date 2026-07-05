@@ -625,15 +625,40 @@ pre {
   max-width: min(95vw, 1200px);
   max-height: 95vh;
   padding: 1rem;
+  transform: scale(0.98);
+  transition: transform 220ms ease;
+}
+
+#lightboxOverlay.is-open .lightbox-frame {
+  transform: scale(1);
 }
 
 .lightbox-img {
   display: block;
   width: 100%;
-  max-height: 90vh;
+  max-height: 95vh;
+  max-width: 95vw;
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 32px 90px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+#lightboxOverlay.is-open .lightbox-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.article-body img {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  cursor: zoom-in;
+}
+
+.article-body img:hover,
+.article-body img:focus-visible {
+  transform: scale(1.02);
 }
 
 .lightbox-close {

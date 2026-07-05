@@ -7,16 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
   var lightboxImage = overlay.querySelector(".lightbox-img");
   var closeButton = overlay.querySelector(".lightbox-close");
 
+  var scrollPosition = 0;
+
   function openLightbox(img) {
+    scrollPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = "-" + scrollPosition + "px";
     lightboxImage.src = img.currentSrc || img.src;
     lightboxImage.alt = img.alt || "Podgląd obrazu";
     overlay.classList.add("is-open");
-    document.body.style.overflow = "hidden";
   }
 
   function closeLightbox() {
     overlay.classList.remove("is-open");
-    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    window.scrollTo(0, scrollPosition);
     setTimeout(function () {
       lightboxImage.src = "";
     }, 250);
