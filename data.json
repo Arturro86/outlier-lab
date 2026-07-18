@@ -2,7 +2,7 @@
   "meta": {
     "brand": "WE ARE ALL TRADERS",
     "strategy": "MICRO CTA",
-    "generatedAt": "2026-07-13",
+    "generatedAt": "2026-07-18",
     "baseCurrency": "PLN",
     "hasData": true,
     "hasHistoryData": true,
@@ -12,72 +12,72 @@
       "tradeSource": "data/ReportHistory.xlsx"
     },
     "rowCounts": {
-      "performanceRows": 29,
-      "closedTrades": 155,
-      "rawTransactions": 330
+      "performanceRows": 30,
+      "closedTrades": 86,
+      "rawTransactions": 183
     },
     "warnings": []
   },
   "performanceStats": {
-    "latestEquity": 3836.0,
-    "latestBalance": 3935.0,
-    "totalTrades": 155,
-    "winningTrades": 65,
-    "losingTrades": 90,
-    "averageWinValue": 44.790154,
-    "averageLossValue": -60.665889,
+    "latestEquity": 3637.77,
+    "latestBalance": 3637.77,
+    "totalTrades": 86,
+    "winningTrades": 33,
+    "losingTrades": 53,
+    "averageWinValue": 60.187879,
+    "averageLossValue": -83.615283,
     "averageWinR": null,
     "averageLossR": null,
-    "profitFactor": 0.5332229534078275,
-    "winRate": 0.419355,
-    "rr": 0.738309,
+    "profitFactor": 0.44818925853132385,
+    "winRate": 0.383721,
+    "rr": 0.719819,
     "losingStreak": 9,
-    "netReturn": -0.29386,
-    "maxDrawdown": 0.396411,
-    "currentDrawdown": 0.396411,
-    "cagr": -0.841472,
-    "ytd": -0.29386,
-    "sharpeRatio": -3.106139,
-    "sortinoRatio": -3.520927,
-    "marRatio": -2.122725,
-    "lastUpdate": "2026-07-13",
+    "netReturn": -0.330351,
+    "maxDrawdown": 0.427602,
+    "currentDrawdown": 0.427602,
+    "cagr": -0.861829,
+    "ytd": -0.330351,
+    "sharpeRatio": -3.542263,
+    "sortinoRatio": -4.086819,
+    "marRatio": -2.015494,
+    "lastUpdate": "2026-07-18",
     "summary": {
-      "reportDate": "2026.07.13 09:33",
-      "balance": 3935.42,
-      "grossProfit": 2899.97,
-      "grossLoss": -5527.45,
-      "profitFactor": 0.524649,
-      "sharpeRatio": -0.19499,
-      "totalTrades": 155,
+      "reportDate": "2026.07.18 19:49",
+      "balance": 3637.77,
+      "grossProfit": 1963.33,
+      "grossLoss": -4501.21,
+      "profitFactor": 0.436178,
+      "sharpeRatio": -0.287722,
+      "totalTrades": 86,
       "largestWinTrade": 302.46,
       "largestLossTrade": -482.78,
-      "averageWinValue": 45.312031,
-      "averageLossValue": -60.741209,
+      "averageWinValue": 63.333226,
+      "averageLossValue": -81.840182,
       "maxConsecutiveLosses": 9
     }
   },
   "heroMetrics": [
     {
       "id": "cagr",
-      "rawValue": -0.841472,
+      "rawValue": -0.861829,
       "format": "percentSigned",
       "tone": "negative"
     },
     {
       "id": "maxDd",
-      "rawValue": 0.396411,
+      "rawValue": 0.427602,
       "format": "percentPlain",
       "tone": "negative"
     },
     {
       "id": "rr",
-      "rawValue": 0.738309,
+      "rawValue": 0.719819,
       "format": "ratio",
       "tone": "positive"
     },
     {
       "id": "ytd",
-      "rawValue": -0.29386,
+      "rawValue": -0.330351,
       "format": "percentSigned",
       "tone": "negative"
     }
@@ -85,7 +85,7 @@
   "dashboardStats": [
     {
       "id": "modelEquity",
-      "rawValue": 3836.0,
+      "rawValue": 3637.77,
       "format": "currency",
       "tone": "positive"
     },
@@ -97,13 +97,13 @@
     },
     {
       "id": "tradeCount",
-      "rawValue": 155,
+      "rawValue": 86,
       "format": "integer",
       "tone": "positive"
     },
     {
       "id": "lastUpdate",
-      "rawValue": "2026-07-13",
+      "rawValue": "2026-07-18",
       "format": "date",
       "tone": "neutral"
     }
@@ -111,25 +111,25 @@
   "chartSummary": [
     {
       "id": "netReturn",
-      "rawValue": -0.29386,
+      "rawValue": -0.330351,
       "format": "percentSigned",
       "tone": "negative"
     },
     {
       "id": "equity",
-      "rawValue": 3836.0,
+      "rawValue": 3637.77,
       "format": "currency",
       "tone": "positive"
     },
     {
       "id": "currentDrawdown",
-      "rawValue": 0.396411,
+      "rawValue": 0.427602,
       "format": "percentPlain",
       "tone": "negative"
     },
     {
       "id": "winRate",
-      "rawValue": 0.419355,
+      "rawValue": 0.383721,
       "format": "percentPlain",
       "tone": "positive"
     }
@@ -137,19 +137,19 @@
   "advancedMetrics": [
     {
       "id": "profitFactor",
-      "rawValue": 0.5332229534078275,
+      "rawValue": 0.44818925853132385,
       "format": "decimal",
       "tone": "positive"
     },
     {
       "id": "sharpeRatio",
-      "rawValue": -3.106139,
+      "rawValue": -3.542263,
       "format": "decimal",
       "tone": "negative"
     },
     {
       "id": "sortinoRatio",
-      "rawValue": -3.520927,
+      "rawValue": -4.086819,
       "format": "decimal",
       "tone": "negative"
     },
@@ -161,13 +161,13 @@
     },
     {
       "id": "winRate",
-      "rawValue": 0.419355,
+      "rawValue": 0.383721,
       "format": "percentPlain",
       "tone": "positive"
     },
     {
       "id": "marRatio",
-      "rawValue": -2.122725,
+      "rawValue": -2.015494,
       "format": "decimal",
       "tone": "negative"
     }
@@ -491,43 +491,54 @@
       "notes": "STOP",
       "tradeResult": -1.0,
       "losingStreak": 9
+    },
+    {
+      "date": "2026-07-18",
+      "value": 3637.77,
+      "balance": 3637.77,
+      "drawdown": 0.427602,
+      "maxDrawdown": 0.427602,
+      "status": "ON",
+      "notes": "STOP",
+      "tradeResult": -1.0,
+      "losingStreak": 10
     }
   ],
   "benchmarks": {
     "year": 2026,
-    "updatedAt": "2026-07-13",
+    "updatedAt": "2026-07-18",
     "items": [
       {
         "id": "microCta",
         "name": "MICRO CTA",
-        "ytd": -0.29386,
+        "ytd": -0.330351,
         "source": "strategyResults",
         "status": "ok",
-        "asOf": "2026-07-13"
+        "asOf": "2026-07-18"
       },
       {
         "id": "sgCta",
         "name": "SG CTA Index",
-        "ytd": 0.0896,
+        "ytd": 0.0867,
         "source": "Societe Generale",
         "status": "ok",
-        "asOf": "2026-07-09"
+        "asOf": "2026-07-15"
       },
       {
         "id": "sp500",
         "name": "S&P 500",
-        "ytd": 0.104531,
+        "ytd": 0.087369,
         "source": "Yahoo Finance",
         "status": "ok",
-        "asOf": "2026-07-10"
+        "asOf": "2026-07-17"
       },
       {
         "id": "wig20",
         "name": "WIG20",
-        "ytd": 0.155409,
+        "ytd": 0.154462,
         "source": "BiznesRadar",
         "status": "ok",
-        "asOf": "2026-07-10"
+        "asOf": "2026-07-17"
       }
     ],
     "warnings": []
@@ -545,11 +556,65 @@
     },
     {
       "month": "2026-07",
-      "return": -0.206613,
-      "cumulative": -0.29386
+      "return": -0.247613,
+      "cumulative": -0.330351
     }
   ],
   "recentTrades": [
+    {
+      "date": "2026-07-15",
+      "instrument": "JP225.pro",
+      "direction": "long",
+      "result": -82.12,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-07-15",
+      "instrument": "US100.pro",
+      "direction": "long",
+      "result": -13.58,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-07-14",
+      "instrument": "USDJPY.pro",
+      "direction": "long",
+      "result": -33.42,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-07-14",
+      "instrument": "USDJPY.pro",
+      "direction": "long",
+      "result": -26.54,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-07-13",
+      "instrument": "US100.pro",
+      "direction": "long",
+      "result": -35.61,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-07-13",
+      "instrument": "US100.pro",
+      "direction": "long",
+      "result": -107.5,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
     {
       "date": "2026-07-10",
       "instrument": "USDJPY.pro",
@@ -599,15 +664,6 @@
       "date": "2026-07-02",
       "instrument": "USDJPY.pro",
       "direction": "long",
-      "result": -86.76,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-07-02",
-      "instrument": "USDJPY.pro",
-      "direction": "long",
       "result": -136.75,
       "rr": null,
       "status": "closed",
@@ -623,10 +679,19 @@
       "notes": ""
     },
     {
+      "date": "2026-07-02",
+      "instrument": "USDJPY.pro",
+      "direction": "long",
+      "result": -86.76,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
       "date": "2026-06-30",
       "instrument": "GB100.pro",
       "direction": "long",
-      "result": -11.16,
+      "result": 15.88,
       "rr": null,
       "status": "closed",
       "notes": ""
@@ -644,7 +709,7 @@
       "date": "2026-06-30",
       "instrument": "GB100.pro",
       "direction": "long",
-      "result": 15.88,
+      "result": -11.16,
       "rr": null,
       "status": "closed",
       "notes": ""
@@ -660,24 +725,6 @@
     },
     {
       "date": "2026-06-23",
-      "instrument": "GB100.pro",
-      "direction": "long",
-      "result": -46.87,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-06-23",
-      "instrument": "DE30.pro",
-      "direction": "long",
-      "result": 4.96,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-06-23",
       "instrument": "DE30.pro",
       "direction": "long",
       "result": 4.36,
@@ -687,9 +734,9 @@
     },
     {
       "date": "2026-06-23",
-      "instrument": "DE30.pro",
+      "instrument": "US100.pro",
       "direction": "long",
-      "result": -58.39,
+      "result": -211.13,
       "rr": null,
       "status": "closed",
       "notes": ""
@@ -705,9 +752,27 @@
     },
     {
       "date": "2026-06-23",
-      "instrument": "US100.pro",
+      "instrument": "DE30.pro",
       "direction": "long",
-      "result": -211.13,
+      "result": -58.39,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-23",
+      "instrument": "DE30.pro",
+      "direction": "long",
+      "result": 4.96,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-23",
+      "instrument": "GB100.pro",
+      "direction": "long",
+      "result": -46.87,
       "rr": null,
       "status": "closed",
       "notes": ""
@@ -813,18 +878,18 @@
     },
     {
       "date": "2026-06-04",
-      "instrument": "US100.pro",
+      "instrument": "JP225.pro",
       "direction": "long",
-      "result": -66.14,
+      "result": 19.01,
       "rr": null,
       "status": "closed",
       "notes": ""
     },
     {
       "date": "2026-06-04",
-      "instrument": "JP225.pro",
+      "instrument": "US100.pro",
       "direction": "long",
-      "result": 19.01,
+      "result": -66.14,
       "rr": null,
       "status": "closed",
       "notes": ""
@@ -867,15 +932,6 @@
     },
     {
       "date": "2026-06-02",
-      "instrument": "JP225.pro",
-      "direction": "long",
-      "result": -63.67,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-06-02",
       "instrument": "US500.pro",
       "direction": "long",
       "result": -61.5,
@@ -888,6 +944,15 @@
       "instrument": "US100.pro",
       "direction": "long",
       "result": 1.8,
+      "rr": null,
+      "status": "closed",
+      "notes": ""
+    },
+    {
+      "date": "2026-06-02",
+      "instrument": "JP225.pro",
+      "direction": "long",
+      "result": -63.67,
       "rr": null,
       "status": "closed",
       "notes": ""
@@ -1266,681 +1331,6 @@
       "instrument": "GBPJPY.pro",
       "direction": "long",
       "result": 11.03,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-05-04",
-      "instrument": "AUDUSD.pro",
-      "direction": "long",
-      "result": 6.3,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-05-04",
-      "instrument": "AUDUSD.pro",
-      "direction": "long",
-      "result": -38.58,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-05-01",
-      "instrument": "GB100.pro",
-      "direction": "long",
-      "result": -29.2,
-      "rr": null,
-      "status": "closed",
-      "notes": "[sl 10324.5]"
-    },
-    {
-      "date": "2026-04-30",
-      "instrument": "GB100.pro",
-      "direction": "long",
-      "result": -0.64,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-30",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 3.3,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-30",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 7.02,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-30",
-      "instrument": "GBPJPY.pro",
-      "direction": "long",
-      "result": -37.73,
-      "rr": null,
-      "status": "closed",
-      "notes": "[sl 214.844]"
-    },
-    {
-      "date": "2026-04-30",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -8.65,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-30",
-      "instrument": "US30.pro",
-      "direction": "long",
-      "result": -2.65,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-29",
-      "instrument": "US30.pro",
-      "direction": "long",
-      "result": -64.91,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-29",
-      "instrument": "NZDJPY.pro",
-      "direction": "long",
-      "result": -70.13,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-28",
-      "instrument": "JP225.pro",
-      "direction": "short",
-      "result": -1.24,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-28",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": 91.94,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-28",
-      "instrument": "JP225.pro",
-      "direction": "long",
-      "result": -3.58,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-28",
-      "instrument": "COPPER-US.pro",
-      "direction": "long",
-      "result": -0.66,
-      "rr": null,
-      "status": "closed",
-      "notes": "[sl 5.90863]"
-    },
-    {
-      "date": "2026-04-28",
-      "instrument": "AUDUSD.pro",
-      "direction": "long",
-      "result": -30.89,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": -16.29,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "AUDJPY.pro",
-      "direction": "long",
-      "result": 105.23,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -30.91,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 12.31,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": 5.13,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -10.74,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": -10.11,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -10.88,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-24",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": -19.13,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": 4.91,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "AUDJPY.pro",
-      "direction": "long",
-      "result": -2.96,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -28.56,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 2.74,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 0.58,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -14.85,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 0.69,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": -9.66,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": 17.69,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "GOLD.pro",
-      "direction": "short",
-      "result": 1.37,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -13.33,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-23",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -10.12,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-22",
-      "instrument": "PL20.pro",
-      "direction": "long",
-      "result": 23.5,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-22",
-      "instrument": "PL20.pro",
-      "direction": "long",
-      "result": -11.0,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-21",
-      "instrument": "AUDUSD.pro",
-      "direction": "long",
-      "result": -94.91,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-21",
-      "instrument": "GB100.pro",
-      "direction": "long",
-      "result": -60.41,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-21",
-      "instrument": "GB100.pro",
-      "direction": "long",
-      "result": -126.16,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-21",
-      "instrument": "AUDNZD.pro",
-      "direction": "long",
-      "result": 4.26,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-21",
-      "instrument": "AUDNZD.pro",
-      "direction": "long",
-      "result": -54.22,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-20",
-      "instrument": "AUDUSD.pro",
-      "direction": "long",
-      "result": -33.61,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-17",
-      "instrument": "GB100.pro",
-      "direction": "long",
-      "result": 14.94,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-17",
-      "instrument": "GB100.pro",
-      "direction": "long",
-      "result": 2.86,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-16",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": -31.31,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-16",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -21.45,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-16",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -40.94,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-16",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -17.31,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-14",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 55.54,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-14",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 35.86,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-14",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -98.62,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-13",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 150.23,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-13",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 9.78,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-13",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 64.74,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-13",
-      "instrument": "US100.pro",
-      "direction": "long",
-      "result": 1.34,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-13",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -23.92,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-10",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -109.13,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-10",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 0.36,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-10",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 0.14,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -23.99,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -13.88,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 93.57,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 9.63,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": 36.08,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": -16.52,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": -15.85,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-09",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": 14.94,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-08",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": 39.91,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-07",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": 64.54,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-04-07",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": -32.67,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-03-30",
-      "instrument": "US100.pro",
-      "direction": "short",
-      "result": 43.73,
-      "rr": null,
-      "status": "closed",
-      "notes": ""
-    },
-    {
-      "date": "2026-03-30",
-      "instrument": "GOLD.pro",
-      "direction": "long",
-      "result": -34.79,
       "rr": null,
       "status": "closed",
       "notes": ""
