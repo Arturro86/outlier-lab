@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T23:02:38",
+  "generatedAt": "2026-08-29T09:30:58",
   "performanceSource": {
     "file": "dashboard_trading.xlsx",
     "selectedSheet": "Dashboard",
@@ -95,7 +95,7 @@
         "column_11": null
       }
     ],
-    "parsedRowsCount": 33,
+    "parsedRowsCount": 35,
     "parsedSampleRows": [
       {
         "date": "2026-05-05",
@@ -272,8 +272,8 @@
         "komentarz": "IchH4_LONG_S3_vSL=49353.00000"
       }
     ],
-    "closedTradesCount": 100,
-    "rawTransactionsCount": 217,
+    "closedTradesCount": 110,
+    "rawTransactionsCount": 235,
     "parsedClosedTradeSamples": [
       {
         "date": "2026-05-05",
@@ -323,33 +323,33 @@
     ]
   },
   "benchmarkSource": {
-    "generatedAt": "2026-08-14T23:02:38",
+    "generatedAt": "2026-08-29T09:30:58",
     "year": 2026,
     "sources": {
       "microCta": {
         "source": "dashboard_trading.xlsx",
         "success": true,
-        "asOf": "2026-08-14",
-        "ytd": -0.284799,
+        "asOf": "2026-08-29",
+        "ytd": -0.392659,
         "status": "ok"
       },
       "sgCta": {
         "url": "https://wholesale.banking.societegenerale.com/fileadmin/indices_feeds/CTA.xml",
         "success": true,
-        "tradeDate": "2026-08-12",
-        "rawYtd": "9.01%",
-        "ytd": 0.0901,
+        "tradeDate": "2026-08-26",
+        "rawYtd": "9.63%",
+        "ytd": 0.0963,
         "status": "ok"
       },
       "sp500": {
         "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=1y&includePrePost=false&events=div%2Csplits",
         "symbol": "^GSPC",
         "success": true,
-        "rowCount": 251,
-        "yearRowCount": 155,
+        "rowCount": 250,
+        "yearRowCount": 164,
         "firstDate": "2026-01-02",
-        "lastDate": "2026-08-14",
-        "ytd": 0.135204,
+        "lastDate": "2026-08-27",
+        "ytd": 0.127218,
         "status": "ok"
       },
       "wig20": {
@@ -357,10 +357,10 @@
         "success": true,
         "pagesFetched": 4,
         "rowCount": 200,
-        "yearRowCount": 155,
+        "yearRowCount": 166,
         "firstDate": "2026-01-02",
-        "lastDate": "2026-08-13",
-        "ytd": 0.22805,
+        "lastDate": "2026-08-28",
+        "ytd": 0.22413,
         "status": "ok"
       }
     },
@@ -368,65 +368,65 @@
   },
   "metrics": {
     "performanceStats": {
-      "latestEquity": 3885.22,
-      "latestBalance": 3365.63,
-      "totalTrades": 100,
-      "winningTrades": 36,
-      "losingTrades": 64,
-      "averageWinValue": 57.913333,
-      "averageLossValue": -74.892187,
+      "latestEquity": 3299.29,
+      "latestBalance": 3171.62,
+      "totalTrades": 110,
+      "winningTrades": 39,
+      "losingTrades": 71,
+      "averageWinValue": 61.260513,
+      "averageLossValue": -74.152394,
       "averageWinR": null,
       "averageLossR": null,
-      "profitFactor": 0.434975276960631,
-      "winRate": 0.36,
-      "rr": 0.773289,
+      "profitFactor": 0.4537970908787007,
+      "winRate": 0.354545,
+      "rr": 0.826143,
       "losingStreak": 14,
-      "netReturn": -0.284799,
-      "maxDrawdown": 0.427602,
-      "currentDrawdown": 0.388667,
-      "cagr": -0.702448,
-      "ytd": -0.284799,
-      "sharpeRatio": -2.646975,
-      "sortinoRatio": -2.995521,
-      "marRatio": -1.642762,
-      "lastUpdate": "2026-08-14",
+      "netReturn": -0.392659,
+      "maxDrawdown": 0.480862,
+      "currentDrawdown": 0.480862,
+      "cagr": -0.791986,
+      "ytd": -0.392659,
+      "sharpeRatio": -3.725318,
+      "sortinoRatio": -4.284391,
+      "marRatio": -1.647012,
+      "lastUpdate": "2026-08-29",
       "summary": {
-        "reportDate": "2026.08.14 23:01",
-        "balance": 3365.63,
-        "grossProfit": 2062.01,
-        "grossLoss": -4873.23,
-        "profitFactor": 0.42313,
-        "sharpeRatio": -0.302107,
-        "totalTrades": 100,
+        "reportDate": "2026.08.29 09:30",
+        "balance": 3171.62,
+        "grossProfit": 2349.14,
+        "grossLoss": -5354.37,
+        "profitFactor": 0.438733,
+        "sharpeRatio": -0.286131,
+        "totalTrades": 110,
         "largestWinTrade": 302.46,
         "largestLossTrade": -482.78,
-        "averageWinValue": 60.647353,
-        "averageLossValue": -73.836818,
+        "averageWinValue": 63.49027,
+        "averageLossValue": -73.347534,
         "maxConsecutiveLosses": 14
       }
     },
     "heroMetrics": [
       {
         "id": "cagr",
-        "rawValue": -0.702448,
+        "rawValue": -0.791986,
         "format": "percentSigned",
         "tone": "negative"
       },
       {
         "id": "maxDd",
-        "rawValue": 0.427602,
+        "rawValue": 0.480862,
         "format": "percentPlain",
         "tone": "negative"
       },
       {
         "id": "rr",
-        "rawValue": 0.773289,
+        "rawValue": 0.826143,
         "format": "ratio",
         "tone": "positive"
       },
       {
         "id": "ytd",
-        "rawValue": -0.284799,
+        "rawValue": -0.392659,
         "format": "percentSigned",
         "tone": "negative"
       }
@@ -434,7 +434,7 @@
     "dashboardStats": [
       {
         "id": "modelEquity",
-        "rawValue": 3885.22,
+        "rawValue": 3299.29,
         "format": "currency",
         "tone": "positive"
       },
@@ -446,13 +446,13 @@
       },
       {
         "id": "tradeCount",
-        "rawValue": 100,
+        "rawValue": 110,
         "format": "integer",
         "tone": "positive"
       },
       {
         "id": "lastUpdate",
-        "rawValue": "2026-08-14",
+        "rawValue": "2026-08-29",
         "format": "date",
         "tone": "neutral"
       }
@@ -460,25 +460,25 @@
     "chartSummary": [
       {
         "id": "netReturn",
-        "rawValue": -0.284799,
+        "rawValue": -0.392659,
         "format": "percentSigned",
         "tone": "negative"
       },
       {
         "id": "equity",
-        "rawValue": 3885.22,
+        "rawValue": 3299.29,
         "format": "currency",
         "tone": "positive"
       },
       {
         "id": "currentDrawdown",
-        "rawValue": 0.388667,
+        "rawValue": 0.480862,
         "format": "percentPlain",
         "tone": "negative"
       },
       {
         "id": "winRate",
-        "rawValue": 0.36,
+        "rawValue": 0.354545,
         "format": "percentPlain",
         "tone": "positive"
       }
@@ -486,19 +486,19 @@
     "advancedMetrics": [
       {
         "id": "profitFactor",
-        "rawValue": 0.434975276960631,
+        "rawValue": 0.4537970908787007,
         "format": "decimal",
         "tone": "positive"
       },
       {
         "id": "sharpeRatio",
-        "rawValue": -2.646975,
+        "rawValue": -3.725318,
         "format": "decimal",
         "tone": "negative"
       },
       {
         "id": "sortinoRatio",
-        "rawValue": -2.995521,
+        "rawValue": -4.284391,
         "format": "decimal",
         "tone": "negative"
       },
@@ -510,13 +510,13 @@
       },
       {
         "id": "winRate",
-        "rawValue": 0.36,
+        "rawValue": 0.354545,
         "format": "percentPlain",
         "tone": "positive"
       },
       {
         "id": "marRatio",
-        "rawValue": -1.642762,
+        "rawValue": -1.647012,
         "format": "decimal",
         "tone": "negative"
       }
@@ -525,39 +525,39 @@
   },
   "benchmarks": {
     "year": 2026,
-    "updatedAt": "2026-08-14",
+    "updatedAt": "2026-08-29",
     "items": [
       {
         "id": "microCta",
         "name": "MICRO CTA",
-        "ytd": -0.284799,
+        "ytd": -0.392659,
         "source": "strategyResults",
         "status": "ok",
-        "asOf": "2026-08-14"
+        "asOf": "2026-08-29"
       },
       {
         "id": "sgCta",
         "name": "SG CTA Index",
-        "ytd": 0.0901,
+        "ytd": 0.0963,
         "source": "Societe Generale",
         "status": "ok",
-        "asOf": "2026-08-12"
+        "asOf": "2026-08-26"
       },
       {
         "id": "sp500",
         "name": "S&P 500",
-        "ytd": 0.135204,
+        "ytd": 0.127218,
         "source": "Yahoo Finance",
         "status": "ok",
-        "asOf": "2026-08-14"
+        "asOf": "2026-08-27"
       },
       {
         "id": "wig20",
         "name": "WIG20",
-        "ytd": 0.22805,
+        "ytd": 0.22413,
         "source": "BiznesRadar",
         "status": "ok",
-        "asOf": "2026-08-13"
+        "asOf": "2026-08-28"
       }
     ],
     "warnings": []
